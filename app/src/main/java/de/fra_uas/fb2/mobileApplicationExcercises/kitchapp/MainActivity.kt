@@ -12,8 +12,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
 // Constant to hold the server address
@@ -24,10 +26,19 @@ class MainActivity : AppCompatActivity() {
     private val client = OkHttpClient()
 
     // Function to send a request to the server and get the response as a String
-    fun sendRequest(): String {
+    fun sendRequest(query: String): String {
+
+        val json = JsonObject().apply {
+            addProperty("query", query)
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
         // Create a new request to the specified server address
         val request = Request.Builder()
             .url(SERVER_ADDRESS)
+            .post(requestBody)
             .build()
 
         // Execute the request and use the response
@@ -56,11 +67,13 @@ class MainActivity : AppCompatActivity() {
 
         val textView: TextView = findViewById(R.id.text_response)
 
+        val query = "Hi ChatGPT, whats up!"
+
         // Use a CoroutineScope to run the network request on a background thread
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 // Call the sendRequest function to get the server response
-                val response = sendRequest()
+                val response = sendRequest(query)
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
                     textView.text = response  ?: "No response from server"
