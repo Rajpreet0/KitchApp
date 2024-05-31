@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212928"
+    tools:context=".MainActivity">
+
+    <!-- ConstraintLayout für den Inhalt -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navigationBar"
+        android:layout_alignParentTop="true">
+
+        <!-- Hier kommt dein bisheriger Inhalt rein -->
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grocery List"
+            android:textColor="#FFFFFF"
+            android:textSize="42dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.063" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:text="Home"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_grocery_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/list_icon"
+            android:text="Grocery"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_recipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/heart_icon"
+            android:text="Recipes"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:text="Profile"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

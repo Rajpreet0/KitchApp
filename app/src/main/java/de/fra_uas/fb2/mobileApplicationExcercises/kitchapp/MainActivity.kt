@@ -1,6 +1,8 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val textView: TextView = findViewById(R.id.text_response)
+       // val textView: TextView = findViewById(R.id.text_response)
 
         val query = "Hi ChatGPT, whats up!"
 
@@ -76,11 +78,11 @@ class MainActivity : AppCompatActivity() {
                 val response = sendRequest(query)
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
-                    textView.text = response  ?: "No response from server"
+                   // textView.text = response  ?: "No response from server"
                 }
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
-                    textView.text = "Failed to get response"
+                  //  textView.text = "Failed to get response"
                 }
             }
         }

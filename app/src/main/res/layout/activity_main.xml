@@ -5,17 +5,195 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#212928"
     tools:context=".MainActivity">
 
 
     <TextView
-        android:id="@+id/text_response"
+        android:id="@+id/HiDaria"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Hi, Daria"
+        android:textColor="#FFFFFF"
+        android:textSize="42dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Want to cook delicious food?"
+        android:textColor="#D8D5D5"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.203"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Suggestions"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_pantries" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_create"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/button_create"
+        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="30dp"
+        android:text="Create
+        Recipe"
+        android:textAllCaps="false"
+        android:textColor="#212928"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_fridge"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.216" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_freezer"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/myfrezzer"
+        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="30dp"
+        android:text="My
+        Freezer"
+        android:textAllCaps="false"
+        android:textColor="#212928"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/button_pantries"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_pantries"
+        android:layout_width="150dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/mypantry"
+        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="60dp"
+        android:text="My
+        Pantries"
+        android:textAllCaps="false"
+        android:textColor="#212928"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_create" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/suggestions_1"
+        android:layout_width="313dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/strokecheeseburger"
+        android:drawableStart="@drawable/burger_svgrepo_com"
+        android:gravity="start|center_vertical"
+        android:paddingHorizontal="18dp"
+        android:text="            Cheeseburger"
+        android:textAllCaps="false"
+        android:textColor="#F3F3F3"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/suggestions_2"
+        android:layout_width="313dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/strokecheeseburger"
+        android:drawableStart="@drawable/burger_svgrepo_com"
+        android:gravity="center"
+        android:paddingHorizontal="18dp"
+        android:text="Salmon Rice Bowl"
+        android:textAllCaps="false"
+        android:textColor="#F3F3F3"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/suggestions_1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/suggestions_3"
+        android:layout_width="314dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/strokecheeseburger"
+        android:gravity="center"
+        android:text="Pizza"
+        android:textAllCaps="false"
+        android:textColor="#F3F3F3"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/suggestions_2"
+        app:layout_constraintVertical_bias="0.257" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_fridge"
+        android:layout_width="150dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/myfridge"
+        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:gravity="center_horizontal|top"
+        android:paddingVertical="60dp"
+        android:text="My
+        Fridge"
+        android:textAllCaps="false"
+        android:textColor="#212928"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.244" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
