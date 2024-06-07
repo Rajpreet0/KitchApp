@@ -111,5 +111,8 @@ class MainActivity : AppCompatActivity() {
     fun suggestionOneButton(view: View){
         //here you should get to the screen where the recipe is shown in more detail
     }
+    fun suggestionTwoButton(view: View){
+        //same as in suggestion One
+    }
 
 }
