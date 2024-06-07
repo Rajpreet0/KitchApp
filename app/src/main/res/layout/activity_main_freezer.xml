@@ -133,6 +133,7 @@
         android:layout_height="58dp"
         android:background="@drawable/button_add"
         android:drawableBottom="@drawable/icon_pen"
+        android:onClick="editFreezer"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"

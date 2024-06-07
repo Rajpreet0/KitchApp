@@ -1,6 +1,7 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,5 +13,10 @@ class MainActivity_Freezer : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_freezer)
 
+    }
+
+    fun editFreezer(view: View) {
+        //val intent = Intent(this, EditFreezer::class.java)
+        //startActivity(intent)
     }
 }
