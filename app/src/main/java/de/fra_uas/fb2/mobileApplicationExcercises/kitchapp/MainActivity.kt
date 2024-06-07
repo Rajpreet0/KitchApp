@@ -73,8 +73,6 @@ class MainActivity : AppCompatActivity() {
         val fridgeButton: Button = findViewById(R.id.button_fridge)
         val pantryButton: Button = findViewById(R.id.button_pantries)
 
-
-
         createRecipeButton.setOnClickListener {
             val intent = Intent(this, MainActivity_recipes::class.java)
             startActivity(intent)
