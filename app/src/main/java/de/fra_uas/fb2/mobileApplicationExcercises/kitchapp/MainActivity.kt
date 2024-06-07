@@ -68,29 +68,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val createRecipeButton: Button = findViewById(R.id.button_create)
-        val freezerButton: Button = findViewById(R.id.button_freezer)
-        val fridgeButton: Button = findViewById(R.id.button_fridge)
-        val pantryButton: Button = findViewById(R.id.button_pantries)
-
-        createRecipeButton.setOnClickListener {
-            val intent = Intent(this, MainActivity_recipes::class.java)
-            startActivity(intent)
-        }
-        freezerButton.setOnClickListener {
-            val intent = Intent(this, MainActivity_Freezer::class.java)
-            startActivity(intent)
-        }
-        fridgeButton.setOnClickListener {
-            val intent = Intent(this, MainActivity_Fridge::class.java)
-            startActivity(intent)
-        }
-        pantryButton.setOnClickListener {
-            val intent = Intent(this, MainActivity_pantry::class.java)
-            startActivity(intent)
-        }
-
-
 
        // val textView: TextView = findViewById(R.id.text_response)
 
@@ -112,4 +89,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    fun createRecipeButton(view: View){
+        val intent = Intent(this, MainActivity_recipes::class.java)
+        startActivity(intent)
+    }
+
+    fun freezerButton(view: View){
+        val intent = Intent(this, MainActivity_Freezer::class.java)
+        startActivity(intent)
+    }
+
+    fun fridgeButton(view: View){
+        val intent = Intent(this, MainActivity_Fridge::class.java)
+        startActivity(intent)
+    }
+
+    fun pantryButton(view: View){
+        val intent = Intent(this, MainActivity_pantry::class.java)
+        startActivity(intent)
+    }
+    fun suggestionOneButton(view: View){
+        //here you should get to the screen where the recipe is shown in more detail
+    }
+    fun suggestionTwoButton(view: View){
+        //same as in suggestion One
+    }
+
 }

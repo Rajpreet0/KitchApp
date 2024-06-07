@@ -112,13 +112,14 @@
         android:layout_height="58dp"
         android:background="@drawable/pantry_button"
         android:drawableBottom="@drawable/button_plus"
+        android:onClick="addButton"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
         android:stateListAnimator="@null"
-        android:textAllCaps="false"
 
+        android:textAllCaps="false"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +134,7 @@
         android:layout_height="58dp"
         android:background="@drawable/pantry_button"
         android:drawableBottom="@drawable/icon_pen"
+        android:onClick="editButton"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
@@ -165,6 +167,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/profil_icon"
+            android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -176,6 +179,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/list_icon"
+            android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -187,6 +191,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/heart_icon"
+            android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -198,6 +203,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/profil_icon"
+            android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
             app:iconPadding="2dp" />
