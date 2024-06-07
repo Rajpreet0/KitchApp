@@ -3,6 +3,7 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -66,6 +67,32 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val createRecipeButton: Button = findViewById(R.id.button_create)
+        val freezerButton: Button = findViewById(R.id.button_freezer)
+        val fridgeButton: Button = findViewById(R.id.button_fridge)
+        val pantryButton: Button = findViewById(R.id.button_pantries)
+
+
+
+        createRecipeButton.setOnClickListener {
+            val intent = Intent(this, MainActivity_recipes::class.java)
+            startActivity(intent)
+        }
+        freezerButton.setOnClickListener {
+            val intent = Intent(this, MainActivity_Freezer::class.java)
+            startActivity(intent)
+        }
+        fridgeButton.setOnClickListener {
+            val intent = Intent(this, MainActivity_Fridge::class.java)
+            startActivity(intent)
+        }
+        pantryButton.setOnClickListener {
+            val intent = Intent(this, MainActivity_pantry::class.java)
+            startActivity(intent)
+        }
+
+
 
        // val textView: TextView = findViewById(R.id.text_response)
 
