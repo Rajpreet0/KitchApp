@@ -27,7 +27,6 @@ class MainActivity_Groceery : AppCompatActivity() {
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)                            //add profile screen here if its added
-        startActivity(intent)
+        //here you should go to the profile Screen if its added
     }
 }

@@ -108,6 +108,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity_pantry::class.java)
         startActivity(intent)
     }
-
+    fun suggestionOneButton(view: View){
+        //here you should get to the screen where the recipe is shown in more detail
+    }
 
 }

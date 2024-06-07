@@ -27,9 +27,13 @@ class MainActivity_Freezer : AppCompatActivity() {
         val intent = Intent(this, MainActivity_recipes::class.java)
         startActivity(intent)
     }
-
     fun profileButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)                            //add profile screen here if its added
-        startActivity(intent)
+        //here you should go to the profile Screen if its added
+    }
+    fun addButton(view: View){
+        //should push a pop up to add ingredients
+    }
+    fun editButton(view: View){
+        //should enable the text field to add/delete ingredients
     }
 }

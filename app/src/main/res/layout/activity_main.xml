@@ -38,6 +38,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.123" />
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -47,11 +48,12 @@
         android:textColor="#FFFFFF"
         android:textSize="30dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_pantries" />
-
+        app:layout_constraintTop_toBottomOf="@+id/button_pantries"
+        app:layout_constraintVertical_bias="0.025" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_create"
@@ -99,6 +101,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.617" />
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_pantries"
         android:layout_width="150dp"
@@ -114,29 +117,32 @@
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create" />
-
+        app:layout_constraintTop_toBottomOf="@+id/button_create"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/suggestions_1"
         android:layout_width="313dp"
         android:layout_height="51dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="48dp"
         android:background="@drawable/strokecheeseburger"
         android:drawableStart="@drawable/burger_svgrepo_com"
         android:gravity="start|center_vertical"
+        android:onClick="suggestionOneButton"
         android:paddingHorizontal="18dp"
         android:text="            Cheeseburger"
         android:textAllCaps="false"
         android:textColor="#F3F3F3"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/suggestions_2"
@@ -146,6 +152,7 @@
         android:background="@drawable/strokecheeseburger"
         android:drawableStart="@drawable/burger_svgrepo_com"
         android:gravity="center"
+        android:onClick="suggestionTwoButton"
         android:paddingHorizontal="18dp"
         android:text="Salmon Rice Bowl"
         android:textAllCaps="false"
@@ -181,7 +188,6 @@
         android:layout_width="150dp"
         android:layout_height="215dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="48dp"
         android:background="@drawable/myfridge"
         android:drawableBottom="@drawable/burger_svgrepo_com"
         android:gravity="center_horizontal|top"
@@ -194,9 +200,10 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.244" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

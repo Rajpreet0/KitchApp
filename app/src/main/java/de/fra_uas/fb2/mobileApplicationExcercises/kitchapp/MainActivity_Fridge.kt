@@ -29,7 +29,12 @@ class MainActivity_Fridge : AppCompatActivity() {
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)                            //add profile screen here if its added
-        startActivity(intent)
+        //here you should go to the profile Screen if its added
+    }
+    fun editButton(view: View){
+        //edit functions
+    }
+    fun addButton(view: View){
+        //add functions
     }
 }
