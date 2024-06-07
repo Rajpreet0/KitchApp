@@ -12,7 +12,7 @@
         android:id="@+id/myfreezer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Fridge"
+        android:text="My Freezer"
         android:textColor="#212928"
         android:textSize="42dp"
         android:textStyle="bold"
@@ -133,7 +133,6 @@
         android:layout_height="58dp"
         android:background="@drawable/button_add"
         android:drawableBottom="@drawable/icon_pen"
-        android:onClick="editFreezer"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
         android:paddingEnd="20dp"
@@ -164,6 +163,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/profil_icon"
+            android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -175,6 +175,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/list_icon"
+            android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -186,6 +187,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/heart_icon"
+            android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
             app:iconPadding="2dp" />
@@ -197,6 +199,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:drawableTop="@drawable/profil_icon"
+            android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
             app:iconPadding="2dp" />
