@@ -15,6 +15,9 @@ class MainActivity_Freezer : AppCompatActivity() {
         setContentView(R.layout.activity_main_freezer)
 
     }
+
+
+    // Buttons for switching activities
     fun homeButton(view: View){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
