@@ -5,5 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.KitchApp" parent="Base.Theme.KitchApp" />
+    <style name="Theme.KitchApp" parent="Base.Theme.KitchApp" >
+
+    </style>
+
+        />
 </resources>
