@@ -16,19 +16,19 @@
         android:theme="@style/Theme.KitchApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity_Groceery"
+            android:name=".MainActivityGrocery"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_recipes"
+            android:name=".MainActivityRecipes"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_pantry"
+            android:name=".MainActivityPantry"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_Freezer"
+            android:name=".MainActivityFreezer"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_Fridge"
+            android:name=".MainActivityFridge"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
