@@ -3,8 +3,6 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -90,22 +88,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun createRecipeButton(view: View){
-        val intent = Intent(this, MainActivity_recipes::class.java)
+        val intent = Intent(this, MainActivityRecipes::class.java)
         startActivity(intent)
     }
 
     fun freezerButton(view: View){
-        val intent = Intent(this, MainActivity_Freezer::class.java)
+        val intent = Intent(this, MainActivityFreezer::class.java)
         startActivity(intent)
     }
 
     fun fridgeButton(view: View){
-        val intent = Intent(this, MainActivity_Fridge::class.java)
+        val intent = Intent(this, MainActivityFridge::class.java)
         startActivity(intent)
     }
 
     fun pantryButton(view: View){
-        val intent = Intent(this, MainActivity_pantry::class.java)
+        val intent = Intent(this, MainActivityPantry::class.java)
         startActivity(intent)
     }
     fun suggestionOneButton(view: View){
