@@ -35,24 +35,26 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-       // val textView: TextView = findViewById(R.id.text_response)
 
         val query = "Hi ChatGPT, whats up!"
+        val email = "test2@example.com"
+        val password = "password123"
 
         // Use a CoroutineScope to run the network request on a background thread
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 // Call the sendRequest function to get the server response
                 val response = networkHelper.sendOpenAIRequest(query)
+                 val responseLogin = networkHelper.login(email, password)
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
-                    // textView.text = response  ?: "No response from server"
                     Log.d("Data from ChatGPT: ", response)
+                    Log.d("Data from Login: ", responseLogin.toString())
                 }
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
-                    //  textView.text = "Failed to get response"
                     Log.d("Data from ChatGPT: ", "FAILED")
+                    Log.d("Data from Login: ", "FAILED")
                 }
             }
         }
