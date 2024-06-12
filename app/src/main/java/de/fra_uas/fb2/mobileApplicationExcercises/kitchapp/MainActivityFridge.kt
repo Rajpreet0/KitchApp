@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import org.w3c.dom.Text
 
 class MainActivityFridge : AppCompatActivity() {
     private var productText: LinearLayout? = null
@@ -64,7 +63,8 @@ class MainActivityFridge : AppCompatActivity() {
     }
 
     fun profileButton(view: View){
-        //here you should go to the profile Screen if its added
+        val intent = Intent(this, ProfileActivity::class.java)
+        startActivity(intent)
     }
     fun editButton(view: View){
         //edit functions
