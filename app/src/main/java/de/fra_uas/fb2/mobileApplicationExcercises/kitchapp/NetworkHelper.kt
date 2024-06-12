@@ -70,7 +70,7 @@ class NetworkHelper {
     }
 
     companion object {
-        const val SERVER_ADDRESS_OPENAI = "http://10.0.2.2:3000"
-        const val SERVER_ADDRESS_LOGIN = "http://10.0.2.2:3000/users/login"
+        const val SERVER_ADDRESS_OPENAI = "https://kitch-app-server.vercel.app"
+        const val SERVER_ADDRESS_LOGIN = "https://kitch-app-server.vercel.app/users/login"
     }
 }
