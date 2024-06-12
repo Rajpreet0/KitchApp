@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/icon_book_switch"/>
+    <item android:state_checked="false"
+        android:state_enabled="true"
+        android:drawable="@drawable/icon_apple"/>
+</selector>
+
+    <!--Icons für die Thumbs für die Switch in Recipe Display -->

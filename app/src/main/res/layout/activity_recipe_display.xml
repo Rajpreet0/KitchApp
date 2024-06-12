@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_brown"
+    tools:context=".RecipeDisplay">
+
+
+    <TextView
+        android:id="@+id/tvRecipeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/regular"
+        android:text="Name of Recipe"
+        android:textColor="@color/dark_background"
+        android:textSize="28sp"
+        android:drawableRight="@drawable/heart_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="3dp"
+
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="9dp"
+        android:background="@color/dark_background"
+        app:layout_constraintBottom_toTopOf="@+id/llServingsize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRecipeName" />
+
+    <ImageView
+        android:id="@+id/iconForks"
+        android:layout_width="27dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="593dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/llServingsize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/forkknife" />
+
+    <LinearLayout
+        android:id="@+id/llServingsize"
+        android:layout_width="166dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginBottom="599dp"
+        android:background="@drawable/rounded_border_yellow"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <ImageButton
+            android:id="@+id/minusButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/minusbtn"
+
+            />
+
+        <TextView
+            android:id="@+id/tvServingSize"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+            android:gravity="center"
+            android:text="2 servings"
+            android:textColor="@color/dark_background"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/plusButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/plusbtn" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iconClock"
+        android:layout_width="34dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="595dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintStart_toEndOf="@+id/llServingsize"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:srcCompat="@drawable/clock_two_svgrepo_com__1_" />
+
+    <TextView
+        android:id="@+id/frameLayout"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="593dp"
+        android:background="@drawable/rounded_border_yellow"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="15 min."
+        android:textColor="@color/dark_background"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconClock"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+    </TextView>
+
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="409dp"
+        android:layout_height="3dp"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="499dp"
+        android:background="@color/dark_background"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llServingsize" />
+
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchOption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:thumb="@drawable/bg_switch"
+        android:track="@drawable/switch_background_on"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_border_dirty"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3">
+
+    </LinearLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="homeButton"
+            android:text="Home"
+            android:textColor="#212928"
+            android:fontFamily="@font/regular"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_grocery_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/list_icon"
+            android:onClick="groceryButton"
+            android:text="Grocery"
+            android:textColor="#212928"
+            android:textSize="13sp"
+            android:fontFamily="@font/regular"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_recipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/heart_icon"
+            android:onClick="recipesButton"
+            android:text="Recipes"
+            android:textColor="#212928"
+            android:textSize="13sp"
+            android:fontFamily="@font/regular"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="profileButton"
+            android:text="Profile"
+            android:textColor="#212928"
+            android:textSize="13sp"
+            android:fontFamily="@font/regular"
+            app:iconPadding="2dp" />
+
+    </LinearLayout>
+
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

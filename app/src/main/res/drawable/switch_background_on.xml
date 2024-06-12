@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hintergrundrechteck mit abgerundeten Ecken und Rand -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/pastel_mint" />
+
+    <corners android:radius="20dp" />
+    <stroke
+        android:width="2dp"
+        android:color="@color/dark_background" /> <!-- Randfarbe -->
+</shape>
+
+<!-- Hintergrundbild für die Switch in Recipe Display -->
