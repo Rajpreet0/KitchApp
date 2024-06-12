@@ -55,6 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_pantries"
         app:layout_constraintVertical_bias="0.025" />
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_create"
         android:layout_width="150dp"
@@ -72,11 +73,11 @@
         android:textColor="#212928"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_fridge"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintVertical_bias="0.239" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_freezer"
@@ -96,11 +97,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button_pantries"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617" />
-
+        app:layout_constraintVertical_bias="0.609" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_pantries"
@@ -119,10 +119,10 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/suggestions_1"
