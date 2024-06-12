@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Hintergrundfarbe -->
+            <solid android:color="@color/pastel_yellow"/>
+            <!-- Abgerundete Ecken -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+    <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
+        <shape android:shape="rectangle">
+            <!-- Randfarbe -->
+            <solid android:color="@android:color/transparent"/>
+            <stroke
+                android:width="1dp"
+                android:color="@color/dark_background"/>
+            <!-- Abgerundete Ecken -->
+            <corners android:radius="7dp"/>
+        </shape>
+    </item>
+</layer-list>
+
+    <!-- Hintergrundbild für die Servings und Zeit anzeige in Recipe Display -->
