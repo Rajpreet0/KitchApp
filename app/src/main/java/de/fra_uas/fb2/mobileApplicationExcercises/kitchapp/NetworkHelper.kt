@@ -39,8 +39,38 @@ class NetworkHelper {
         }
     }
 
+    // Function to Login
+    fun login(email: String, password: String): JsonObject {
+        val json = JsonObject().apply {
+            addProperty("email", email);
+            addProperty("password", password);
+        }.toString()
+
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_LOGIN)
+            .post(requestBody)
+            .build()
+
+
+        // Execute the request and use the response
+        client.newCall(request).execute().use { response ->
+            // Throw an IOException if the request was not successful
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            // Get the response body as a string
+            val responseData = response.body!!.string()
+            // Return JSON Object for the User Data
+            return Gson().fromJson(responseData, JsonObject::class.java)
+        }
+    }
 
     companion object {
         const val SERVER_ADDRESS_OPENAI = "http://10.0.2.2:3000"
+        const val SERVER_ADDRESS_LOGIN = "http://10.0.2.2:3000/users/login"
     }
 }
