@@ -37,19 +37,38 @@
 
         <ScrollView
             android:id="@+id/ScrollViewOptions"
-            android:layout_width="308dp"
-            android:layout_height="427dp"
-            android:background="#4D009688"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/ingredientsLayout"
+                android:id="@+id/parentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <!-- Left part of the ScrollView -->
+                <LinearLayout
+                    android:id="@+id/leftLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <!-- Right part of the ScrollView -->
+                <LinearLayout
+                    android:id="@+id/rightLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
