@@ -21,10 +21,11 @@ class MainActivityFridge : AppCompatActivity() {
         productAmount = findViewById(R.id.rightLayout)
 
     }
-    private val products = mutableListOf<String>()                                                  //products list to generate the text views
+    private val products = mutableListOf<String>()                                                  //product list
+    private val amounts = mutableListOf<String>()                                                   //amount list
 
     private fun showInputDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_input, null)
+        val dialogView = layoutInflater.inflate(R.layout.popup_add_ingredient, null)
         val ingredientText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
         val amountText = dialogView.findViewById<EditText>(R.id.editText_amount)
 
@@ -35,6 +36,7 @@ class MainActivityFridge : AppCompatActivity() {
             val inputIngredient = ingredientText.text.toString()
             val inputAmount = amountText.text.toString()
             products.add(inputIngredient)
+            amounts.add(inputAmount)
             val ingredientTextView = TextView(this)
             val amountTextView = TextView(this)
             ingredientTextView.text = inputIngredient
@@ -70,7 +72,6 @@ class MainActivityFridge : AppCompatActivity() {
         //edit functions
     }
     fun addButton(view: View){
-        //add functions
         showInputDialog()
     }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D8D5D5"
+    android:background="#F1FFEB"
     tools:context=".MainActivity">
 
     <TextView
@@ -37,72 +37,43 @@
         app:layout_constraintVertical_bias="0.459">
 
         <!-- Produktliste -->
-        <TextView
-            android:id="@+id/product1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="1. Baby spinach"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@id/product1_weight"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/product1_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="200g"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/product1"
+        <ScrollView
+            android:id="@+id/ScrollViewOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product1" />
-
-        <TextView
-            android:id="@+id/product2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="2. Tomatoes"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@id/product2_weight"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product1" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/product2_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="300g"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/product2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product2" />
+            <LinearLayout
+                android:id="@+id/parentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/product3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="3. Cheese"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toStartOf="@id/product3_weight"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product2" />
+                <!-- Left part of the ScrollView -->
+                <LinearLayout
+                    android:id="@+id/leftLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/product3_weight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="500g"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/product3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product3" />
+                <!-- Right part of the ScrollView -->
+                <LinearLayout
+                    android:id="@+id/rightLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                </LinearLayout>
 
+            </LinearLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,6 +141,7 @@
             android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -182,6 +154,7 @@
             android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -194,6 +167,7 @@
             android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -206,6 +180,7 @@
             android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
     </LinearLayout>

@@ -53,6 +53,7 @@
             android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -65,6 +66,7 @@
             android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -77,6 +79,7 @@
             android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
         <Button
@@ -89,6 +92,7 @@
             android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
+            android:textSize="12sp"
             app:iconPadding="2dp" />
 
     </LinearLayout>

@@ -220,70 +220,67 @@
         app:layout_constraintTop_toTopOf="@id/deleteButton" />
 
     <LinearLayout
-    android:id="@+id/navigationBar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_alignParentBottom="true"
-    android:background="#FFFFFF"
-    app:layout_constraintBottom_toBottomOf="parent">
-
-    <Button
-        android:id="@+id/button_home"
-        android:layout_width="0dp"
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:drawableTop="@drawable/profil_icon"
-        android:onClick="homeButton"
-        android:text="Home"
-        android:textColor="#212928"
-        android:fontFamily="@font/regular"
-        app:iconPadding="2dp" />
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/button_grocery_list"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:drawableTop="@drawable/list_icon"
-        android:onClick="groceryButton"
-        android:text="Grocery"
-        android:textColor="#212928"
-        android:textSize="13sp"
-        android:fontFamily="@font/regular"
-        app:iconPadding="2dp" />
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="homeButton"
+            android:text="Home"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
 
-    <Button
-        android:id="@+id/button_recipes"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:drawableTop="@drawable/heart_icon"
-        android:onClick="recipesButton"
-        android:text="Recipes"
-        android:textColor="#212928"
-        android:textSize="13sp"
-        android:fontFamily="@font/regular"
-        app:iconPadding="2dp" />
+        <Button
+            android:id="@+id/button_grocery_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/list_icon"
+            android:onClick="groceryButton"
+            android:text="Grocery"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
 
-    <Button
-        android:id="@+id/button_profile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:drawableTop="@drawable/profil_icon"
-        android:onClick="profileButton"
-        android:text="Profile"
-        android:textColor="#212928"
-        android:textSize="13sp"
-        android:fontFamily="@font/regular"
-        app:iconPadding="2dp" />
+        <Button
+            android:id="@+id/button_recipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/heart_icon"
+            android:onClick="recipesButton"
+            android:text="Recipes"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="profileButton"
+            android:text="Profile"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
+
+    </LinearLayout>
 
 
 
