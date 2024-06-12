@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
-class MainActivity_Fridge : AppCompatActivity() {
+class MainActivityGrocery : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_fridge)
+        setContentView(R.layout.activity_main_groceery)
 
     }
     fun homeButton(view: View){
@@ -20,21 +18,15 @@ class MainActivity_Fridge : AppCompatActivity() {
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, MainActivity_Groceery::class.java)
+        val intent = Intent(this, MainActivityGrocery::class.java)
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, MainActivity_recipes::class.java)
+        val intent = Intent(this, MainActivityRecipes::class.java)
         startActivity(intent)
     }
 
     fun profileButton(view: View){
         //here you should go to the profile Screen if its added
-    }
-    fun editButton(view: View){
-        //edit functions
-    }
-    fun addButton(view: View){
-        //add functions
     }
 }
