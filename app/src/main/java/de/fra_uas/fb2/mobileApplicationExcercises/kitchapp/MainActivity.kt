@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun createRecipeButton(view: View){
-        val intent = Intent(this, RecipeDisplayActivity::class.java)
+        val intent = Intent(this, excludeingredients::class.java)
         startActivity(intent)
     }
 

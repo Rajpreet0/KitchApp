@@ -65,17 +65,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:layout_marginTop="44dp"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/editTextText"
-            app:layout_constraintTop_toTopOf="parent" />
-            <!--android:drawableEnd="@drawable/baseline_arrow_forward_24"-->
+        <!--android:drawableEnd="@drawable/baseline_arrow_forward_24"-->
 
         <TextView
             android:id="@+id/textView5"
@@ -98,7 +88,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/navigationBar"
@@ -116,8 +107,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="homeButton"
                 android:text="Home"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -127,8 +120,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/list_icon"
+                android:onClick="groceryButton"
                 android:text="Grocery"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -138,8 +133,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/heart_icon"
+                android:onClick="recipesButton"
                 android:text="Recipes"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -149,14 +146,17 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="profileButton"
                 android:text="Profile"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
              
         </LinearLayout>
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
@@ -255,6 +255,22 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="102dp"
+            android:onClick="nextButton"
+            android:text="next"
+            android:textColorLink="#673AB7"
+            app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            app:layout_constraintVertical_bias="0.291" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
