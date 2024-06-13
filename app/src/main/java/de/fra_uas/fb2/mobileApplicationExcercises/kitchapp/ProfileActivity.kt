@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         ArrayAdapter.createFromResource(
             this,
             R.array.languages,
-            android.R.layout.simple_spinner_item
+           android.R.layout.simple_spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears.
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

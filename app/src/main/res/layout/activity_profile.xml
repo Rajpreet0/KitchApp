@@ -13,18 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
-        android:text="TextView"
-        android:textStyle="bold"
+        android:drawableRight="@drawable/edit"
+        android:fontFamily="@font/regular"
+        android:text="Profile"
         android:textColor="@color/pastel_yellow"
         android:textSize="45sp"
-        android:fontFamily="@font/regular"
-        android:drawableRight="@drawable/edit"
+        android:textStyle="bold"
+
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Profile" />
@@ -33,11 +33,8 @@
         android:id="@+id/divider"
         android:layout_width="409dp"
         android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="554dp"
+        android:layout_marginTop="25dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
@@ -45,71 +42,78 @@
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="25dp"
+        android:layout_height="wrap_content"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        android:fontFamily="@font/light"
+        android:layout_marginStart="25dp"
+
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
         android:drawableLeft="@drawable/icon_profile_white"
         android:drawablePadding="10dp"
-
         android:ems="10"
+
+        android:fontFamily="@font/light"
         android:gravity="left"
         android:inputType="text"
         android:text="Name"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName"
-
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"
         android:drawableLeft="@drawable/free_icon_1"
         android:drawablePadding="10dp"
-
         android:ems="10"
+        android:fontFamily="@font/light"
+
         android:gravity="left"
         android:inputType="text"
+
         android:text="example@notavailable.com"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     <Spinner
         android:id="@+id/spLanguage"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="25dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+
         android:dropDownWidth="match_parent"
-
         android:dropDownHeight="wrap_content"
-
         android:spinnerMode="dropdown"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail"
-        app:layout_constraintBottom_toTopOf="@+id/tvExcludeIngr"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <TextView
         android:id="@+id/tvExcludeIngr"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="25dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
         android:text="Excluded Ingredients"
         android:textColor="@color/white"
         android:textSize="34sp"
-        android:fontFamily="@font/regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spLanguage" />
@@ -119,50 +123,41 @@
         android:id="@+id/addExclButton"
         android:layout_width="44dp"
         android:layout_height="38dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="366dp"
-        android:layout_marginBottom="275dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
-        app:layout_constraintVertical_bias="0.289"
+
         app:srcCompat="@drawable/yellow_add_btn" />
 
     <TextView
         android:id="@+id/addExclText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="7dp"
 
 
-        android:layout_marginBottom="271dp"
+        android:layout_marginEnd="28dp"
         android:fontFamily="@font/regular"
         android:text="Add an Ingredient to exlcude"
         android:textColor="@color/pastel_yellow"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/addExclButton"
-        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="351dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_marginStart="25dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
-        android:orientation="vertical"
         android:background="@drawable/round_linearlayout"
-        app:layout_constraintBottom_toTopOf="@+id/logoutButton"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addExclButton">
@@ -174,9 +169,12 @@
         android:id="@+id/logoutButton"
         android:layout_width="43dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
         android:src="@drawable/logout_icon"
+        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+        app:layout_constraintEnd_toStartOf="@+id/tvLogout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
@@ -185,22 +183,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="248dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/regular"
         android:text="Log out"
         android:textColor="@color/light_brown"
         android:textSize="24sp"
-        android:fontFamily="@font/regular"
+        app:layout_constraintBottom_toTopOf="@+id/tvDelete"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/logoutButton"
-        app:layout_constraintTop_toTopOf="@id/logoutButton" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageButton
         android:id="@+id/deleteButton"
         android:layout_width="40dp"
         android:layout_height="52dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
         android:src="@drawable/delete_icon"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logoutButton" />
 
@@ -209,15 +213,19 @@
         android:id="@+id/tvDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="18dp"
+        android:fontFamily="@font/regular"
         android:text="Delete account"
         android:textColor="@color/red"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:fontFamily="@font/regular"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/deleteButton"
-        app:layout_constraintTop_toTopOf="@id/deleteButton" />
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
 
     <LinearLayout
         android:id="@+id/navigationBar"
