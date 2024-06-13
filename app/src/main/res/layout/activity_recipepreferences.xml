@@ -24,7 +24,8 @@
             android:ems="10"
             android:text="2. Recipe Preferences"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="28sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
