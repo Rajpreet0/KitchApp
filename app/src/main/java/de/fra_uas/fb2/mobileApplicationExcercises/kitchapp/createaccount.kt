@@ -1,6 +1,8 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +18,20 @@ class createaccount : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+    fun signUpButton(view: View){
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+    }
+    fun signInButton(view: View){
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+    fun forgotPasswordButton(view: View){
+        //to be designed
+    }
+    fun backButton(view: View){
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
     }
 }
