@@ -9,29 +9,29 @@
     tools:context=".MainActivity">
 
     <!-- ConstraintLayout für den Inhalt -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/navigationBar"
-        android:layout_alignParentTop="true">
-
-        <!-- Hier kommt dein bisheriger Inhalt rein -->
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipes"
-            android:textColor="#FFFFFF"
-            android:textSize="42dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.063" />
+            android:layout_above="@id/navigationBar"
+            android:layout_alignParentTop="true">
 
-        <androidx.appcompat.widget.AppCompatButton
+            <!-- Hier kommt dein bisheriger Inhalt rein -->
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recipes"
+                android:textColor="#FFFFFF"
+                android:textSize="42dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.063" />
+
+            <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/suggestions_2"
             android:layout_width="347dp"
             android:layout_height="45dp"
@@ -70,85 +70,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/suggestions_2"
-            app:layout_constraintVertical_bias="0.0" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_7"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/herz"
-            android:drawableEnd="@drawable/clock_two_svgrepo_com__1_"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Pesto Sandwich - 30min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestions_6" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_9"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/herz"
-            android:drawableEnd="@drawable/clock_two_svgrepo_com__1_"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Chicken Tikka - 40min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestions_7"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_6"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/herz"
-            android:drawableEnd="@drawable/clock_two_svgrepo_com__1_"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Caprese - 30min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestions_3"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_3"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/herz"
-            android:drawableEnd="@drawable/clock_two_svgrepo_com__1_"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Carbonara - 20min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestions_4"
             app:layout_constraintVertical_bias="0.0" />
 
 

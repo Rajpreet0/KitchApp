@@ -63,14 +63,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_create"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/buch"
         android:gravity="center_horizontal|top"
         android:onClick="createRecipeButton"
         android:paddingVertical="30dp"
         android:text="Create       Recipe"
         android:textAllCaps="false"
         android:textColor="#212928"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
@@ -83,8 +83,9 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/myfrezzer"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/freezer_icon"
         android:gravity="center_horizontal|top"
         android:onClick="freezerButton"
         android:paddingVertical="30dp"
@@ -106,10 +107,11 @@
         android:layout_height="204dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/mypantry"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/pantry"
         android:gravity="center_horizontal|top"
         android:onClick="pantryButton"
         android:paddingVertical="60dp"
+
         android:text="My
         Pantries"
         android:textAllCaps="false"
@@ -167,13 +169,14 @@
 
     <!-- Navigationsleiste -->
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fridge"
         android:layout_width="146dp"
         android:layout_height="211dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/myfridge"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/fridge_svgrepo_com"
         android:gravity="center_horizontal|top"
         android:onClick="fridgeButton"
         android:paddingVertical="60dp"
@@ -187,6 +190,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.177" />
+
 
     <LinearLayout
         android:id="@+id/navigationBar"

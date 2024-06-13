@@ -16,6 +16,9 @@
         android:theme="@style/Theme.KitchApp"
         tools:targetApi="31">
         <activity
+            android:name=".Activity_login"
+            android:exported="false" />
+        <activity
             android:name=".RecipeDisplayActivity"
             android:exported="false" />
         <activity
