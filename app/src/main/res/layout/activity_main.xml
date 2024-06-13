@@ -60,14 +60,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/button_create"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/buch"
         android:gravity="center_horizontal|top"
-        android:paddingVertical="30dp"
+        android:paddingVertical="15dp"
         android:text="Create
         Recipe"
         android:textAllCaps="false"
         android:textColor="#212928"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_fridge"
         app:layout_constraintHorizontal_bias="0.89"
@@ -80,18 +80,19 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/myfrezzer"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/freezer_icon"
         android:gravity="center_horizontal|top"
-        android:paddingVertical="30dp"
+        android:paddingVertical="15dp"
         android:text="My
         Freezer"
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/button_pantries"
         app:layout_constraintTop_toTopOf="parent"
@@ -103,9 +104,9 @@
         android:layout_height="215dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/mypantry"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/pantry"
         android:gravity="center_horizontal|top"
-        android:paddingVertical="60dp"
+        android:paddingVertical="45dp"
         android:text="My
         Pantries"
         android:textAllCaps="false"
@@ -135,43 +136,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/suggestions_2"
-        android:layout_width="313dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/strokecheeseburger"
-        android:drawableStart="@drawable/burger_svgrepo_com"
-        android:gravity="center"
-        android:paddingHorizontal="18dp"
-        android:text="Salmon Rice Bowl"
-        android:textAllCaps="false"
-        android:textColor="#F3F3F3"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestions_1"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/suggestions_3"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/strokecheeseburger"
-        android:gravity="center"
-        android:text="Pizza"
-        android:textAllCaps="false"
-        android:textColor="#F3F3F3"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestions_2"
-        app:layout_constraintVertical_bias="0.257" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fridge"
@@ -180,9 +145,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="48dp"
         android:background="@drawable/myfridge"
-        android:drawableBottom="@drawable/burger_svgrepo_com"
+        android:drawableBottom="@drawable/fridge_svgrepo_com"
         android:gravity="center_horizontal|top"
-        android:paddingVertical="60dp"
+        android:paddingVertical="45dp"
         android:text="My
         Fridge"
         android:textAllCaps="false"
@@ -193,7 +158,61 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.244" />
 
+    <!-- Navigationsleiste -->
+    <LinearLayout
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:text="Home"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_grocery_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/list_icon"
+            android:text="Grocery"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_recipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/heart_icon"
+            android:text="Recipes"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:text="Profile"
+            android:textColor="#212928"
+            app:iconPadding="2dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

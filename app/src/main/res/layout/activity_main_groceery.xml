@@ -1,38 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212928"
     tools:context=".MainActivity">
 
-    <!-- ConstraintLayout für den Inhalt -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/contentLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/grocery"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/navigationBar"
-        android:layout_alignParentTop="true">
+        android:text="Grocery List"
+        android:textColor="#FFFF"
+        android:textSize="42dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
 
-        <!-- Hier kommt dein bisheriger Inhalt rein -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rahmen"
+        android:layout_width="333dp"
+        android:layout_height="450dp"
+        android:background="@drawable/frame"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459">
+
+        <!-- Produktliste -->
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/product1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="  Baby spinach"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/product1_weight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/product1_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grocery List"
-            android:textColor="#FFFFFF"
-            android:textSize="42dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="8dp"
+            android:text="200g"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/product1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.063" />
+            app:layout_constraintTop_toTopOf="@id/product1" />
 
+        <TextView
+            android:id="@+id/product2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="  Tomatoes"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/product2_weight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product1" />
+
+        <TextView
+            android:id="@+id/product2_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="300g"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/product2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/product2" />
+
+        <TextView
+            android:id="@+id/product3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="  Cheese"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/product3_weight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product2" />
+
+        <TextView
+            android:id="@+id/product3_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:text="500g"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/product3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/product3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/button_add"
+        android:drawableBottom="@drawable/button_plus"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:stateListAnimator="@null"
+        android:textAllCaps="false"
+
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.79"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
+        app:layout_constraintVertical_bias="0.148" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_delete"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/button_add"
+        android:drawableStart="@drawable/trashcan"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:stateListAnimator="@null"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
+        app:layout_constraintVertical_bias="0.148" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_be"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/button_add"
+        android:drawableBottom="@drawable/icon_pen"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="10dp"
+        android:stateListAnimator="@null"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
+        app:layout_constraintVertical_bias="0.148" />
 
     <LinearLayout
         android:id="@+id/navigationBar"
@@ -89,4 +222,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
