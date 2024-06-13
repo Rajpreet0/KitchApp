@@ -16,7 +16,11 @@
         android:theme="@style/Theme.KitchApp"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".recipepreferencesbackrounds"
+=======
+            android:name=".excludeingredients"
+>>>>>>> d7995fe65fa95abd8e3d0e3ce62767dc5f984319
             android:exported="false" />
         <activity
             android:name=".recipepreferences"
