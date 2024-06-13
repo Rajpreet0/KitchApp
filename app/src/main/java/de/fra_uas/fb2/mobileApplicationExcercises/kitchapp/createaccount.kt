@@ -41,7 +41,7 @@ class createaccount : AppCompatActivity() {
     }
     fun signUpButton(view: View){
         val intent = Intent(this, MainActivity::class.java)
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 if(password.text.toString() != confirmPassword.text.toString()) {
                     Toast.makeText(applicationContext, "Password doesn't match", Toast.LENGTH_SHORT).show()
@@ -57,7 +57,6 @@ class createaccount : AppCompatActivity() {
                 Toast.makeText(applicationContext, "User can't be registerd", Toast.LENGTH_SHORT).show()
             }
         }
-        startActivity(intent)
     }
 
     // Register a User
