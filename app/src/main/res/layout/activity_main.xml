@@ -22,7 +22,8 @@
         app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.023" />
+
 
     <TextView
         android:id="@+id/text2"
@@ -36,24 +37,24 @@
         app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintVertical_bias="0.102" />
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="163dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:text="Suggestions"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.186"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_pantries"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_create"
@@ -66,17 +67,16 @@
         android:gravity="center_horizontal|top"
         android:onClick="createRecipeButton"
         android:paddingVertical="30dp"
-        android:text="Create
-        Recipe"
+        android:text="Create       Recipe"
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_fridge"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_freezer"
@@ -88,24 +88,22 @@
         android:gravity="center_horizontal|top"
         android:onClick="freezerButton"
         android:paddingVertical="30dp"
-        android:text="My
-        Freezer"
+        android:text="My        Freezer"
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button_pantries"
+        app:layout_constraintHorizontal_bias="0.791"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617" />
-
+        app:layout_constraintVertical_bias="0.555" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_pantries"
-        android:layout_width="150dp"
-        android:layout_height="215dp"
+        android:layout_width="148dp"
+        android:layout_height="204dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/mypantry"
         android:drawableBottom="@drawable/burger_svgrepo_com"
@@ -119,10 +117,10 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.528" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/suggestions_1"
@@ -140,9 +138,10 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/suggestions_2"
@@ -160,51 +159,97 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/suggestions_1"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/suggestions_3"
-        android:layout_width="314dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/strokecheeseburger"
-        android:gravity="center"
-        android:text="Pizza"
-        android:textAllCaps="false"
-        android:textColor="#F3F3F3"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestions_2"
-        app:layout_constraintVertical_bias="0.257" />
+
+    <!-- Navigationsleiste -->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_fridge"
-        android:layout_width="150dp"
-        android:layout_height="215dp"
+        android:layout_width="146dp"
+        android:layout_height="211dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/myfridge"
         android:drawableBottom="@drawable/burger_svgrepo_com"
         android:gravity="center_horizontal|top"
         android:onClick="fridgeButton"
         android:paddingVertical="60dp"
-        android:text="My
-        Fridge"
+        android:text="My         Fridge"
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintHorizontal_bias="0.807"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.177" />
 
+    <LinearLayout
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="homeButton"
+            android:text="Home"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_grocery_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/list_icon"
+            android:onClick="groceryButton"
+            android:text="Grocery"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_recipes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/heart_icon"
+            android:onClick="recipesButton"
+            android:text="Recipes"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
+
+        <Button
+            android:id="@+id/button_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/profil_icon"
+            android:onClick="profileButton"
+            android:text="Profile"
+            android:textColor="#212928"
+            android:textSize="12sp"
+            app:iconPadding="2dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
