@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212928"
+    tools:context=".Suggestions">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="3. Our Suggestions"
+            android:textColor="#FFFFFF"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Choose one of the recipes for detailed instructions"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <FrameLayout
+                android:id="@+id/buttonFrame2"
+                android:layout_width="306dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/buttonslayout3"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonFrame1">
+
+                <TextView
+                    android:id="@+id/buttonText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_horizontal|top"
+                    android:layout_marginStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Caprese Salad"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="8dp"
+                    android:paddingBottom="0dp"
+                    android:text="Juicy shrimp cooked in a rich garlic\n butter sauce, perfect for serving\n over pasta or rice"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    tools:layout_marginBottom="0dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/buttonFrame1"
+                android:layout_width="306dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/buttonslayout3"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.578"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/buttonText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_horizontal|top"
+                    android:layout_marginStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Garlic Butter Shrimps"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start|center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:paddingBottom="0dp"
+                    android:text="Juicy shrimp cooked in a rich garlic\n butter sauce, perfect for serving\n over pasta or rice"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    tools:layout_marginBottom="0dp" />
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/buttonFrame3"
+                android:layout_width="306dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/buttonslayout3"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonFrame1">
+
+                <TextView
+                    android:id="@+id/buttonText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_horizontal|top"
+                    android:layout_marginStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="Caprese Salad"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/buttonText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="8dp"
+                    android:paddingBottom="0dp"
+                    android:text="Juicy shrimp cooked in a rich garlic\n butter sauce, perfect for serving\n over pasta or rice"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    tools:layout_marginBottom="0dp" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="208dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/buttonslayout3"
+            android:text="generate new recipe"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<LinearLayout
+android:id="@+id/navigationBar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_alignParentBottom="true"
+android:background="#FFFFFF"
+app:layout_constraintBottom_toBottomOf="parent">
+
+<Button
+    android:id="@+id/button_home"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:drawableTop="@drawable/profil_icon"
+    android:onClick="homeButton"
+    android:text="Home"
+    android:textColor="#212928"
+    android:textSize="12sp"
+    app:iconPadding="2dp" />
+
+<Button
+    android:id="@+id/button_grocery_list"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:drawableTop="@drawable/list_icon"
+    android:onClick="groceryButton"
+    android:text="Grocery"
+    android:textColor="#212928"
+    android:textSize="12sp"
+    app:iconPadding="2dp" />
+
+<Button
+    android:id="@+id/button_recipes"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:drawableTop="@drawable/heart_icon"
+    android:onClick="recipesButton"
+    android:text="Recipes"
+    android:textColor="#212928"
+    android:textSize="12sp"
+    app:iconPadding="2dp" />
+
+<Button
+    android:id="@+id/button_profile"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@android:color/transparent"
+    android:drawableTop="@drawable/profil_icon"
+    android:onClick="profileButton"
+    android:text="Profile"
+    android:textColor="#212928"
+    android:textSize="12sp"
+    app:iconPadding="2dp" />
+
+</LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -22,16 +22,25 @@
             android:name=".MainActivity_Groceery"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_recipes"
+            android:name=".RecipeDisplayActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_pantry"
+            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_Freezer"
+            android:name=".MainActivityGrocery"
             android:exported="false" />
         <activity
-            android:name=".MainActivity_Fridge"
+            android:name=".MainActivityRecipes"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityPantry"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityFreezer"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityFridge"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
