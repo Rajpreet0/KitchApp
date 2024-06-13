@@ -44,16 +44,13 @@ class MainActivity : AppCompatActivity() {
             try {
                 // Call the sendRequest function to get the server response
                 val response = networkHelper.sendOpenAIRequest(query)
-                //val responseLogin = networkHelper.login(email, password)
                 // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
                     Log.d("Data from ChatGPT: ", response)
-                    //Log.d("Data from Login: ", responseLogin.toString())
                 }
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
                     Log.d("Data from ChatGPT: ", "FAILED")
-                   // Log.d("Data from Login: ", "FAILED")
                 }
             }
         }
