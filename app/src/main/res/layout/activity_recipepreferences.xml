@@ -123,7 +123,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/navigationBar"
@@ -141,8 +142,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="homeButton"
                 android:text="Home"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -152,8 +155,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/list_icon"
+                android:onClick="groceryButton"
                 android:text="Grocery"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -163,8 +168,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/heart_icon"
+                android:onClick="recipesButton"
                 android:text="Recipes"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -174,8 +181,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="profileButton"
                 android:text="Profile"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
              
@@ -202,7 +211,7 @@
             android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
-            <!--android:background="@drawable/ic_add"-->
+        <!--android:background="@drawable/ic_add"-->
 
 
         <Spinner
@@ -214,7 +223,7 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired" />
-            <!--android:entries="@array/complexity_array"-->
+        <!--android:entries="@array/complexity_array"-->
         <!--android:background="@drawable/dropdownmenu"-->
 
         <Spinner
@@ -226,7 +235,7 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity" />
-            <!--android:entries="@array/nationality_array"-->
+        <!--android:entries="@array/nationality_array"-->
         <!--android:background="@drawable/dropdownmenu"-->
 
 
@@ -236,10 +245,10 @@
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="108dp"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:spinnerMode="dropdown"/>
-            <!--android:entries="@array/portions_array"-->
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--android:entries="@array/portions_array"-->
         <!--android:background="@drawable/dropdownmenu"-->
 
 
@@ -367,7 +376,7 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnercategory" />
-            <!--android:entries="@array/timerequired_array"-->
+        <!--android:entries="@array/timerequired_array"-->
         <!--android:background="@drawable/dropdownmenu"-->
 
 
@@ -380,7 +389,22 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnerPortions" />
-            <!--android:entries="@array/category_array"-->
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="68dp"
+            android:onClick="nextButton"
+            android:text="next"
+            app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.854"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextspecials"
+            app:layout_constraintVertical_bias="0.0" />
+        <!--android:entries="@array/category_array"-->
         <!--android:background="@drawable/dropdownmenu"-->
 
 
