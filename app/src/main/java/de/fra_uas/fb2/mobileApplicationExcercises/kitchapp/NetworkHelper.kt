@@ -69,8 +69,32 @@ class NetworkHelper {
         }
     }
 
+    fun register(username: String, email: String, password: String): JsonObject {
+        val json = JsonObject().apply {
+            addProperty("username",username);
+            addProperty("email", email);
+            addProperty("password", password);
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_REGISTER)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val responseData = response.body!!.string()
+            return Gson().fromJson(responseData, JsonObject::class.java)
+        }
+    }
+
     companion object {
         const val SERVER_ADDRESS_OPENAI = "https://kitch-app-server.vercel.app"
         const val SERVER_ADDRESS_LOGIN = "https://kitch-app-server.vercel.app/users/login"
+        const val SERVER_ADDRESS_REGISTER = "https://kitch-app-server.vercel.app/users/register"
     }
 }
