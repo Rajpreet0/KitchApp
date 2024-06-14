@@ -5,29 +5,32 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+
 
 
 class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_profile)
-        val spinner: Spinner = findViewById(R.id.spLanguage)
-        // Create an ArrayAdapter using the string array and a default spinner layout.
-        ArrayAdapter.createFromResource(
+
+        // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
+        val adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.languages,
-           android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears.
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner.
-            spinner.adapter = adapter
-        }
+            R.array.languages, // Replace with your string array resource ID
+            R.layout.spinner_items_profile // Replace with your custom layout XML file
+        )
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Initialize the Spinner
+        val spLanguage = findViewById<Spinner>(R.id.spLanguage)
+
+        // Apply the adapter to the spinner
+        spLanguage.adapter = adapter
     }
+
 
     fun homeButton(view: View){
         val intent = Intent(this, MainActivity::class.java)
