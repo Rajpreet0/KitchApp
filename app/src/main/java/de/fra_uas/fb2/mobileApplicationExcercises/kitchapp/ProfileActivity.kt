@@ -14,23 +14,25 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
+    }
+    private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
         // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
         val adapter = ArrayAdapter.createFromResource(
             this,
-            R.array.languages, // Replace with your string array resource ID
-            R.layout.spinner_items_profile // Replace with your custom layout XML file
+            arrayResourceId,
+            layoutResourceId
         )
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Initialize the Spinner
-        val spLanguage = findViewById<Spinner>(R.id.spLanguage)
+        val spinner = findViewById<Spinner>(spinnerId)
 
         // Apply the adapter to the spinner
-        spLanguage.adapter = adapter
+        spinner.adapter = adapter
     }
-
 
     fun homeButton(view: View){
         val intent = Intent(this, MainActivity::class.java)
