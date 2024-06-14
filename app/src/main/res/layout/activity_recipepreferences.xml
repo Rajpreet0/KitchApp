@@ -24,8 +24,7 @@
             android:ems="10"
             android:text="2. Recipe Preferences"
             android:textColor="#FFFFFF"
-            android:textSize="28sp"
-            android:textStyle="bold"
+            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -49,9 +48,9 @@
             android:layout_marginBottom="8dp"
             android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"/>
-        <!--android:background="@drawable/buttonneu"-->
-
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            android:background="@drawable/buttonumrandungneu"
+            />
 
         <TextView
             android:id="@+id/textView2"
@@ -78,7 +77,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button7" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -87,8 +86,9 @@
             android:layout_marginBottom="8dp"
             android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vie6"/>
-        <!-- android:background="@drawable/buttonneu" -->
+            app:layout_constraintTop_toBottomOf="@+id/vie6"
+            android:background="@drawable/buttonumrandungneu"/>
+
 
         <TextView
             android:id="@+id/textView3"
@@ -123,8 +123,22 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="68dp"
+            android:onClick="nextButton"
+            android:text="next"
+            app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.854"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextspecials"
+            app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/navigationBar"
@@ -142,10 +156,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
-                android:onClick="homeButton"
                 android:text="Home"
                 android:textColor="#212928"
-                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -155,10 +167,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/list_icon"
-                android:onClick="groceryButton"
                 android:text="Grocery"
                 android:textColor="#212928"
-                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -168,10 +178,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/heart_icon"
-                android:onClick="recipesButton"
                 android:text="Recipes"
                 android:textColor="#212928"
-                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -181,10 +189,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
-                android:onClick="profileButton"
                 android:text="Profile"
                 android:textColor="#212928"
-                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
              
@@ -209,10 +215,9 @@
             android:layout_height="36dp"
             android:layout_marginTop="54dp"
             android:layout_marginEnd="28dp"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
-        <!--android:background="@drawable/ic_add"-->
-
 
         <Spinner
             android:id="@+id/spinnercomplexity"
@@ -220,11 +225,11 @@
             android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
+            android:entries="@array/complexity_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired" />
-        <!--android:entries="@array/complexity_array"-->
-        <!--android:background="@drawable/dropdownmenu"-->
+            app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired"
+            android:background="@drawable/umrandung"/>
 
         <Spinner
             android:id="@+id/spinnernationality"
@@ -232,11 +237,11 @@
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="28dp"
+            android:entries="@array/nationality_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity" />
-        <!--android:entries="@array/nationality_array"-->
-        <!--android:background="@drawable/dropdownmenu"-->
+            app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity"
+            android:background="@drawable/umrandung"/>
 
 
         <Spinner
@@ -245,11 +250,11 @@
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="108dp"
-            android:spinnerMode="dropdown"
+            android:entries="@array/portions_array"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--android:entries="@array/portions_array"-->
-        <!--android:background="@drawable/dropdownmenu"-->
+            app:layout_constraintTop_toTopOf="parent"
+            android:spinnerMode="dropdown"
+            android:background="@drawable/umrandung"/>
 
 
         <TextView
@@ -363,21 +368,21 @@
             android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnernationality" />
 
-        <!--android:background="@drawable/ic_add"-->
         <Spinner
             android:id="@+id/spinnertimerequired"
             android:layout_width="128dp"
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="28dp"
+            android:entries="@array/timerequired_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercategory" />
-        <!--android:entries="@array/timerequired_array"-->
-        <!--android:background="@drawable/dropdownmenu"-->
+            app:layout_constraintTop_toBottomOf="@+id/spinnercategory"
+            android:background="@drawable/umrandung"/>
 
 
         <Spinner
@@ -386,26 +391,11 @@
             android:layout_height="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="28dp"
+            android:entries="@array/category_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPortions" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="68dp"
-            android:onClick="nextButton"
-            android:text="next"
-            app:layout_constraintBottom_toTopOf="@+id/navigationBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.854"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextspecials"
-            app:layout_constraintVertical_bias="0.0" />
-        <!--android:entries="@array/category_array"-->
-        <!--android:background="@drawable/dropdownmenu"-->
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPortions"
+            android:background="@drawable/umrandung"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
