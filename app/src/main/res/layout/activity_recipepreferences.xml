@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
             android:text="2. Recipe Preferences"
             android:textColor="#FFFFFF"
