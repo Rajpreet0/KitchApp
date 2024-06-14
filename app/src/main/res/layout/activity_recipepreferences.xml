@@ -156,8 +156,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="homeButton"
                 android:text="Home"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -167,8 +169,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/list_icon"
+                android:onClick="groceryButton"
                 android:text="Grocery"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -178,8 +182,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/heart_icon"
+                android:onClick="recipesButton"
                 android:text="Recipes"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
             <Button
@@ -189,8 +195,10 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/profil_icon"
+                android:onClick="profileButton"
                 android:text="Profile"
                 android:textColor="#212928"
+                android:textSize="12sp"
                 app:iconPadding="2dp" />
 
              
