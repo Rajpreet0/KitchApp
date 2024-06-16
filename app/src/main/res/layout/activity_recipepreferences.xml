@@ -19,12 +19,15 @@
             android:id="@+id/editTextText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="25dp"
             android:ems="10"
+            android:fontFamily="@font/medium"
             android:text="2. Recipe Preferences"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,13 +35,13 @@
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="25dp"
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
+        <!--This should be CHECK BOXES-->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button7"
             android:layout_width="36dp"
@@ -46,7 +49,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
             android:background="@drawable/buttonumrandungneu"
@@ -61,6 +63,7 @@
             android:text="Import from settings"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
+            android:fontFamily="@font/light"
             app:layout_constraintBottom_toBottomOf="@+id/button7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -77,6 +80,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button7" />
 
+        <!--This should be CHECK BOXES-->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button8"
             android:layout_width="36dp"
@@ -84,7 +88,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vie6"
             android:background="@drawable/buttonumrandungneu"/>
@@ -99,6 +102,7 @@
             android:text="Surprise me"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
+            android:fontFamily="@font/light"
             app:layout_constraintBottom_toBottomOf="@+id/button8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -125,20 +129,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="68dp"
+            android:layout_marginTop="35dp"
             android:onClick="nextButton"
             android:text="next"
-            app:layout_constraintBottom_toTopOf="@+id/navigationBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.854"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextspecials"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextspecials" />
 
         <LinearLayout
             android:id="@+id/navigationBar"
@@ -206,110 +207,120 @@
 
         <EditText
             android:id="@+id/editTextspecials"
-            android:layout_width="0dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/light"
             android:hint="Ingredient"
+            android:inputType="text"
             android:textColor="#FFFFFF"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/buttonspecials"
             app:layout_constraintTop_toBottomOf="@+id/editTextWithout"
             tools:layout_constraintEnd_toStartOf="@id/buttonAdd" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonspecials"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginTop="54dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="25dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
 
         <Spinner
             android:id="@+id/spinnercomplexity"
-            android:layout_width="128dp"
+            android:layout_width="150dp"
             android:layout_height="36dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/umrandung"
             android:entries="@array/complexity_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired"
-            android:background="@drawable/umrandung"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired" />
 
         <Spinner
             android:id="@+id/spinnernationality"
-            android:layout_width="128dp"
+            android:layout_width="150dp"
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/umrandung"
             android:entries="@array/nationality_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity"
-            android:background="@drawable/umrandung"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity" />
 
 
         <Spinner
             android:id="@+id/spinnerPortions"
-            android:layout_width="48dp"
+            android:layout_width="70dp"
             android:layout_height="36dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="108dp"
+            android:background="@drawable/umrandung"
             android:entries="@array/portions_array"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:spinnerMode="dropdown"
-            android:background="@drawable/umrandung"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tvSpecials"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/light"
             android:text="specials:"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWithout" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tvCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/light"
             android:text="category:"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPortions" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="72dp"
+            android:fontFamily="@font/light"
             android:text="time required:"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/spinnertimerequired"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvPortions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/light"
             android:text="portions:"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
@@ -318,92 +329,99 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/tvComplexity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/light"
             android:text="complexity:"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTime" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tvNationality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="36dp"
             android:text="nationality:"
             android:textColor="#FFFFFF"
+            android:fontFamily="@font/light"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/tvComplexity" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/tvWithout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="36dp"
             android:text="without..."
+            android:fontFamily="@font/light"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNationality" />
 
 
         <EditText
             android:id="@+id/editTextWithout"
-            android:layout_width="0dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="27dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/light"
             android:hint="Ingredient"
-            android:textColor="#FFFFFF"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/buttonAdd"
             app:layout_constraintTop_toBottomOf="@+id/spinnernationality"
             tools:layout_constraintEnd_toStartOf="@id/buttonAdd" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonAdd"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="25dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinnernationality" />
 
         <Spinner
             android:id="@+id/spinnertimerequired"
-            android:layout_width="128dp"
+            android:layout_width="150dp"
             android:layout_height="36dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/umrandung"
             android:entries="@array/timerequired_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercategory"
-            android:background="@drawable/umrandung"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinnercategory" />
 
 
         <Spinner
             android:id="@+id/spinnercategory"
-            android:layout_width="128dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="28dp"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/umrandung"
             android:entries="@array/category_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPortions"
-            android:background="@drawable/umrandung"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPortions" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

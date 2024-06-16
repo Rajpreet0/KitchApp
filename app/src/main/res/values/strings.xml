@@ -11,31 +11,63 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
 
     </string-array>
     <string-array name="category_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>breakfast</item>
+        <item>lunch</item>
+        <item>dinner</item>
+        <item>dessert</item>
+        <item>salad</item>
+        <item>soup</item>
+        <item>drink</item>
+        <item>appetizer</item>
+        <item>main course</item>
+        <item>side dish</item>
+
 
     </string-array>
     <string-array name="timerequired_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-
+        <item>no limit</item>
+        <item>max. 15 min</item>
+        <item>max. 30 min</item>
+        <item>max. 60 min</item>
     </string-array>
     <string-array name="complexity_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-
+        <item>easy</item>
+        <item>medium</item>
+        <item>advanced</item>
     </string-array>
+    <!---sorted alphabetically-->
     <string-array name="nationality_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-
+        <item>international</item>
+        <item>brazilian</item>
+        <item>chinese</item>
+        <item>fast food</item>
+        <item>french</item>
+        <item>german</item>
+        <item>greek</item>
+        <item>indian</item>
+        <item>italian</item>
+        <item>japanese</item>
+        <item>korean</item>
+        <item>lebanese</item>
+        <item>mediterranean</item>
+        <item>mexican</item>
+        <item>moroccan</item>
+        <item>oriental</item>
+        <item>persian</item>
+        <item>spanish</item>
+        <item>thai</item>
+        <item>turkish</item>
+        <item>vietnamese</item>
     </string-array>
 
 

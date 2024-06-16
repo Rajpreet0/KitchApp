@@ -50,6 +50,9 @@ class ActivityLogin : AppCompatActivity() {
 
     fun loginButton(view: View){
         val intent = Intent(this, ActivityHome::class.java)
+        startActivity(intent)
+        /*
+>>>>>>> main:app/src/main/java/de/fra_uas/fb2/mobileApplicationExcercises/kitchapp/Login.kt
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = networkHelper.login(email.text.toString(), password.text.toString())
@@ -64,6 +67,7 @@ class ActivityLogin : AppCompatActivity() {
                 }
             }
         }
+         */
     }
     fun forgotPasswordButton(view: View){
         //to be designed
