@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 
-class Login : AppCompatActivity() {
+class ActivityLogin : AppCompatActivity() {
 
     private  val networkHelper = NetworkHelper()
     private lateinit var email: EditText
@@ -36,7 +36,7 @@ class Login : AppCompatActivity() {
     }
 
     fun signUpButton(view: View){
-        val intent = Intent(this, createaccount::class.java)
+        val intent = Intent(this, ActivityCreateAcount::class.java)
         startActivity(intent)
     }
 
@@ -49,7 +49,7 @@ class Login : AppCompatActivity() {
     * */
 
     fun loginButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = networkHelper.login(email.text.toString(), password.text.toString())

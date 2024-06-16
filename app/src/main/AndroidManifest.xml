@@ -16,43 +16,43 @@
         android:theme="@style/Theme.KitchApp"
         tools:targetApi="31">
         <activity
-            android:name=".excludeingredients"
+            android:name=".ActivityExcludeIngredients"
             android:exported="false" />
         <activity
-            android:name=".recipepreferences"
+            android:name=".ActivityRecipePreferences"
             android:exported="false" />
         <activity
-            android:name=".createaccount"
+            android:name=".ActivityCreateAcount"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ActivityHome"
             android:exported="false" />
         <activity
-            android:name=".RecipeDisplayActivity"
+            android:name=".ActivityRecipeDisplay"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".ActivityProfile"
             android:exported="false" />
         <activity
-            android:name=".MainActivityGrocery"
+            android:name=".ActivityGrocery"
             android:exported="false" />
         <activity
-            android:name=".MainActivityRecipes"
+            android:name=".ActivityRecipes"
             android:exported="false" />
         <activity
-            android:name=".MainActivityPantry"
+            android:name=".ActivityPantry"
             android:exported="false" />
         <activity
-            android:name=".MainActivityFreezer"
+            android:name=".ActivityFreezer"
             android:exported="false" />
         <activity
-            android:name=".MainActivityFridge"
+            android:name=".ActivityFridge"
             android:exported="false" />
         <activity
-            android:name=".Suggestions"
+            android:name=".ActivitySuggestions"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".ActivityLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
