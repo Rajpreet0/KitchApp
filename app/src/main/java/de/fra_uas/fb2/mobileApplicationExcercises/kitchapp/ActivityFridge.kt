@@ -22,7 +22,8 @@ class ActivityFridge : AppCompatActivity() {
         productAmount = findViewById(R.id.rightLayout)
     }
 
-    private val ingredientList: MutableMap<String, Int> = mutableMapOf()
+    private val ingredientList: MutableMap<String, Int> = mutableMapOf()                            //List to store the items+amount
+    //this function removes the old ingredient list and puts the new one into the text fields
     private fun buildProductList(){
         productText!!.removeAllViews()
         productAmount!!.removeAllViews()
@@ -30,7 +31,7 @@ class ActivityFridge : AppCompatActivity() {
                 (ingredient, amount) ->
             val ingredientTextView = TextView(this)
             val amountTextView = TextView(this)
-            ingredientTextView.textSize = 20f
+            ingredientTextView.textSize = 20f                                                       //improves readability
             amountTextView.textSize = 20f
             ingredientTextView.text = ingredient
             amountTextView.text = amount.toString()
@@ -38,11 +39,12 @@ class ActivityFridge : AppCompatActivity() {
             productAmount!!.addView(amountTextView)
         }
     }
-
+    //function for the pop up that is shown after edit/add/delete button pressed
     private fun showInputDialog(method: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_add_ingredient, null)
         val ingredientText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
         val amountText = dialogView.findViewById<EditText>(R.id.editText_amount)
+        //if add is pressed we get the add dialog that updates the list with the new ingredient
         if(method == "add") {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Add ingredient")
@@ -67,6 +69,7 @@ class ActivityFridge : AppCompatActivity() {
                 dialog.dismiss()
             }
             builder.create().show()
+            //if delete is pressed we delete the demanded ingredient
         }else if(method == "delete"){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Delete ingredient")
@@ -90,6 +93,7 @@ class ActivityFridge : AppCompatActivity() {
                 dialog.dismiss()
             }
             builder.create().show()
+            //if edit is pressed we can add or remove amounts from ingredients -> remove ingredient if amount is <=0
         }else if(method == "edit"){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Edit ingredient")
@@ -104,6 +108,10 @@ class ActivityFridge : AppCompatActivity() {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null) {
                         ingredientList[inputIngredient] = ingredientList[inputIngredient]!! + inputAmount
+                        if(ingredientList[inputIngredient]!! <=0){
+                            ingredientList.remove(inputIngredient)
+                            Toast.makeText(this, "ingredient removed ", Toast.LENGTH_SHORT).show()
+                        }
                         buildProductList()
                         dialog.dismiss()
                     } else {
