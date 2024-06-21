@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 
-class createaccount : AppCompatActivity() {
+class ActivityCreateAcount : AppCompatActivity() {
 
     private  val networkHelper = NetworkHelper()
     private lateinit var username: EditText
@@ -40,7 +40,7 @@ class createaccount : AppCompatActivity() {
         confirmPassword = findViewById(R.id.editTextTextPasswordconfirmation);
     }
     fun signUpButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 if(password.text.toString() != confirmPassword.text.toString()) {
@@ -61,14 +61,14 @@ class createaccount : AppCompatActivity() {
 
     // Register a User
     fun signInButton(view: View){
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }
     fun forgotPasswordButton(view: View){
         //to be designed
     }
     fun backButton(view: View){
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }
 }

@@ -8,37 +8,33 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class excludeingredients : AppCompatActivity() {
+class ActivityRecipeDisplay : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_excludeingredients)
+        setContentView(R.layout.activity_recipe_display)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
+
     fun homeButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, MainActivityGrocery::class.java)
+        val intent = Intent(this, ActivityGrocery::class.java)
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, MainActivityRecipes::class.java)
+        val intent = Intent(this, ActivityRecipes::class.java)
         startActivity(intent)
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, ProfileActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun nextButton(view: View) {
-        val intent = Intent(this, recipepreferences::class.java)
+        val intent = Intent(this, ActivityProfile::class.java)
         startActivity(intent)
     }
 }

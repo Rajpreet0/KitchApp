@@ -6,29 +6,36 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivityGrocery : AppCompatActivity() {
+class ActivitySuggestions : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_groceery)
+        setContentView(R.layout.suggestions)
+
 
     }
+
     fun homeButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, MainActivityGrocery::class.java)
+        val intent = Intent(this, ActivityGrocery::class.java)
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, MainActivityRecipes::class.java)
+        val intent = Intent(this, ActivityRecipes::class.java)
         startActivity(intent)
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, ProfileActivity::class.java)
+        val intent = Intent(this, ActivityProfile::class.java)
         startActivity(intent)
     }
-
+    fun nextButton(view: View){
+        val intent = Intent(this, ActivityRecipeDisplay::class.java)
+        startActivity(intent)
+    }
 }
