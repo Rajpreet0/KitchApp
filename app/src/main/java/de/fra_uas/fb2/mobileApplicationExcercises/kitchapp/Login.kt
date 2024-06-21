@@ -51,8 +51,7 @@ class Login : AppCompatActivity() {
     fun loginButton(view: View){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        /*
-        CoroutineScope(Dispatchers.IO).launch {
+        /*CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = networkHelper.login(email.text.toString(), password.text.toString())
                 withContext(Dispatchers.Main) {
@@ -65,8 +64,7 @@ class Login : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-         */
+        }*/
     }
     fun forgotPasswordButton(view: View){
         //to be designed
