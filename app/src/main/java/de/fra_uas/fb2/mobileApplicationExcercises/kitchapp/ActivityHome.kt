@@ -8,19 +8,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class ActivityHome : AppCompatActivity() {
 
     private val networkHelper = NetworkHelper()
 
@@ -56,22 +50,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun createRecipeButton(view: View){
-        val intent = Intent(this, excludeingredients::class.java)
+        val intent = Intent(this, ActivityExcludeIngredients::class.java)
         startActivity(intent)
     }
 
     fun freezerButton(view: View){
-        val intent = Intent(this, MainActivityFreezer::class.java)
+        val intent = Intent(this, ActivityFreezer::class.java)
         startActivity(intent)
     }
 
     fun fridgeButton(view: View){
-        val intent = Intent(this, MainActivityFridge::class.java)
+        val intent = Intent(this, ActivityFridge::class.java)
         startActivity(intent)
     }
 
     fun pantryButton(view: View){
-        val intent = Intent(this, MainActivityPantry::class.java)
+        val intent = Intent(this, ActivityPantry::class.java)
         startActivity(intent)
     }
     fun suggestionOneButton(view: View){
@@ -82,20 +76,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun homeButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, MainActivityGrocery::class.java)
+        val intent = Intent(this, ActivityGrocery::class.java)
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, MainActivityRecipes::class.java)
+        val intent = Intent(this, ActivityRecipes::class.java)
         startActivity(intent)
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, ProfileActivity::class.java)
+        val intent = Intent(this, ActivityProfile::class.java)
         startActivity(intent)
     }
 
