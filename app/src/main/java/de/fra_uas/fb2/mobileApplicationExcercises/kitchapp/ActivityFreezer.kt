@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -10,19 +11,22 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class ActivityFreezer : AppCompatActivity() {
     private var productText: LinearLayout? = null
     private var productAmount: LinearLayout? = null
+    private val ingredientList: MutableMap<String, Int> = mutableMapOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_freezer)
         productText = findViewById(R.id.leftLayout)
         productAmount = findViewById(R.id.rightLayout)
-    }
-
-    private val ingredientList: MutableMap<String, Int> = mutableMapOf()                            //List to store the items+amount
+        ingredientList.putAll(getMap(this))
+        buildProductList()
+    }                          //List to store the items+amount
     //this function removes the old ingredient list and puts the new one into the text fields
     private fun buildProductList(){
         productText!!.removeAllViews()
@@ -39,6 +43,29 @@ class ActivityFreezer : AppCompatActivity() {
             productAmount!!.addView(amountTextView)
         }
     }
+    //function for the pop up that is shown after edit/add/delete button pressed
+    private fun saveMap(context: Context, map: MutableMap<String, Int>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("freezerMap", jsonString)
+        editor.apply()
+    }
+
+    private fun getMap(context: Context): MutableMap<String, Int> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("freezerMap", "")
+
+        // Convert the JSON string back to a map
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableMap<String, Int>>() {}.type)
+        } else {
+            mutableMapOf()
+        }
+    }
+
     //function for the pop up that is shown after edit/add/delete button pressed
     private fun showInputDialog(method: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_add_ingredient, null)
@@ -58,6 +85,7 @@ class ActivityFreezer : AppCompatActivity() {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null&&inputAmount>0) {
                         ingredientList[inputIngredient] = inputAmount
+                        saveMap(this, ingredientList)
                         buildProductList()
                         dialog.dismiss()
                     } else {
@@ -82,6 +110,7 @@ class ActivityFreezer : AppCompatActivity() {
                 } else {
                     if (ingredientList.containsKey(inputIngredient)) {
                         ingredientList.remove(inputIngredient)
+                        saveMap(this, ingredientList)
                         buildProductList()
                         dialog.dismiss()
                     } else {
@@ -111,6 +140,7 @@ class ActivityFreezer : AppCompatActivity() {
                         if(ingredientList[inputIngredient]!! <=0){
                             ingredientList.remove(inputIngredient)
                             Toast.makeText(this, "ingredient removed ", Toast.LENGTH_SHORT).show()
+                            saveMap(this, ingredientList)
                         }
                         buildProductList()
                         dialog.dismiss()
