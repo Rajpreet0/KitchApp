@@ -9,21 +9,44 @@
     tools:context=".ActivityExcludeIngredients">
 
 
-    <TextView
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="45dp"
-        android:ems="10"
-        android:text="1. Exclude Ingredients"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvExcludeIngr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/bold"
+            android:text="1. Exclude Ingredients"
+            android:textColor="#FFFFFF"
+            android:textSize="28dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <ImageView
+            android:id="@+id/ivNext"
+            android:contentDescription="Next Button"
+            android:layout_width="42dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/icon_next"
+            android:onClick="nextButton"
+            />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/view3"
@@ -34,17 +57,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/container" />
 
-    <Button
+    <CheckBox
         android:id="@+id/button3"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
+        android:background="@drawable/checkbox_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -63,7 +85,7 @@
         android:text="Select all Ingredients"
         android:textColor="#FFFFFF"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
+
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -71,12 +93,12 @@
         android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="80dp"
         android:background="#FFFFFF"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
 
     <ScrollView
@@ -159,20 +181,6 @@
             app:iconPadding="2dp" />
 
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="102dp"
-        android:onClick="nextButton"
-        android:text="next"
-        android:textColorLink="#673AB7"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
