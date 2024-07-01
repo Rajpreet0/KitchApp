@@ -6,7 +6,7 @@ g<?xml version="1.0" encoding="utf-8"?>
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212928"
-    tools:context=".excludeingredients">
+    tools:context=".ActivityExcludeIngredients">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

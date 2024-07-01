@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 
-class createaccount : AppCompatActivity() {
+class ActivityCreateAcount : AppCompatActivity() {
 
     private  val networkHelper = NetworkHelper()
     private lateinit var username: EditText
@@ -39,36 +39,51 @@ class createaccount : AppCompatActivity() {
         password = findViewById(R.id.editTextTextPassword);
         confirmPassword = findViewById(R.id.editTextTextPasswordconfirmation);
     }
+
     fun signUpButton(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ActivityHome::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                if(password.text.toString() != confirmPassword.text.toString()) {
-                    Toast.makeText(applicationContext, "Password doesn't match", Toast.LENGTH_SHORT).show()
+                if (password.text.toString() != confirmPassword.text.toString()) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Password doesn't match",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 } else {
-                    val response = networkHelper.register(username.text.toString(), email.text.toString(), password.text.toString());
+                    val response = withContext(Dispatchers.IO) {
+                        networkHelper.register(username.text.toString(), email.text.toString(), password.text.toString())
+                    }
                     withContext(Dispatchers.Main) {
                         Log.d("Data from Register: ", response.toString())
                         startActivity(intent)
                     }
                 }
             } catch (e: IOException) {
-                Log.d("SERVER ERROR", "${e}");
-                Toast.makeText(applicationContext, "User can't be registerd", Toast.LENGTH_SHORT).show()
+                Log.d("SERVER ERROR", "${e}")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        applicationContext,
+                        "User can't be registered",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }
 
     // Register a User
     fun signInButton(view: View){
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }
     fun forgotPasswordButton(view: View){
         //to be designed
     }
     fun backButton(view: View){
-        val intent = Intent(this, Login::class.java)
+        val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }
 }
