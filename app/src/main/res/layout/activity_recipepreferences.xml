@@ -15,21 +15,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/editTextText"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="25dp"
-            android:ems="10"
-            android:fontFamily="@font/medium"
-            android:text="2. Recipe Preferences"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/view"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvPreferances"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/bold"
+                android:text="2. Recipe Preferences"
+                android:textColor="#FFFFFF"
+                android:textSize="28dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                />
+
+            <ImageView
+                android:id="@+id/ivNext"
+                android:contentDescription="Next Button"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/icon_next"
+                android:onClick="nextButton"
+                />
+
+        </LinearLayout>
+
+
 
         <View
             android:id="@+id/view"
@@ -39,7 +64,7 @@
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+            app:layout_constraintTop_toBottomOf="@+id/container" />
 
         <!--This should be CHECK BOXES-->
         <androidx.appcompat.widget.AppCompatButton
@@ -129,17 +154,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:onClick="nextButton"
-            android:text="next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.854"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextspecials" />
 
         <LinearLayout
             android:id="@+id/navigationBar"
@@ -202,7 +216,7 @@
                 android:textSize="12sp"
                 app:iconPadding="2dp" />
 
-             
+
         </LinearLayout>
 
         <EditText
