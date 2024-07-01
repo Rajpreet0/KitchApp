@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">KitchApp</string>
+    <string name="icon_for_storage_type">Icon for Storage Type</string>
 
     <string-array name="languages">
         <item>English (default)</item>
