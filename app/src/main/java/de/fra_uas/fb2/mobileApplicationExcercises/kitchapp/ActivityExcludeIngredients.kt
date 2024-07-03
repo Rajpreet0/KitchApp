@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -12,11 +13,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class ActivityExcludeIngredients : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
-    private lateinit var ingredientList: Map<String, Int>
+    private val ingredientList: MutableMap<String, Int> = mutableMapOf()
 
     private val icons = arrayOf(
         R.drawable.freezer_icon,
@@ -36,19 +39,76 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         // Initializing the container
         container = findViewById(R.id.containerIngredients)
 
-        // Initializing ingredientList with sample data, replace with db data later on
-        ingredientList = mapOf(
-            "Apple" to 1,        // Stored in the fridge
-            "Banana" to 2,       // Stored in the pantry
-            "Frozen Peas" to 0,  // Stored in the freezer
-            "Carrot" to 1,       // Stored in the fridge
-            "Bread" to 2         // Stored in the pantry
-        )
+        val pantryMap = getPantryMap(this)
+        val freezerMap = getFreezerMap(this)
+        val fridgeMap = getFridgeMap(this)
+
+        //the pantry items get icon 2
+        for((key, value) in pantryMap) {
+            pantryMap[key] = 2
+        }
+        //the freezer items get icon 0
+        for((key, value) in freezerMap) {
+            freezerMap[key] = 0
+        }
+        //the fridge items get icon 1
+        for((key, value) in fridgeMap) {
+            fridgeMap[key] = 1
+        }
+        ingredientList.putAll(pantryMap)
+        ingredientList.putAll(freezerMap)
+        ingredientList.putAll(fridgeMap)
 
         for (ingredient in ingredientList) {
             val storageType = ingredient.value
             val name = ingredient.key
             addRow(storageType, name)
+        }
+        saveMap(this, ingredientList)
+    }
+
+
+    private fun saveMap(context: Context, map: MutableMap<String, Int>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("recipeMap", jsonString)
+        editor.apply()
+    }
+
+    private fun getPantryMap(context: Context): MutableMap<String, Int> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("pantryMap", "")
+
+        // Convert the JSON string back to a map
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableMap<String, Int>>() {}.type)
+        } else {
+            mutableMapOf()
+        }
+    }
+    private fun getFreezerMap(context: Context): MutableMap<String, Int> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("freezerMap", "")
+
+        // Convert the JSON string back to a map
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableMap<String, Int>>() {}.type)
+        } else {
+            mutableMapOf()
+        }
+    }
+    private fun getFridgeMap(context: Context): MutableMap<String, Int> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("fridgeMap", "")
+
+        // Convert the JSON string back to a map
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableMap<String, Int>>() {}.type)
+        } else {
+            mutableMapOf()
         }
     }
 
