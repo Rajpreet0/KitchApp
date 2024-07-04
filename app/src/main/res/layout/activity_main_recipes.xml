@@ -18,7 +18,7 @@
 
             <!-- Hier kommt dein bisheriger Inhalt rein -->
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tvRecipes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Recipes"
@@ -32,7 +32,7 @@
                 app:layout_constraintVertical_bias="0.063" />
 
             <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_2"
+            android:id="@+id/tvRecipe"
             android:layout_width="347dp"
             android:layout_height="45dp"
             android:layout_marginTop="39dp"
@@ -48,29 +48,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            app:layout_constraintTop_toBottomOf="@+id/tvRecipes"
             app:layout_constraintVertical_bias="0.0" />
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/suggestions_4"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/herz"
-            android:drawableEnd="@drawable/clock_two_svgrepo_com__1_"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Pesto Sandwich - 30min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestions_2"
-            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/button_home"
+            android:id="@+id/btnHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -98,7 +79,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_grocery_list"
+            android:id="@+id/btnGroceryList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,7 +92,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_recipes"
+            android:id="@+id/btnRecipes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -124,7 +105,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_profile"
+            android:id="@+id/btnProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

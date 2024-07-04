@@ -12,7 +12,7 @@
         android:id="@+id/frameRecipe"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:layout_margin = "10dp"
+        android:layout_margin = "0dp"
         android:background="@drawable/buttonslayout3"
         android:clickable="true"
         android:focusable="true"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonFrame1">
 
         <TextView
-            android:id="@+id/nameRecipe"
+            android:id="@+id/tvNameRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -33,7 +33,7 @@
             android:fontFamily="@font/medium" />
 
         <ImageView
-            android:id="@+id/heartIcon"
+            android:id="@+id/icHeart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -44,7 +44,7 @@
             android:focusable="true"/>
 
         <TextView
-            android:id="@+id/descriptionRecipe"
+            android:id="@+id/tvDescriptionRecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
@@ -54,6 +54,19 @@
             android:layout_marginBottom="16dp"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/icClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin = "16dp"
+            android:src="@drawable/heart_icon"
+            app:tint="@color/white"
+            android:clickable="true"
+            android:focusable="true"/>
+
+
 
     </FrameLayout>
 

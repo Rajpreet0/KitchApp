@@ -34,7 +34,7 @@
             />
 
         <ImageView
-            android:id="@+id/ivNext"
+            android:id="@+id/icNext"
             android:contentDescription="Next Button"
             android:layout_width="42dp"
             android:layout_height="45dp"
@@ -48,7 +48,7 @@
 
 
     <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -69,14 +69,14 @@
         android:gravity="center_horizontal|top"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo">
 
         <!-- Hier können Sie dynamisch Inhalte hinzufügen -->
 
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/btnGenerateNewRecipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="15dp"
@@ -99,7 +99,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/button_home"
+            android:id="@+id/btnHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -112,7 +112,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_grocery_list"
+            android:id="@+id/btnGroceryList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -125,7 +125,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_recipes"
+            android:id="@+id/btnRecipes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -138,7 +138,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_profile"
+            android:id="@+id/btnProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

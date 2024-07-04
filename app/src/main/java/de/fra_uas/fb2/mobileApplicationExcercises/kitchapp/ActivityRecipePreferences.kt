@@ -36,17 +36,17 @@ class ActivityRecipePreferences : AppCompatActivity() {
             insets
         }
 
-        portion = findViewById<Spinner>(R.id.spinnerPortions);
-        category = findViewById<Spinner>(R.id.spinnercategory);
-        time = findViewById<Spinner>(R.id.spinnertimerequired);
-        complexity = findViewById<Spinner>(R.id.spinnercomplexity);
-        nationality = findViewById<Spinner>(R.id.spinnernationality);
+        portion = findViewById<Spinner>(R.id.spPortions);
+        category = findViewById<Spinner>(R.id.spCategory);
+        time = findViewById<Spinner>(R.id.spTimerequired);
+        complexity = findViewById<Spinner>(R.id.spComplexity);
+        nationality = findViewById<Spinner>(R.id.spNationality);
 
-        setupSpinner(R.id.spinnerPortions, R.array.portions_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spinnercategory, R.array.category_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spinnertimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spinnercomplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spinnernationality, R.array.nationality_array, R.layout.spinner_items_preferences)
+        setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
+        setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
+        setupSpinner(R.id.spTimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
+        setupSpinner(R.id.spComplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
+        setupSpinner(R.id.spNationality, R.array.nationality_array, R.layout.spinner_items_preferences)
 
 
     }

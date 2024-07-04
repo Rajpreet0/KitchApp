@@ -23,14 +23,14 @@
         android:textSize="45sp"
         android:textStyle="bold"
 
-        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintBottom_toTopOf="@+id/tvDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Profile" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/tvDivider"
         android:layout_width="409dp"
         android:layout_height="1dp"
         android:layout_marginTop="25dp"
@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDivider" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -118,7 +118,7 @@
 
 
     <ImageButton
-        android:id="@+id/addExclButton"
+        android:id="@+id/btnAddExcl"
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
@@ -158,20 +158,20 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addExclButton">
+        app:layout_constraintTop_toBottomOf="@+id/btnAddExcl">
 
     </LinearLayout>
 
 
     <ImageView
-        android:id="@+id/logoutButton"
+        android:id="@+id/btnLogout"
         android:layout_width="43dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/logout_icon"
-        app:layout_constraintBottom_toTopOf="@+id/deleteButton"
+        app:layout_constraintBottom_toTopOf="@+id/btnDelete"
         app:layout_constraintEnd_toStartOf="@+id/tvLogout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/linearLayout" />
@@ -190,11 +190,11 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/tvDelete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/logoutButton"
+        app:layout_constraintStart_toEndOf="@id/btnLogout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageButton
-        android:id="@+id/deleteButton"
+        android:id="@+id/btnDelete"
         android:layout_width="40dp"
         android:layout_height="52dp"
         android:layout_marginStart="21dp"
@@ -204,7 +204,7 @@
         android:src="@drawable/delete_icon"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoutButton" />
+        app:layout_constraintTop_toBottomOf="@id/btnLogout" />
 
 
     <TextView
@@ -222,8 +222,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/deleteButton"
-        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+        app:layout_constraintStart_toEndOf="@id/btnDelete"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
 
     <LinearLayout
         android:id="@+id/navigationBar"
@@ -235,7 +235,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/button_home"
+            android:id="@+id/btnHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -248,7 +248,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_grocery_list"
+            android:id="@+id/btnGroceryList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -261,7 +261,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_recipes"
+            android:id="@+id/btnRecipes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -274,7 +274,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_profile"
+            android:id="@+id/btnProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

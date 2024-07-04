@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvRecipeName" />
 
     <ImageView
-        android:id="@+id/iconForks"
+        android:id="@+id/icForks"
         android:layout_width="27dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -59,11 +59,11 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/rounded_border_yellow"
         android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@+id/iconForks"
+        app:layout_constraintStart_toEndOf="@+id/icForks"
         app:layout_constraintTop_toBottomOf="@+id/divider2">
 
         <ImageButton
-            android:id="@+id/minusButton"
+            android:id="@+id/btnMinus"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@android:color/transparent"
@@ -83,7 +83,7 @@
             android:textSize="18sp" />
 
         <ImageButton
-            android:id="@+id/plusButton"
+            android:id="@+id/btnPlus"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@android:color/transparent"
@@ -92,7 +92,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/iconClock"
+        android:id="@+id/icClock"
         android:layout_width="34dp"
         android:layout_height="35dp"
         android:layout_marginStart="15dp"
@@ -115,7 +115,7 @@
         android:textColor="@color/dark_background"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconClock"
+        app:layout_constraintStart_toEndOf="@+id/icClock"
         app:layout_constraintTop_toBottomOf="@+id/divider2">
 
     </TextView>
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/llOutput"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"

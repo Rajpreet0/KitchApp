@@ -31,8 +31,8 @@ class ActivityLogin : AppCompatActivity() {
             insets
         }
 
-        email = findViewById(R.id.editTextTextEmailAddress3)
-        password = findViewById(R.id.editTextTextPassword)
+        email = findViewById(R.id.etEmail)
+        password = findViewById(R.id.etPassword)
     }
 
     fun signUpButton(view: View){
