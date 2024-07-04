@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ class ActivityCreateAcount : AppCompatActivity() {
     private lateinit var password: EditText
     private lateinit var confirmPassword: EditText
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,10 +36,10 @@ class ActivityCreateAcount : AppCompatActivity() {
             insets
         }
 
-        username = findViewById(R.id.editTextText4);
-        email = findViewById(R.id.editTextTextEmailAddress3);
-        password = findViewById(R.id.editTextTextPassword);
-        confirmPassword = findViewById(R.id.editTextTextPasswordconfirmation);
+        username = findViewById(R.id.etUsername);
+        email = findViewById(R.id.etEmail);
+        password = findViewById(R.id.etPassword);
+        confirmPassword = findViewById(R.id.etPasswordconfirmation);
     }
 
     fun signUpButton(view: View){

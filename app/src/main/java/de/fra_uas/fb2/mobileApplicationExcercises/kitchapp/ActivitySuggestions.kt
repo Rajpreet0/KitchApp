@@ -64,7 +64,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
         // Find the TextView and set its click listener
-        val nameRecipe: TextView = rowView.findViewById(R.id.nameRecipe)
+        val nameRecipe: TextView = rowView.findViewById(R.id.tvNameRecipe)
         nameRecipe.text = name
 
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
@@ -74,10 +74,10 @@ class ActivitySuggestions : AppCompatActivity() {
             // TODO: change Activity and Display correct Recipe
         }
 
-        val descriptionRecipe: TextView = rowView.findViewById(R.id.descriptionRecipe)
+        val descriptionRecipe: TextView = rowView.findViewById(R.id.tvDescriptionRecipe)
         descriptionRecipe.text = description
 
-        val icon_save: ImageView = rowView.findViewById(R.id.heartIcon)
+        val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
 
 
     var isFavorite = false // Initial state, not favorited

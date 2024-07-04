@@ -118,7 +118,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         val rowView: View = inflater.inflate(R.layout.exclude_layout_row, container, false)
 
         // Find the ImageView
-        val iconView: ImageView = rowView.findViewById(R.id.icon)
+        val iconView: ImageView = rowView.findViewById(R.id.icStorageType)
 
         // Assign the correct icon based on storage type
         if (storageType in icons.indices) {
@@ -130,7 +130,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         }
 
         // Find the TextView and set its click listener
-        val textView: TextView = rowView.findViewById(R.id.tv_ingredientName)
+        val textView: TextView = rowView.findViewById(R.id.tvIngredientName)
         textView.text = nameIngredient
         // Set click listener to toggle text color
         textView.setOnClickListener {

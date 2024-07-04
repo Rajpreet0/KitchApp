@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:id="@+id/HiDaria"
+        android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hi, Daria"
@@ -26,7 +26,7 @@
 
 
     <TextView
-        android:id="@+id/text2"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Want to cook delicious food?"
@@ -41,7 +41,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvSuggestions"
         android:layout_width="163dp"
         android:layout_height="30dp"
         android:layout_marginTop="24dp"
@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.695" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_create"
+        android:id="@+id/btnCreate"
         android:layout_width="148dp"
         android:layout_height="169dp"
         android:layout_marginTop="8dp"
@@ -79,7 +79,7 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_freezer"
+        android:id="@+id/btnFreezer"
         android:layout_width="127dp"
         android:layout_height="176dp"
         android:layout_marginStart="16dp"
@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.593" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_pantries"
+        android:id="@+id/btnPantry"
         android:layout_width="129dp"
         android:layout_height="231dp"
         android:layout_marginTop="12dp"
@@ -113,7 +113,7 @@
         android:paddingVertical="60dp"
 
         android:text="My
-        Pantries"
+        Pantry"
         android:textAllCaps="false"
         android:textColor="#212928"
         android:textSize="24dp"
@@ -125,7 +125,7 @@
         app:layout_constraintVertical_bias="0.528" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/suggestions_1"
+        android:id="@+id/btnSuggestions_1"
         android:layout_width="313dp"
         android:layout_height="51dp"
         android:layout_marginTop="24dp"
@@ -146,7 +146,7 @@
         app:layout_constraintVertical_bias="0.774" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/suggestions_2"
+        android:id="@+id/btnSuggestions_2"
         android:layout_width="313dp"
         android:layout_height="51dp"
         android:layout_marginTop="8dp"
@@ -163,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/suggestions_1"
+        app:layout_constraintTop_toBottomOf="@+id/btnSuggestions_1"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -171,7 +171,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_fridge"
+        android:id="@+id/btnFridge"
         android:layout_width="134dp"
         android:layout_height="231dp"
         android:layout_marginTop="8dp"
@@ -202,7 +202,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/button_home"
+            android:id="@+id/btnHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -215,7 +215,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_grocery_list"
+            android:id="@+id/btnGroceryList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -228,7 +228,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_recipes"
+            android:id="@+id/btnRecipes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -241,7 +241,7 @@
             app:iconPadding="2dp" />
 
         <Button
-            android:id="@+id/button_profile"
+            android:id="@+id/btnProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -42,7 +42,7 @@
                 />
 
             <ImageView
-                android:id="@+id/ivNext"
+                android:id="@+id/icNext"
                 android:contentDescription="Next Button"
                 android:layout_width="42dp"
                 android:layout_height="45dp"
@@ -57,7 +57,7 @@
 
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/vDivider"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="25dp"
@@ -68,19 +68,19 @@
 
         <!--This should be CHECK BOXES-->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button7"
+            android:id="@+id/cbImport"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider"
             android:background="@drawable/buttonumrandungneu"
             />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvImport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -89,37 +89,37 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:fontFamily="@font/light"
-            app:layout_constraintBottom_toBottomOf="@+id/button7"
+            app:layout_constraintBottom_toBottomOf="@+id/cbImport"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button7"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintStart_toEndOf="@+id/cbImport"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider" />
 
         <View
-            android:id="@+id/vie6"
+            android:id="@+id/vDivider2"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button7" />
+            app:layout_constraintTop_toBottomOf="@+id/cbImport" />
 
         <!--This should be CHECK BOXES-->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button8"
+            android:id="@+id/cbSurprise"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vie6"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider2"
             android:background="@drawable/buttonumrandungneu"/>
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvSurprise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -128,21 +128,21 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:fontFamily="@font/light"
-            app:layout_constraintBottom_toBottomOf="@+id/button8"
+            app:layout_constraintBottom_toBottomOf="@+id/cbSurprise"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button8"
-            app:layout_constraintTop_toBottomOf="@+id/vie6" />
+            app:layout_constraintStart_toEndOf="@+id/cbSurprise"
+            app:layout_constraintTop_toBottomOf="@+id/vDivider2" />
 
         <View
-            android:id="@+id/view7"
+            android:id="@+id/vDivider3"
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button8" />
+            app:layout_constraintTop_toBottomOf="@+id/cbSurprise" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -165,7 +165,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <Button
-                android:id="@+id/button_home"
+                android:id="@+id/btnHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -178,7 +178,7 @@
                 app:iconPadding="2dp" />
 
             <Button
-                android:id="@+id/button_grocery_list"
+                android:id="@+id/btnGroceryList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -191,7 +191,7 @@
                 app:iconPadding="2dp" />
 
             <Button
-                android:id="@+id/button_recipes"
+                android:id="@+id/btnRecipes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -204,7 +204,7 @@
                 app:iconPadding="2dp" />
 
             <Button
-                android:id="@+id/button_profile"
+                android:id="@+id/btnProfile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -220,7 +220,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextspecials"
+            android:id="@+id/etSpecials"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -232,22 +232,22 @@
             android:textColor="#FFFFFF"
             android:textColorHint="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/buttonspecials"
-            app:layout_constraintTop_toBottomOf="@+id/editTextWithout"
-            tools:layout_constraintEnd_toStartOf="@id/buttonAdd" />
+            app:layout_constraintEnd_toStartOf="@+id/btnSpecials"
+            app:layout_constraintTop_toBottomOf="@+id/etWithout"
+            tools:layout_constraintEnd_toStartOf="@id/btnAdd" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonspecials"
+            android:id="@+id/btnSpecials"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="25dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
+            app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
 
         <Spinner
-            android:id="@+id/spinnercomplexity"
+            android:id="@+id/spComplexity"
             android:layout_width="150dp"
             android:layout_height="36dp"
             android:layout_marginTop="23dp"
@@ -256,10 +256,10 @@
             android:entries="@array/complexity_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnertimerequired" />
+            app:layout_constraintTop_toBottomOf="@+id/spTimerequired" />
 
         <Spinner
-            android:id="@+id/spinnernationality"
+            android:id="@+id/spNationality"
             android:layout_width="150dp"
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
@@ -268,11 +268,11 @@
             android:entries="@array/nationality_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercomplexity" />
+            app:layout_constraintTop_toBottomOf="@+id/spComplexity" />
 
 
         <Spinner
-            android:id="@+id/spinnerPortions"
+            android:id="@+id/spPortions"
             android:layout_width="70dp"
             android:layout_height="36dp"
             android:layout_marginTop="25dp"
@@ -324,7 +324,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/spinnertimerequired"
+            app:layout_constraintEnd_toStartOf="@+id/spTimerequired"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
 
@@ -386,7 +386,7 @@
 
 
         <EditText
-            android:id="@+id/editTextWithout"
+            android:id="@+id/etWithout"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
@@ -398,22 +398,22 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@id/buttonAdd"
-            app:layout_constraintTop_toBottomOf="@+id/spinnernationality"
-            tools:layout_constraintEnd_toStartOf="@id/buttonAdd" />
+            app:layout_constraintEnd_toStartOf="@id/btnAdd"
+            app:layout_constraintTop_toBottomOf="@+id/spNationality"
+            tools:layout_constraintEnd_toStartOf="@id/btnAdd" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonAdd"
+            android:id="@+id/btnAdd"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_marginTop="29dp"
             android:layout_marginEnd="25dp"
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnernationality" />
+            app:layout_constraintTop_toBottomOf="@+id/spNationality" />
 
         <Spinner
-            android:id="@+id/spinnertimerequired"
+            android:id="@+id/spTimerequired"
             android:layout_width="150dp"
             android:layout_height="36dp"
             android:layout_marginTop="20dp"
@@ -422,11 +422,11 @@
             android:entries="@array/timerequired_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnercategory" />
+            app:layout_constraintTop_toBottomOf="@+id/spCategory" />
 
 
         <Spinner
-            android:id="@+id/spinnercategory"
+            android:id="@+id/spCategory"
             android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
@@ -435,7 +435,7 @@
             android:entries="@array/category_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPortions" />
+            app:layout_constraintTop_toBottomOf="@+id/spPortions" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
