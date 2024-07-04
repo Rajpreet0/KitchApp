@@ -93,8 +93,9 @@ class NetworkHelper {
     }
 
     companion object {
-        const val SERVER_ADDRESS_OPENAI = "https://kitch-app-server.vercel.app"
-        const val SERVER_ADDRESS_LOGIN = "https://kitch-app-server.vercel.app/users/login"
-        const val SERVER_ADDRESS_REGISTER = "https://kitch-app-server.vercel.app/users/register"
+        const val BASE_URL="https://kitch-app-server.vercel.app"
+        const val SERVER_ADDRESS_OPENAI = "${BASE_URL}"
+        const val SERVER_ADDRESS_LOGIN = "${BASE_URL}users/login"
+        const val SERVER_ADDRESS_REGISTER = "${BASE_URL}users/register"
     }
 }
