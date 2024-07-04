@@ -92,10 +92,39 @@ class NetworkHelper {
         }
     }
 
+    fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String): JsonObject {
+        val json = JsonObject().apply {
+            addProperty("portions", portions);
+            addProperty("category", category);
+            addProperty("time", time);
+            addProperty("complexity", complexity);
+            addProperty("nationality", nationality);
+            addProperty("ingredients", ingredients);
+            addProperty("withoutIngredients", withoutIngredients);
+            addProperty("specials", special);
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_RECIPE_SUGGESTIONS)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val responseData = response.body!!.string()
+            return Gson().fromJson(responseData, JsonObject::class.java)
+        }
+    }
+
     companion object {
         const val BASE_URL="https://kitch-app-server.vercel.app"
         const val SERVER_ADDRESS_OPENAI = "${BASE_URL}"
-        const val SERVER_ADDRESS_LOGIN = "${BASE_URL}users/login"
-        const val SERVER_ADDRESS_REGISTER = "${BASE_URL}users/register"
+        const val SERVER_ADDRESS_LOGIN = "${BASE_URL}/users/login"
+        const val SERVER_ADDRESS_REGISTER = "${BASE_URL}/users/register"
+        const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "${BASE_URL}/recipes"
     }
 }

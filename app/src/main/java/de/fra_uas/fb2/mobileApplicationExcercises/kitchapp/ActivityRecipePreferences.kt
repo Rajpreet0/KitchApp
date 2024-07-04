@@ -2,15 +2,30 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class ActivityRecipePreferences : AppCompatActivity() {
+    private lateinit var portion: Spinner
+    private lateinit var category: Spinner
+    private lateinit var time: Spinner
+    private lateinit var complexity: Spinner
+    private lateinit var nationality: Spinner
+    private  val networkHelper = NetworkHelper()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,11 +35,19 @@ class ActivityRecipePreferences : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        portion = findViewById<Spinner>(R.id.spinnerPortions);
+        category = findViewById<Spinner>(R.id.spinnercategory);
+        time = findViewById<Spinner>(R.id.spinnertimerequired);
+        complexity = findViewById<Spinner>(R.id.spinnercomplexity);
+        nationality = findViewById<Spinner>(R.id.spinnernationality);
+
         setupSpinner(R.id.spinnerPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spinnercategory, R.array.category_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spinnertimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spinnercomplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spinnernationality, R.array.nationality_array, R.layout.spinner_items_preferences)
+
 
     }
 
@@ -65,7 +88,37 @@ class ActivityRecipePreferences : AppCompatActivity() {
         startActivity(intent)
     }
     fun nextButton(view: View) {
-        val intent = Intent(this, ActivitySuggestions::class.java)
+        val portionTxt = portion.selectedItem as String;
+        val categoryTxt = category.selectedItem as String;
+        val timeTxt = time.selectedItem as String;
+        val complexityTxt = complexity.selectedItem as String;
+        val nationalityTxt = nationality.selectedItem as String
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    networkHelper.suggestRecipe(portionTxt, categoryTxt, timeTxt, complexityTxt, nationalityTxt, "tomato, rice, basil, potatos, cooking creme, paprika, salt, pepper","peanuts, curry", "keto")
+                }
+                withContext(Dispatchers.Main) {
+                    Log.d("Data for response: ", response.toString())
+                    val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
+                        putExtra("response", response.toString())
+                    }
+                    startActivity(intent)
+                }
+            } catch (e: IOException) {
+                Log.d("SERVER ERROR", "${e}")
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        applicationContext,
+                        "User can't be registered",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
         startActivity(intent)
     }
 }

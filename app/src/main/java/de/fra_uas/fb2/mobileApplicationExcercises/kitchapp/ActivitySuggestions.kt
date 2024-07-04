@@ -3,19 +3,26 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import org.json.JSONObject
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
-    private lateinit var suggestions: Map<String, String> // name of recipe -> short description
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,18 +30,29 @@ class ActivitySuggestions : AppCompatActivity() {
         // Initializing the container
         container = findViewById(R.id.containerSuggestions)
 
-        // Initializing ingredientList with sample data, replace with db data later on
-        suggestions = mapOf(
-            "Caprese Salad" to "A classic Italian salad with tomatoes, mozzarella, and basil",
-            "Mexican Hot Dog" to "A delicious hot dog with a spicy kick",
-            "Garlic Butter Shrimps" to "Juicy shrimp cooked in a rich garlic butter sauce, perfect for serving over pasta or rice."
-        )
 
-        for (recipe in suggestions) {
-            val name = recipe.key
-            val description = recipe.value
-            addRow(name, description)
+        val response = intent.getStringExtra("response") ?: ""
+
+        // Parse the JSON response
+        try {
+            val jsonResponse = JSONObject(response)
+            val recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+
+            for (i in 0 until recipesArray.length()) {
+                val recipe = recipesArray.getJSONObject(i)
+                val name = recipe.getString("name")
+                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
+                //val instructionsArray = recipe.getJSONArray("instructions")
+               // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+
+                val description = recipe.getString("description")
+
+                addRow(name, description)
+            }
+        } catch (e: Exception) {
+            Log.e("ActivitySuggestions", "Error parsing JSON response", e)
         }
+
 
     }
 
