@@ -16,7 +16,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
-        android:drawableRight="@drawable/edit"
+        android:drawableRight="@drawable/ic_pen_filled_yellow"
         android:fontFamily="@font/regular"
         android:text="Profile"
         android:textColor="@color/pastel_yellow"
@@ -48,7 +48,7 @@
 
         android:layout_marginTop="15dp"
         android:layout_marginEnd="25dp"
-        android:drawableLeft="@drawable/icon_profile_white"
+        android:drawableLeft="@drawable/ic_profile_white"
         android:drawablePadding="10dp"
         android:ems="10"
 
@@ -70,7 +70,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
-        android:drawableLeft="@drawable/free_icon_1"
+        android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/light"
@@ -130,7 +130,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
 
-        app:srcCompat="@drawable/yellow_add_btn" />
+        app:srcCompat="@drawable/ic_add_yellow_rounded" />
 
     <TextView
         android:id="@+id/addExclText"
@@ -154,7 +154,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/round_linearlayout"
+        android:background="@drawable/bg_black"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +170,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/logout_icon"
+        android:src="@drawable/ic_logout"
         app:layout_constraintBottom_toTopOf="@+id/btnDelete"
         app:layout_constraintEnd_toStartOf="@+id/tvLogout"
         app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/delete_icon"
+        android:src="@drawable/ic_trashcan_red"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogout" />
@@ -240,7 +240,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/profil_icon"
+            android:drawableTop="@drawable/ic_home"
             android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
@@ -253,7 +253,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/list_icon"
+            android:drawableTop="@drawable/ic_list"
             android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
@@ -266,7 +266,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/heart_icon"
+            android:drawableTop="@drawable/ic_heart_unfilled"
             android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
@@ -279,7 +279,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/profil_icon"
+            android:drawableTop="@drawable/ic_profile_black"
             android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
