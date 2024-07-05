@@ -3,7 +3,8 @@
 
     <item android:state_checked="true"
         android:state_enabled="true"
-        android:drawable="@drawable/icon_book_switch"/>
+        android:drawable="@drawable/icon_book_switch"
+        android:drawableTint= "@color/white"/>
     <item android:state_checked="false"
         android:state_enabled="true"
         android:drawable="@drawable/icon_apple"/>
