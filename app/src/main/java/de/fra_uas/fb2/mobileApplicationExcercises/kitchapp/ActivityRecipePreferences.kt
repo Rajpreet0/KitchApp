@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var time: Spinner
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
+    private lateinit var etWithout: EditText
+    private lateinit var etSpecials: EditText
 
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
@@ -55,6 +58,9 @@ class ActivityRecipePreferences : AppCompatActivity() {
         setupSpinner(R.id.spTimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spComplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spNationality, R.array.nationality_array, R.layout.spinner_items_preferences)
+
+        etSpecials = findViewById(R.id.etSpecials)
+        etWithout = findViewById(R.id.etWithout)
 
 
     }
@@ -127,6 +133,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
+                val withoutIngredients = etWithout.text.toString()
+                val specialIngredients = etSpecials.text.toString()
                 val response =  withContext(Dispatchers.IO) {
                     networkHelper.suggestRecipe(
                         portionTxt,
@@ -135,8 +143,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         complexityTxt,
                         nationalityTxt,
                         ingredientString.toString(),
-                        "peanuts, curry",
-                        "keto"
+                        withoutIngredients,
+                        specialIngredients
                     )
                 }
 
