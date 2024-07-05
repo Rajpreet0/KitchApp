@@ -44,7 +44,7 @@ class ActivityPantry : AppCompatActivity() {
             productAmount!!.addView(amountTextView)
         }
     }
-    //function for the pop up that is shown after edit/add/delete button pressed
+    //function for the pop up that is shown after ic_pen_filled_yellow/add/delete button pressed
     private fun saveMap(context: Context, map: MutableMap<String, Int>) {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -67,7 +67,7 @@ class ActivityPantry : AppCompatActivity() {
         }
     }
 
-    //function for the pop up that is shown after edit/add/delete button pressed
+    //function for the pop up that is shown after ic_pen_filled_yellow/add/delete button pressed
     private fun showInputDialog(method: String) {
         val dialogView = layoutInflater.inflate(R.layout.popup_add_ingredient, null)
         val ingredientText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
@@ -123,8 +123,8 @@ class ActivityPantry : AppCompatActivity() {
                 dialog.dismiss()
             }
             builder.create().show()
-            //if edit is pressed we can add or remove amounts from ingredients -> remove ingredient if amount is <=0
-        }else if(method == "edit"){
+            //if ic_pen_filled_yellow is pressed we can add or remove amounts from ingredients -> remove ingredient if amount is <=0
+        }else if(method == "ic_pen_filled_yellow"){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Edit ingredient")
             builder.setView(dialogView)
@@ -188,7 +188,7 @@ class ActivityPantry : AppCompatActivity() {
         showInputDialog("add")
     }
     fun editButton(view: View){
-        showInputDialog("edit")
+        showInputDialog("ic_pen_filled_yellow")
     }
     fun deleteButton(view: View){
         showInputDialog("delete")
