@@ -88,6 +88,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
     }
     fun generateButton(view: View) {
+        container.removeAllViews()
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 withContext(Dispatchers.Main) {
