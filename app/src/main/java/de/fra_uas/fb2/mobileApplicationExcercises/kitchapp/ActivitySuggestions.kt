@@ -23,6 +23,7 @@ import java.io.IOException
 class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
+    private lateinit var choosenRecipe: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -127,4 +128,10 @@ class ActivitySuggestions : AppCompatActivity() {
         val intent = Intent(this, ActivityRecipeDisplay::class.java)
         startActivity(intent)
     }
+
+
+    private fun onClick (view: View) {
+
+    }
+
 }
