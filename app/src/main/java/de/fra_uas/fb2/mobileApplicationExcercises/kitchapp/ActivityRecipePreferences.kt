@@ -134,7 +134,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         timeTxt,
                         complexityTxt,
                         nationalityTxt,
-                        ingredientString.toString()
+                        ingredientString.toString(),
                         "peanuts, curry",
                         "keto"
                     )
