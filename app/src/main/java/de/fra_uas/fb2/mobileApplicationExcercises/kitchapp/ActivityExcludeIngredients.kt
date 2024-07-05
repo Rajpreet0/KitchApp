@@ -22,8 +22,8 @@ class ActivityExcludeIngredients : AppCompatActivity() {
     private val ingredientList: MutableMap<String, Int> = mutableMapOf()
 
     private val icons = arrayOf(
-        R.drawable.freezer_icon,
-        R.drawable.fridge_svgrepo_com,
+        R.drawable.ic_freezer,
+        R.drawable.ic_fridge,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

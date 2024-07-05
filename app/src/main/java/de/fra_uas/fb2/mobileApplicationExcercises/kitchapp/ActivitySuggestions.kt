@@ -1,7 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +10,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import org.json.JSONObject
 import android.widget.Toast
+import org.json.JSONObject
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -21,8 +20,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okio.IOException
 import org.json.JSONArray
-import java.io.IOException
 
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
@@ -164,7 +163,7 @@ class ActivitySuggestions : AppCompatActivity() {
         // Handle the favorite icon logic
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
         var isFavorite = false // Initial state, not favorited
-        icon_save.setImageResource(R.drawable.heart_icon) // Unfilled heart icon by default
+        icon_save.setImageResource(R.drawable.ic_heart_unfilled) // Unfilled heart icon by default
 
         icon_save.setOnClickListener {
             isFavorite = !isFavorite
@@ -173,7 +172,7 @@ class ActivitySuggestions : AppCompatActivity() {
                 // TODO: create detailed Recipe
                 // TODO: add to saved recipes
             } else {
-                icon_save.setImageResource(R.drawable.heart_icon)
+                icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
             }
         }
@@ -224,7 +223,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
     private fun onCLick(view: View, name: String) {
         val choosenDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
-        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.buttonslayout3)
+        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.bg_roundedcorners)
 
         val currentDrawable = view.background
 

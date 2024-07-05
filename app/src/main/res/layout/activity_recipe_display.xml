@@ -16,7 +16,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
-        android:drawableRight="@drawable/heart_icon"
+        android:drawableRight="@drawable/ic_heart_unfilled"
         android:fontFamily="@font/regular"
         android:text="Name of Recipe"
         android:textColor="@color/dark_background"
@@ -49,7 +49,7 @@
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:srcCompat="@drawable/forkknife" />
+        app:srcCompat="@drawable/ic_cutlery" />
 
     <LinearLayout
         android:id="@+id/llServingsize"
@@ -67,7 +67,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/minusbtn"
+            android:src="@drawable/ic_minus_round"
 
             />
 
@@ -87,7 +87,7 @@
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/plusbtn" />
+            android:src="@drawable/ic_plus_round" />
 
     </LinearLayout>
 
@@ -99,7 +99,7 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toEndOf="@+id/llServingsize"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:srcCompat="@drawable/clock_two_svgrepo_com__1_" />
+        app:srcCompat="@drawable/ic_clock" />
 
     <TextView
         android:id="@+id/frameLayout"
@@ -141,8 +141,8 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/regular"
         android:onClick="switchOnClick"
-        android:thumb="@drawable/bg_switch"
-        android:track="@drawable/switch_background_on"
+        android:thumb="@drawable/bg_thumb"
+        android:track="@drawable/bg_track"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -152,7 +152,7 @@
         android:id="@+id/rahmen"
         android:layout_width="333dp"
         android:layout_height="450dp"
-        android:background="@drawable/frame"
+        android:background="@drawable/rounded_border_dirty"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -206,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/profil_icon"
+            android:drawableTop="@drawable/ic_home"
             android:onClick="homeButton"
             android:text="Home"
             android:textColor="#212928"
@@ -219,7 +219,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/list_icon"
+            android:drawableTop="@drawable/ic_list"
             android:onClick="groceryButton"
             android:text="Grocery"
             android:textColor="#212928"
@@ -232,7 +232,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/heart_icon"
+            android:drawableTop="@drawable/ic_heart_unfilled"
             android:onClick="recipesButton"
             android:text="Recipes"
             android:textColor="#212928"
@@ -245,7 +245,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/profil_icon"
+            android:drawableTop="@drawable/ic_profile_black"
             android:onClick="profileButton"
             android:text="Profile"
             android:textColor="#212928"
