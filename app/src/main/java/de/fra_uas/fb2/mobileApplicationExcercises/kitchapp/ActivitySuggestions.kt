@@ -2,6 +2,7 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import org.json.JSONObject
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +28,8 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var container: LinearLayout
 
     private lateinit var recipesArray: JSONArray
+
+    private lateinit var choosenRecipe: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +75,10 @@ class ActivitySuggestions : AppCompatActivity() {
         val nameRecipe: TextView = rowView.findViewById(R.id.tvNameRecipe)
         nameRecipe.text = name
 
+        nameRecipe.setOnClickListener {
+            onCLick(it, name)
+        }
+
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
         // Set click listener to display Recipe
         frameRecipe.setOnClickListener {
@@ -80,6 +88,10 @@ class ActivitySuggestions : AppCompatActivity() {
 
         val descriptionRecipe: TextView = rowView.findViewById(R.id.tvDescriptionRecipe)
         descriptionRecipe.text = description
+
+        descriptionRecipe.setOnClickListener {
+            onCLick(it, name)
+        }
 
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
 
@@ -135,8 +147,21 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
 
-    private fun onClick (view: View) {
+    private fun onCLick (view: View, name: String) {
 
+        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
+        val defaultDrawable: Drawable? =  ContextCompat.getDrawable(this, R.drawable.buttonslayout3)
+
+        var frameLayout = findViewById<FrameLayout>(R.id.frameRecipe)
+
+
+        if (frameLayout.background != choosenDrawable) {
+            frameLayout.background = choosenDrawable;
+            choosenRecipe = name
+        } else {
+            frameLayout.background = defaultDrawable;
+            choosenRecipe = ""
+        }
     }
 
 }
