@@ -161,6 +161,14 @@ class ActivityRecipePreferences : AppCompatActivity() {
                     Log.d("Data for response: ", response.toString())
                     val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
                         putExtra("response", response.toString())
+                        putExtra("portion", portionTxt)
+                        putExtra("category", categoryTxt)
+                        putExtra("time", timeTxt)
+                        putExtra("complexity", complexityTxt)
+                        putExtra("nationality", nationalityTxt)
+                        putExtra("ingredientString", ingredientString.toString())
+                        putExtra("withoutIngredients", withoutIngredients)
+                        putExtra("specialIngredients", specialIngredients)
                     }
                     startActivity(intent)
                 }

@@ -20,7 +20,7 @@
         android:fontFamily="@font/regular"
         android:text="Name of Recipe"
         android:textColor="@color/dark_background"
-        android:textSize="28sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.116"
 
@@ -140,33 +140,56 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/regular"
+        android:onClick="switchOnClick"
         android:thumb="@drawable/bg_thumb"
         android:track="@drawable/bg_track"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
-    <LinearLayout
-        android:id="@+id/llOutput"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rahmen"
+        android:layout_width="333dp"
+        android:layout_height="450dp"
         android:background="@drawable/rounded_border_dirty"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchOption">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771">
 
-    </LinearLayout>
+        <!-- Produktliste -->
+        <ScrollView
+            android:id="@+id/svOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:id="@+id/llOutput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
+                app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchOption">
 
+                <TextView
+                    android:id="@+id/recipeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+        </ScrollView>
 
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/navigationBar"

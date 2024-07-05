@@ -4,12 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import org.json.JSONObject
 
 class ActivityRecipeDisplay : AppCompatActivity() {
+    private lateinit var recipeTitle: TextView
+    private lateinit var recipeText: TextView
+
+    private lateinit var ingredients: String
+    private lateinit var instructions: String
+
+    private var instruction: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +29,50 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val response = intent.getStringExtra("response") ?: ""
+        val recipeName = intent.getStringExtra("name")?:""
 
-        val recipeString = intent.getStringExtra("recipe") ?: ""
+        recipeTitle = findViewById(R.id.tvRecipeName)
+        recipeText = findViewById(R.id.recipeText)
 
+
+        // Parse the JSON response
+        try {
+            val jsonResponse = JSONObject(response)
+            val recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+
+            for (i in 0 until recipesArray.length()) {
+                val recipe = recipesArray.getJSONObject(i)
+                val name = recipe.getString("name")
+                if(name.equals(recipeName)){
+                    recipeTitle.text=name
+                    ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
+                    recipeText.text=ingredients
+                    val instructionsArray = recipe.getJSONArray("instructions")
+                    instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+
+                }
+                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
+                //val instructionsArray = recipe.getJSONArray("instructions")
+                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+
+                //val description = recipe.getString("description")
+
+            }
+        } catch (e: Exception) {
+            Log.e("ActivitySuggestions", "Error parsing JSON response", e)
+        }
+
+    }
+
+    fun switchOnClick(view: View) {
+        if (!instruction) {
+            recipeText.text = instructions
+            instruction = true
+        }else{
+            recipeText.text = ingredients
+            instruction=false
+        }
     }
 
     fun homeButton(view: View){

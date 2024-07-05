@@ -10,20 +10,38 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import org.json.JSONObject
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.gson.JsonObject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okio.IOException
 import org.json.JSONArray
 
 class ActivitySuggestions : AppCompatActivity() {
+    private val networkHelper = NetworkHelper()
+    private lateinit var loadingDialog: LoadingDialogFragment
 
     private lateinit var container: LinearLayout
 
     private lateinit var recipesArray: JSONArray
 
     private lateinit var choosenRecipe: String
-
+    private lateinit var response:String
+    private lateinit var portionTxt: String
+    private lateinit var categoryTxt: String
+    private lateinit var timeTxt: String
+    private lateinit var complexityTxt: String
+    private lateinit var nationalityTxt: String
+    private lateinit var ingredientString: String
+    private lateinit var withoutIngredients: String
+    private lateinit var specialIngredients: String
+    private lateinit var newResponse: JsonObject
     private lateinit var frameLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +51,19 @@ class ActivitySuggestions : AppCompatActivity() {
         // Initializing the container
         container = findViewById(R.id.containerSuggestions)
 
-        val response = intent.getStringExtra("response") ?: ""
+        response = intent.getStringExtra("response") ?: ""
+        portionTxt = intent.getStringExtra("portion") ?: ""
+        categoryTxt = intent.getStringExtra("category") ?: ""
+        timeTxt = intent.getStringExtra("time") ?: ""
+        complexityTxt = intent.getStringExtra("complexity") ?: ""
+        nationalityTxt = intent.getStringExtra("nationality") ?: ""
+        ingredientString = intent.getStringExtra("ingredientString") ?: ""
+        withoutIngredients = intent.getStringExtra("withoutIngredients") ?: ""
+        specialIngredients = intent.getStringExtra("specialIngredients") ?: ""
+
+        loadingDialog= LoadingDialogFragment()
+
+
 
         // Parse the JSON response
         try {
@@ -56,6 +86,59 @@ class ActivitySuggestions : AppCompatActivity() {
         }
 
 
+    }
+    fun generateButton(view: View) {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+                }
+                newResponse =  withContext(Dispatchers.IO) {
+                    networkHelper.suggestRecipe(
+                        portionTxt,
+                        categoryTxt,
+                        timeTxt,
+                        complexityTxt,
+                        nationalityTxt,
+                        ingredientString.toString(),
+                        withoutIngredients,
+                        specialIngredients
+                    )
+                }
+
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                }
+            } catch (e: IOException) {
+                Log.d("SERVER ERROR", "${e}")
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                    Toast.makeText(
+                        applicationContext,
+                        "SERVER ERROR: Prompt Error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        try {
+            val jsonResponse = JSONObject(response)
+            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+
+            for (i in 0 until recipesArray.length()) {
+                val recipe = recipesArray.getJSONObject(i)
+                val name = recipe.getString("name")
+                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
+                //val instructionsArray = recipe.getJSONArray("instructions")
+                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+
+                val description = recipe.getString("description")
+
+                addRow(name, description)
+            }
+        } catch (e: Exception) {
+            Log.e("ActivitySuggestions", "Error parsing JSON response", e)
+        }
     }
 
     private fun addRow(name: String, description: String) {
@@ -126,10 +209,15 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
     fun nextButton(view: View) {
-        val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
-            putExtra("recipe", recipesArray.toString())
+        if(choosenRecipe.isNotEmpty()) {
+            val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
+                putExtra("response", response)
+                putExtra("name", choosenRecipe)
+            }
+            startActivity(intent)
+        }else{
+            Toast.makeText(this, "Please select a Recipe", Toast.LENGTH_SHORT).show()
         }
-        startActivity(intent)
     }
 
 
