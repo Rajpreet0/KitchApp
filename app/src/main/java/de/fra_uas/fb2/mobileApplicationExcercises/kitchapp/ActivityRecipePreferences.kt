@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var time: Spinner
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
+    private lateinit var etWithout: EditText
+    private lateinit var etSpecials: EditText
 
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
@@ -56,6 +59,9 @@ class ActivityRecipePreferences : AppCompatActivity() {
         setupSpinner(R.id.spComplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spNationality, R.array.nationality_array, R.layout.spinner_items_preferences)
 
+        etSpecials = findViewById(R.id.etSpecials)
+        etWithout = findViewById(R.id.etWithout)
+
 
     }
 
@@ -79,20 +85,28 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
 
     fun homeButton(view: View){
-        val intent = Intent(this, ActivityHome::class.java)
+        val intent = Intent(this, ActivityHome::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, ActivityGrocery::class.java)
+        val intent = Intent(this, ActivityGrocery::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, ActivityRecipes::class.java)
+        val intent = Intent(this, ActivityRecipes::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, ActivityProfile::class.java)
+        val intent = Intent(this, ActivityProfile::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 
@@ -127,6 +141,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
+                val withoutIngredients = etWithout.text.toString()
+                val specialIngredients = etSpecials.text.toString()
                 val response =  withContext(Dispatchers.IO) {
                     networkHelper.suggestRecipe(
                         portionTxt,
@@ -135,8 +151,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         complexityTxt,
                         nationalityTxt,
                         ingredientString.toString(),
-                        "peanuts, curry",
-                        "keto"
+                        withoutIngredients,
+                        specialIngredients
                     )
                 }
 
@@ -154,7 +170,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                     loadingDialog.dismiss()
                     Toast.makeText(
                         applicationContext,
-                        "User can't be registered",
+                        "SERVER ERROR: Prompt Error",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
