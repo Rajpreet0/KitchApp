@@ -38,7 +38,6 @@ class ActivitySuggestions : AppCompatActivity() {
         // Initializing the container
         container = findViewById(R.id.containerSuggestions)
 
-
         val response = intent.getStringExtra("response") ?: ""
 
         // Parse the JSON response
