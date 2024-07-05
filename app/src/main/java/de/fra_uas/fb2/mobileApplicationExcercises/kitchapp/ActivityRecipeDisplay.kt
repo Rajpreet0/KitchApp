@@ -21,6 +21,8 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             insets
         }
 
+        val recipeString = intent.getStringExtra("recipe") ?: ""
+
     }
 
     fun homeButton(view: View){

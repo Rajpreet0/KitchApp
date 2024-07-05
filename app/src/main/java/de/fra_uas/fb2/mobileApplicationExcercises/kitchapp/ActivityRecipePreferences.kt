@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -92,6 +95,19 @@ class ActivityRecipePreferences : AppCompatActivity() {
         val intent = Intent(this, ActivityProfile::class.java)
         startActivity(intent)
     }
+
+    private fun getRecipeMap(context: Context): MutableMap<String, Int> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("recipeMap", "")
+
+        // Convert the JSON string back to a map
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableMap<String, Int>>() {}.type)
+        } else {
+            mutableMapOf()
+        }
+    }
+
     fun nextButton(view: View) {
 
         val portionTxt = portion.selectedItem as String;
@@ -99,6 +115,11 @@ class ActivityRecipePreferences : AppCompatActivity() {
         val timeTxt = time.selectedItem as String;
         val complexityTxt = complexity.selectedItem as String;
         val nationalityTxt = nationality.selectedItem as String
+        val ingredientList = getRecipeMap(this)
+        val ingredientString = StringBuilder()
+        for ((key, value) in ingredientList) {
+            ingredientString.append("$key, ")
+        }
 
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -113,7 +134,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         timeTxt,
                         complexityTxt,
                         nationalityTxt,
-                        "tomato, rice, basil, potatos, cooking creme, paprika, salt, pepper",
+                        ingredientString.toString()
                         "peanuts, curry",
                         "keto"
                     )
