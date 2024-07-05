@@ -18,12 +18,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import java.io.IOException
 
 class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
-    private lateinit var choosenRecipe: String
+
+    private lateinit var recipesArray: JSONArray
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,7 +40,7 @@ class ActivitySuggestions : AppCompatActivity() {
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
-            val recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
 
             for (i in 0 until recipesArray.length()) {
                 val recipe = recipesArray.getJSONObject(i)
@@ -125,7 +128,9 @@ class ActivitySuggestions : AppCompatActivity() {
         startActivity(intent)
     }
     fun nextButton(view: View){
-        val intent = Intent(this, ActivityRecipeDisplay::class.java)
+        val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
+            putExtra("recipe", recipesArray.toString())
+        }
         startActivity(intent)
     }
 
