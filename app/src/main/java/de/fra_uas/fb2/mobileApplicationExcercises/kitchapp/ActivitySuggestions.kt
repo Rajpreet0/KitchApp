@@ -122,6 +122,7 @@ class ActivitySuggestions : AppCompatActivity() {
                 }
             }
         }
+        container.removeAllViews()
         try {
             val jsonResponse = JSONObject(response)
             recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
