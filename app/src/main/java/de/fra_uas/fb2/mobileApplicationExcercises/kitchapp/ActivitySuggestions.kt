@@ -24,6 +24,7 @@ import java.io.IOException
 class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
+
     private lateinit var recipesArray: JSONArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +33,6 @@ class ActivitySuggestions : AppCompatActivity() {
         setContentView(R.layout.suggestions)
         // Initializing the container
         container = findViewById(R.id.containerSuggestions)
-
 
         val response = intent.getStringExtra("response") ?: ""
 

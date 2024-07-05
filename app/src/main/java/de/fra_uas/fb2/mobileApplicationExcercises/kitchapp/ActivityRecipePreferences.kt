@@ -21,11 +21,14 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class ActivityRecipePreferences : AppCompatActivity() {
+
     private lateinit var portion: Spinner
     private lateinit var category: Spinner
     private lateinit var time: Spinner
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
+
+    private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
 
 
@@ -38,6 +41,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        loadingDialog = LoadingDialogFragment()
 
         portion = findViewById<Spinner>(R.id.spPortions);
         category = findViewById<Spinner>(R.id.spCategory);
@@ -104,6 +109,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
     }
 
     fun nextButton(view: View) {
+
         val portionTxt = portion.selectedItem as String;
         val categoryTxt = category.selectedItem as String;
         val timeTxt = time.selectedItem as String;
@@ -118,10 +124,24 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val response = withContext(Dispatchers.IO) {
-                    networkHelper.suggestRecipe(portionTxt, categoryTxt, timeTxt, complexityTxt, nationalityTxt, ingredientString.toString(),"peanuts, curry", "keto")
-                }
                 withContext(Dispatchers.Main) {
+                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+                }
+                val response =  withContext(Dispatchers.IO) {
+                    networkHelper.suggestRecipe(
+                        portionTxt,
+                        categoryTxt,
+                        timeTxt,
+                        complexityTxt,
+                        nationalityTxt,
+                        ingredientString.toString(),
+                        "peanuts, curry",
+                        "keto"
+                    )
+                }
+
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
                     Log.d("Data for response: ", response.toString())
                     val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
                         putExtra("response", response.toString())
@@ -131,6 +151,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")
                 withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
                     Toast.makeText(
                         applicationContext,
                         "User can't be registered",
@@ -139,7 +160,5 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 }
             }
         }
-
-        startActivity(intent)
     }
 }

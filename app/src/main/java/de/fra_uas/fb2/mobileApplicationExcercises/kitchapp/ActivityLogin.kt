@@ -21,6 +21,8 @@ class ActivityLogin : AppCompatActivity() {
     private  val networkHelper = NetworkHelper()
     private lateinit var email: EditText
     private lateinit var password: EditText
+    private lateinit var loadingDialog: LoadingDialogFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,6 +35,8 @@ class ActivityLogin : AppCompatActivity() {
 
         email = findViewById(R.id.etEmail)
         password = findViewById(R.id.etPassword)
+
+        loadingDialog = LoadingDialogFragment()
     }
 
     fun signUpButton(view: View){
@@ -51,20 +55,25 @@ class ActivityLogin : AppCompatActivity() {
     fun loginButton(view: View){
         val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
-        CoroutineScope(Dispatchers.IO).launch {
+       /* CoroutineScope(Dispatchers.IO).launch {
             try {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+                }
                 val response = networkHelper.login(email.text.toString(), password.text.toString())
                 withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
                     Log.d("Data from Login: ", response.toString())
                     startActivity(intent)
                 }
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
                     Log.d("SERVER ERROR", "Login Failed - ${e}")
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }*/
     }
     fun forgotPasswordButton(view: View){
         //to be designed

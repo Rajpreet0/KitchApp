@@ -24,6 +24,7 @@ class ActivityCreateAcount : AppCompatActivity() {
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var confirmPassword: EditText
+    private lateinit var loadingDialog: LoadingDialogFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,18 +37,25 @@ class ActivityCreateAcount : AppCompatActivity() {
             insets
         }
 
+        loadingDialog = LoadingDialogFragment()
+
         username = findViewById(R.id.etUsername);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         confirmPassword = findViewById(R.id.etPasswordconfirmation);
+
     }
 
     fun signUpButton(view: View){
         val intent = Intent(this, ActivityHome::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             try {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+                }
                 if (password.text.toString() != confirmPassword.text.toString()) {
                     withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
                         Toast.makeText(
                             applicationContext,
                             "Password doesn't match",
@@ -59,6 +67,7 @@ class ActivityCreateAcount : AppCompatActivity() {
                         networkHelper.register(username.text.toString(), email.text.toString(), password.text.toString())
                     }
                     withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
                         Log.d("Data from Register: ", response.toString())
                         startActivity(intent)
                     }
@@ -66,6 +75,7 @@ class ActivityCreateAcount : AppCompatActivity() {
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")
                 withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
                     Toast.makeText(
                         applicationContext,
                         "User can't be registered",
