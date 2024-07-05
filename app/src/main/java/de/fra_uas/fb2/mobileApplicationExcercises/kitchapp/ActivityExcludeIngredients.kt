@@ -78,6 +78,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         editor.apply()
     }
 
+
     private fun getPantryMap(context: Context): MutableMap<String, Int> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val jsonString = sharedPreferences.getString("pantryMap", "")
@@ -139,9 +140,17 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             if (currentColor == Color.WHITE) {
                 // Change text color to red
                 textView.setTextColor(Color.RED)
+                if (ingredientList.containsKey(textView.text)) {
+                    ingredientList.remove(textView.text)
+                    saveMap(this, ingredientList)
+                }
             } else {
-                // Change text color back to white
-                textView.setTextColor(Color.WHITE)
+                    // Change text color back to white
+                    textView.setTextColor(Color.WHITE)
+                    val ingredient = textView.text.toString()
+                    ingredientList[ingredient] = 1
+                    saveMap(this, ingredientList)
+
             }
         }
 
@@ -149,23 +158,29 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         container.addView(rowView)
     }
 
-    fun homeButton(view: View) {
-        val intent = Intent(this, ActivityHome::class.java)
+    fun homeButton(view: View){
+        val intent = Intent(this, ActivityHome::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
+        startActivity(intent)
+    }
+    fun groceryButton(view: View){
+        val intent = Intent(this, ActivityGrocery::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
+        startActivity(intent)
+    }
+    fun recipesButton(view: View){
+        val intent = Intent(this, ActivityRecipes::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 
-    fun groceryButton(view: View) {
-        val intent = Intent(this, ActivityGrocery::class.java)
-        startActivity(intent)
-    }
-
-    fun recipesButton(view: View) {
-        val intent = Intent(this, ActivityRecipes::class.java)
-        startActivity(intent)
-    }
-
-    fun profileButton(view: View) {
-        val intent = Intent(this, ActivityProfile::class.java)
+    fun profileButton(view: View){
+        val intent = Intent(this, ActivityProfile::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 

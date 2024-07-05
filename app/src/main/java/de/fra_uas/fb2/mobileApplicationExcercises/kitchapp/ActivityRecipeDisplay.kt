@@ -21,23 +21,33 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             insets
         }
 
+        val recipeString = intent.getStringExtra("recipe") ?: ""
+
     }
 
     fun homeButton(view: View){
-        val intent = Intent(this, ActivityHome::class.java)
+        val intent = Intent(this, ActivityHome::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, ActivityGrocery::class.java)
+        val intent = Intent(this, ActivityGrocery::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
     fun recipesButton(view: View){
-        val intent = Intent(this, ActivityRecipes::class.java)
+        val intent = Intent(this, ActivityRecipes::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 
     fun profileButton(view: View){
-        val intent = Intent(this, ActivityProfile::class.java)
+        val intent = Intent(this, ActivityProfile::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        }
         startActivity(intent)
     }
 }

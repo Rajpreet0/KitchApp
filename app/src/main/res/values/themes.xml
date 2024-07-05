@@ -7,7 +7,9 @@
 
     <style name="Theme.KitchApp" parent="Base.Theme.KitchApp" >
 
-    </style>
 
-        />
+    </style>
+    <style name="noAnimTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>
