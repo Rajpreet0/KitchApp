@@ -31,6 +31,8 @@ class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var choosenRecipe: String
 
+    private lateinit var frameLayout: FrameLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,7 +52,7 @@ class ActivitySuggestions : AppCompatActivity() {
                 val name = recipe.getString("name")
                 //val ingredients = recipe.getJSONArray("ingredients").join(", ")
                 //val instructionsArray = recipe.getJSONArray("instructions")
-               // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
 
                 val description = recipe.getString("description")
 
@@ -68,77 +70,62 @@ class ActivitySuggestions : AppCompatActivity() {
         val inflater = LayoutInflater.from(this)
         val rowView: View = inflater.inflate(R.layout.suggestions_layout_row, container, false)
 
+        val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
 
-
-        // Find the TextView and set its click listener
+        // Find the TextView and set its text
         val nameRecipe: TextView = rowView.findViewById(R.id.tvNameRecipe)
         nameRecipe.text = name
-
-        nameRecipe.setOnClickListener {
-            onCLick(it, name)
-        }
-
-        val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
-        // Set click listener to display Recipe
-        frameRecipe.setOnClickListener {
-
-            // TODO: change Activity and Display correct Recipe
-        }
 
         val descriptionRecipe: TextView = rowView.findViewById(R.id.tvDescriptionRecipe)
         descriptionRecipe.text = description
 
-        descriptionRecipe.setOnClickListener {
-            onCLick(it, name)
+        // Set click listener on the frameRecipe to handle background change
+        frameRecipe.setOnClickListener {
+            onCLick(frameRecipe, name)
         }
 
+        // Handle the favorite icon logic
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
+        var isFavorite = false // Initial state, not favorited
+        icon_save.setImageResource(R.drawable.heart_icon) // Unfilled heart icon by default
 
-
-    var isFavorite = false // Initial state, not favorited
-
-// Set initial icon
-   icon_save.setImageResource(R.drawable.heart_icon) // Unfilled heart icon by default
-
-// Saving recipe
-    icon_save.setOnClickListener {
-        // Toggle isFavorite state
-        isFavorite = !isFavorite
-
-        // Update heart icon based on isFavorite state
-        if (isFavorite) {
-            icon_save.setImageResource(R.drawable.heart_icon_filled)
-            // TODO: create detailed Recipe
-            // TODO: add to saved recipes
-        } else {
-            icon_save.setImageResource(R.drawable.heart_icon)
-            // TODO: remove from recipes
+        icon_save.setOnClickListener {
+            isFavorite = !isFavorite
+            if (isFavorite) {
+                icon_save.setImageResource(R.drawable.heart_icon_filled)
+                // TODO: create detailed Recipe
+                // TODO: add to saved recipes
+            } else {
+                icon_save.setImageResource(R.drawable.heart_icon)
+                // TODO: remove from recipes
+            }
         }
-    }
 
         // Add the inflated row layout to the container
         container.addView(rowView)
     }
 
-
-    fun homeButton(view: View){
+    fun homeButton(view: View) {
         val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
     }
-    fun groceryButton(view: View){
+
+    fun groceryButton(view: View) {
         val intent = Intent(this, ActivityGrocery::class.java)
         startActivity(intent)
     }
-    fun recipesButton(view: View){
+
+    fun recipesButton(view: View) {
         val intent = Intent(this, ActivityRecipes::class.java)
         startActivity(intent)
     }
 
-    fun profileButton(view: View){
+    fun profileButton(view: View) {
         val intent = Intent(this, ActivityProfile::class.java)
         startActivity(intent)
     }
-    fun nextButton(view: View){
+
+    fun nextButton(view: View) {
         val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
             putExtra("recipe", recipesArray.toString())
         }
@@ -146,19 +133,17 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
 
-    private fun onCLick (view: View, name: String) {
-
+    private fun onCLick(view: View, name: String) {
         val choosenDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
-        val defaultDrawable: Drawable? =  ContextCompat.getDrawable(this, R.drawable.buttonslayout3)
+        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.buttonslayout3)
 
-        var frameLayout = findViewById<FrameLayout>(R.id.frameRecipe)
+        val currentDrawable = view.background
 
-
-        if (frameLayout.background != choosenDrawable) {
-            frameLayout.background = choosenDrawable;
+        if (currentDrawable?.constantState == defaultDrawable?.constantState) {
+            view.background = choosenDrawable
             choosenRecipe = name
         } else {
-            frameLayout.background = defaultDrawable;
+            view.background = defaultDrawable
             choosenRecipe = ""
         }
     }
