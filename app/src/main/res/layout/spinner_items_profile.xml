@@ -10,5 +10,5 @@
         android:textColor="@color/white"
         android:padding="5dp"
         android:textAlignment="textStart"
-        android:drawableLeft="@drawable/globe_icon"
+        android:drawableLeft="@drawable/ic_globe"
         android:drawablePadding="10dp"/>

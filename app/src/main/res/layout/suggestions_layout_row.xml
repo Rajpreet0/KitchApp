@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:layout_margin = "0dp"
-        android:background="@drawable/buttonslayout3"
+        android:background="@drawable/bg_roundedcorners"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin = "16dp"
-            android:src="@drawable/heart_icon"
+            android:src="@drawable/ic_heart_unfilled"
             app:tint="@color/white"
             android:clickable="true"
             android:focusable="true"/>
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_margin = "16dp"
-            android:src="@drawable/heart_icon"
+            android:src="@drawable/ic_heart_unfilled"
             app:tint="@color/white"
             android:clickable="true"
             android:focusable="true"/>

@@ -48,7 +48,7 @@
                 android:layout_height="45dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/icon_next"
+                android:src="@drawable/ic_next"
                 android:onClick="nextButton"
                 />
 
@@ -76,7 +76,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vDivider"
-            android:background="@drawable/buttonumrandungneu"
+            android:background="@drawable/bg_roundstroke"
             />
 
         <TextView
@@ -115,7 +115,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vDivider2"
-            android:background="@drawable/buttonumrandungneu"/>
+            android:background="@drawable/bg_roundstroke"/>
 
 
         <TextView
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawableTop="@drawable/profil_icon"
+                android:drawableTop="@drawable/ic_home"
                 android:onClick="homeButton"
                 android:text="Home"
                 android:textColor="#212928"
@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawableTop="@drawable/list_icon"
+                android:drawableTop="@drawable/ic_list"
                 android:onClick="groceryButton"
                 android:text="Grocery"
                 android:textColor="#212928"
@@ -196,7 +196,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawableTop="@drawable/heart_icon"
+                android:drawableTop="@drawable/ic_heart_unfilled"
                 android:onClick="recipesButton"
                 android:text="Recipes"
                 android:textColor="#212928"
@@ -209,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:drawableTop="@drawable/profil_icon"
+                android:drawableTop="@drawable/ic_profile_black"
                 android:onClick="profileButton"
                 android:text="Profile"
                 android:textColor="#212928"
@@ -252,7 +252,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="23dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/umrandung"
+            android:background="@drawable/bg_roundedstrokes"
             android:entries="@array/complexity_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +264,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/umrandung"
+            android:background="@drawable/bg_roundedstrokes"
             android:entries="@array/nationality_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -277,7 +277,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="108dp"
-            android:background="@drawable/umrandung"
+            android:background="@drawable/bg_roundedstrokes"
             android:entries="@array/portions_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -418,7 +418,7 @@
             android:layout_height="36dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/umrandung"
+            android:background="@drawable/bg_roundedstrokes"
             android:entries="@array/timerequired_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -431,7 +431,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/umrandung"
+            android:background="@drawable/bg_roundedstrokes"
             android:entries="@array/category_array"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"

@@ -3,11 +3,10 @@
 
     <item android:state_checked="true"
         android:state_enabled="true"
-        android:drawable="@drawable/icon_book_switch"
-        android:drawableTint= "@color/white"/>
+        android:drawable="@drawable/ic_book" />
     <item android:state_checked="false"
         android:state_enabled="true"
-        android:drawable="@drawable/icon_apple"/>
+        android:drawable="@drawable/ic_apple"/>
 </selector>
 
     <!--Icons für die Thumbs für die Switch in Recipe Display -->
