@@ -12,7 +12,7 @@
         android:id="@+id/btnDelete"
         android:layout_width="58dp"
         android:layout_height="58dp"
-        android:background="@drawable/bg_mint"
+        android:background="@drawable/bg_lightbrown"
         android:drawableStart="@drawable/ic_trashcan"
         android:drawablePadding="0dp"
         android:gravity="center"
@@ -25,14 +25,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svOptions"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
         app:layout_constraintVertical_bias="0.148" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdd"
         android:layout_width="58dp"
         android:layout_height="58dp"
-        android:background="@drawable/bg_mint"
+        android:background="@drawable/bg_lightbrown"
         android:drawableBottom="@drawable/btn_plus_nostroke"
         android:onClick="addButton"
         android:paddingStart="20dp"
@@ -47,14 +47,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svOptions"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
         app:layout_constraintVertical_bias="0.148" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEdit"
         android:layout_width="58dp"
         android:layout_height="58dp"
-        android:background="@drawable/bg_mint"
+        android:background="@drawable/bg_lightbrown"
         android:drawableBottom="@drawable/ic_pen_unfilled"
         android:onClick="editButton"
         android:paddingStart="20dp"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/svOptions"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
         app:layout_constraintVertical_bias="0.148" />
 
     <TextView
@@ -87,18 +87,28 @@
         app:layout_constraintVertical_bias="0.051" />
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rahmen"
+        android:layout_width="333dp"
+        android:layout_height="450dp"
+        android:background="@drawable/bg_white_roundstroke"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459">
+
         <!-- Produktliste -->
         <ScrollView
             android:id="@+id/svOptions"
-            android:layout_width="333dp"
-            android:layout_height="450dp"
-            android:background="@drawable/bg_white_roundstroke"
-            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.459">
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:id="@+id/parentLayout"
@@ -127,6 +137,7 @@
 
             </LinearLayout>
         </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/navigationBar"
