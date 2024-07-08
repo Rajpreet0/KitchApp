@@ -67,17 +67,19 @@
             app:layout_constraintTop_toBottomOf="@+id/container" />
 
         <!--This should be CHECK BOXES-->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/cbImport"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/checkbox_layout"
+            android:checked="false"
+            app:buttonTint="@color/dark_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vDivider"
-            android:background="@drawable/bg_roundstroke"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/vDivider" />
+
 
         <TextView
             android:id="@+id/tvImport"
@@ -106,17 +108,18 @@
             app:layout_constraintTop_toBottomOf="@+id/cbImport" />
 
         <!--This should be CHECK BOXES-->
-        <androidx.appcompat.widget.AppCompatButton
+        <CheckBox
             android:id="@+id/cbSurprise"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/checkbox_layout"
+            android:checked="false"
+            app:buttonTint="@color/dark_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vDivider2"
-            android:background="@drawable/bg_roundstroke"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/vDivider2" />
 
         <TextView
             android:id="@+id/tvSurprise"

@@ -8,26 +8,62 @@
     android:background="@color/dark_background"
     tools:context=".ActivityProfile">
 
-    <TextView
-        android:id="@+id/tvProfile"
+    <LinearLayout
+        android:id="@+id/llProfile"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:drawableRight="@drawable/ic_pen_filled_yellow"
-        android:fontFamily="@font/regular"
-        android:text="Profile"
-        android:textColor="@color/pastel_yellow"
-        android:textSize="45sp"
-        android:textStyle="bold"
-
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/tvDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Profile" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+            android:text="Profile"
+            android:textColor="@color/pastel_yellow"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            tools:text="Profile" />
+
+        <ImageView
+            android:id="@+id/iconSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="15dp"
+            android:layout_gravity="center_vertical"
+
+            android:onClick="profileSaveButton"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:src="@drawable/ic_save" />
+
+
+        <ImageView
+            android:id="@+id/iconEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:layout_gravity="center_vertical"
+
+            android:onClick="profileEditButton"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_pen_filled_yellow" />
+
+
+    </LinearLayout>
 
     <View
         android:id="@+id/tvDivider"
@@ -37,7 +73,7 @@
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/llProfile" />
 
     <EditText
         android:id="@+id/etName"
@@ -51,13 +87,17 @@
         android:drawableLeft="@drawable/ic_profile_white"
         android:drawablePadding="10dp"
         android:ems="10"
-
         android:fontFamily="@font/light"
         android:gravity="left"
+        android:hint="Name"
         android:inputType="text"
-        android:text="Name"
         android:textColor="@color/white"
         android:textSize="20sp"
+
+        android:focusableInTouchMode="false"
+        android:enabled="false"
+        android:focusable="false"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +114,18 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:fontFamily="@font/light"
-
         android:gravity="left"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
 
-        android:text="example@notavailable.com"
+
         android:textColor="@color/white"
         android:textSize="20sp"
+
+        android:enabled="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etName" />
@@ -95,6 +140,7 @@
         android:dropDownWidth="match_parent"
         android:dropDownHeight="wrap_content"
         android:spinnerMode="dropdown"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
@@ -111,7 +157,7 @@
         android:gravity="center"
         android:text="Excluded Ingredients"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="33sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spLanguage" />
@@ -125,8 +171,12 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="366dp"
         android:background="@android:color/transparent"
-        app:layout_constraintEnd_toEndOf="parent"
 
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="addExclButton"
+
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
 
@@ -147,20 +197,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+
+
+    <!-- Produktliste -->
+    <ScrollView
+        android:id="@+id/svExcludedIngredients"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="25dp"
         android:background="@drawable/bg_black"
-        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_margin="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAddExcl">
+        <LinearLayout
+            android:id="@+id/containerIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddExcl">
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+
 
 
     <ImageView
@@ -171,10 +233,15 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/ic_logout"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="logoutButton"
+
         app:layout_constraintBottom_toTopOf="@+id/btnDelete"
         app:layout_constraintEnd_toStartOf="@+id/tvLogout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/svExcludedIngredients" />
 
     <TextView
         android:id="@+id/tvLogout"
@@ -191,7 +258,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvDelete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnLogout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/svExcludedIngredients" />
 
     <ImageButton
         android:id="@+id/btnDelete"
@@ -202,6 +269,11 @@
         android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_trashcan_red"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="deleteButton"
+
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogout" />
