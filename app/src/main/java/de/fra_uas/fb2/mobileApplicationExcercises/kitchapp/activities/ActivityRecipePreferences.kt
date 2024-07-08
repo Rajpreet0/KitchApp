@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -138,12 +139,23 @@ class ActivityRecipePreferences : AppCompatActivity() {
     }
 
     fun nextButton(view: View) {
-
         val portionTxt = portion.selectedItem as String;
         val categoryTxt = category.selectedItem as String;
         val timeTxt = time.selectedItem as String;
         val complexityTxt = complexity.selectedItem as String;
         val nationalityTxt = nationality.selectedItem as String
+
+
+        val validationError = ValidationUtil.validateRecipePreferences(
+            portionTxt, categoryTxt, timeTxt, complexityTxt, nationalityTxt
+        )
+
+        if (validationError != null) {
+            Toast.makeText(this, validationError, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
         val ingredientList = getRecipeMap(this)
         val ingredientString = StringBuilder()
         for ((key, value) in ingredientList) {

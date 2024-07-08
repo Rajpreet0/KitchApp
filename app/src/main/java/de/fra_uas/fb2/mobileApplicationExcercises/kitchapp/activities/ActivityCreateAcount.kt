@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,22 +50,24 @@ class ActivityCreateAcount : AppCompatActivity() {
     }
 
     fun signUpButton(view: View){
+
+        val validationError = ValidationUtil.validateRegisterInput(
+            username.text.toString(),
+            email.text.toString(),
+            password.text.toString(),
+            confirmPassword.text.toString())
+
+        if (validationError != null) {
+            Toast.makeText(applicationContext, validationError, Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val intent = Intent(this, ActivityHome::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
-                if (password.text.toString() != confirmPassword.text.toString()) {
-                    withContext(Dispatchers.Main) {
-                        loadingDialog.dismiss()
-                        Toast.makeText(
-                            applicationContext,
-                            "Password doesn't match",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                } else {
                     val response = withContext(Dispatchers.IO) {
                         networkHelper.register(username.text.toString(), email.text.toString(), password.text.toString())
                     }
@@ -72,8 +75,8 @@ class ActivityCreateAcount : AppCompatActivity() {
                         loadingDialog.dismiss()
                         Log.d("Data from Register: ", response.toString())
                         startActivity(intent)
+                        finish()
                     }
-                }
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")
                 withContext(Dispatchers.Main) {
