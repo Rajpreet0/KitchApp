@@ -159,7 +159,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
                     Log.d("Data for response: ", response.toString())
-                   /* val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
+                    val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
                         putExtra("response", response.toString())
                         putExtra("portion", portionTxt)
                         putExtra("category", categoryTxt)
@@ -170,7 +170,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("withoutIngredients", withoutIngredients)
                         putExtra("specialIngredients", specialIngredients)
                     }
-                    startActivity(intent)*/
+                    startActivity(intent)
                 }
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")

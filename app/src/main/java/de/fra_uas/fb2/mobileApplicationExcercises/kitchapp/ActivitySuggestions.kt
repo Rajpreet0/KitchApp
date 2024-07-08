@@ -29,8 +29,6 @@ class ActivitySuggestions : AppCompatActivity() {
 
     private lateinit var container: LinearLayout
 
-    private lateinit var recipesArray: JSONArray
-
     private lateinit var choosenRecipe: String
     private lateinit var response:String
     private lateinit var portionTxt: String
@@ -68,18 +66,20 @@ class ActivitySuggestions : AppCompatActivity() {
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
-            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes")
 
+            Log.d("RECIPE ARRAY", recipesArray.toString())
             for (i in 0 until recipesArray.length()) {
-                val recipe = recipesArray.getJSONObject(i)
-                val name = recipe.getString("name")
-                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                //val instructionsArray = recipe.getJSONArray("instructions")
-                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-
-                val description = recipe.getString("description")
-
-                addRow(name, description)
+                val recipesObject = recipesArray.getJSONObject(i).getJSONArray("recipes")
+                for (j in 0 until recipesObject.length()) {
+                    val recipe = recipesObject.getJSONObject(j)
+                    val name = recipe.getString("name")
+                    val description = recipe.getString("description")
+                    //val ingredients = recipe.getJSONArray("ingredients").join(", ")
+                    //val instructionsArray = recipe.getJSONArray("instructions")
+                    // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+                    addRow(name, description)
+                }
             }
         } catch (e: Exception) {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
@@ -109,6 +109,8 @@ class ActivitySuggestions : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
+                    response = newResponse.toString()
+                    parseAndDisplayRecipes(response)
                 }
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")
@@ -122,25 +124,30 @@ class ActivitySuggestions : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    private fun parseAndDisplayRecipes(response: String) {
         try {
             val jsonResponse = JSONObject(response)
-            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes")
 
             for (i in 0 until recipesArray.length()) {
-                val recipe = recipesArray.getJSONObject(i)
-                val name = recipe.getString("name")
-                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                //val instructionsArray = recipe.getJSONArray("instructions")
-                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+                val recipesObject = recipesArray.getJSONObject(i).getJSONArray("recipes")
 
-                val description = recipe.getString("description")
-
-                addRow(name, description)
+                for (j in 0 until recipesObject.length()) {
+                    val recipe = recipesObject.getJSONObject(j)
+                    val name = recipe.getString("name")
+                    val description = recipe.getString("description")
+                    addRow(name, description)
+                }
             }
         } catch (e: Exception) {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
         }
     }
+
+
 
     private fun addRow(name: String, description: String) {
         // Inflate the row layout
