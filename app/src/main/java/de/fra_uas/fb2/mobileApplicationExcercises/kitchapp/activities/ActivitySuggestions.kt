@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -15,6 +16,7 @@ import org.json.JSONObject
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
@@ -43,6 +45,7 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var specialIngredients: String
     private lateinit var newResponse: JsonObject
     private lateinit var frameLayout: FrameLayout
+    private val recipeList: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +63,7 @@ class ActivitySuggestions : AppCompatActivity() {
         ingredientString = intent.getStringExtra("ingredientString") ?: ""
         withoutIngredients = intent.getStringExtra("withoutIngredients") ?: ""
         specialIngredients = intent.getStringExtra("specialIngredients") ?: ""
-
+        recipeList.putAll(getMap(this))
         loadingDialog= LoadingDialogFragment()
 
 
@@ -149,6 +152,26 @@ class ActivitySuggestions : AppCompatActivity() {
         }
     }
 
+    private fun saveMap(context: Context, map: MutableMap<String, String>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("savedRecipeMap", jsonString)
+        editor.apply()
+    }
+
+    private fun getMap(context: Context): MutableMap<String, String> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("savedRecipeMap", null)
+        return if (jsonString != null) {
+            Gson().fromJson(jsonString, MutableMap::class.java) as MutableMap<String, String>
+        } else {
+            mutableMapOf()
+        }
+    }
+
 
 
     private fun addRow(name: String, description: String) {
@@ -180,10 +203,14 @@ class ActivitySuggestions : AppCompatActivity() {
             if (isFavorite) {
                 icon_save.setImageResource(R.drawable.heart_icon_filled)
                 // TODO: create detailed Recipe
+                recipeList[name] = description
+                saveMap(this, recipeList)
                 // TODO: add to saved recipes
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
+                recipeList.remove(name)
+                saveMap(this, recipeList)
             }
         }
 
