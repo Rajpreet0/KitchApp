@@ -39,7 +39,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
-            val recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes").getJSONObject(0).getJSONArray("recipes")
 
             for (i in 0 until recipesArray.length()) {
                 val recipe = recipesArray.getJSONObject(i)
@@ -47,10 +47,9 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                 if(name.equals(recipeName)){
                     recipeTitle.text=name
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
+                    instructions = recipe.getString("instructions").replace("\"", "")
                     recipeText.text=ingredients
-                    val instructionsArray = recipe.getJSONArray("instructions")
-                    instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-
+                    break
                 }
                 //val ingredients = recipe.getJSONArray("ingredients").join(", ")
                 //val instructionsArray = recipe.getJSONArray("instructions")
