@@ -55,7 +55,7 @@ class ActivityLogin : AppCompatActivity() {
     fun loginButton(view: View){
         val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
-       /* CoroutineScope(Dispatchers.IO).launch {
+        /*CoroutineScope(Dispatchers.IO).launch {
             try {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
@@ -79,3 +79,54 @@ class ActivityLogin : AppCompatActivity() {
         //to be designed
     }
 }
+
+
+/*** EXAMPLE JSON RESPONSE ***/
+/*
+
+{
+  "recipes": [
+    {
+      "recipes": [
+        {
+          "name": "Paprika Salsa Noodles",
+          "description": "Noodles with a paprika salsa twist",
+          "time": "30",
+          "ingredients": [
+            "paprika",
+            "salsa",
+            "pepper",
+            "noodles"
+          ],
+          "instructions": "1. Cook noodles. 2. Sauté paprika with salsa and pepper. 3. Mix noodles with the paprika salsa sauce."
+        },
+        {
+          "name": "Spicy Veggie Noodles",
+          "description": "Noodles with rich spicy flavors",
+          "time": "30",
+          "ingredients": [
+            "paprika",
+            "salsa",
+            "pepper",
+            "noodles"
+          ],
+          "instructions": "1. Cook noodles. 2. Make a sauce with salsa, paprika, and pepper. 3. Toss noodles in the sauce."
+        },
+        {
+          "name": "Peppery Salsa Pasta",
+          "description": "Pasta with a vibrant salsa mix",
+          "time": "30",
+          "ingredients": [
+            "paprika",
+            "salsa",
+            "pepper",
+            "noodles"
+          ],
+          "instructions": "1. Cook noodles. 2. Stir-fry paprika with salsa and pepper. 3. Combine noodles with the stir-fried salsa."
+        }
+      ]
+    }
+  ]
+}
+
+ */
