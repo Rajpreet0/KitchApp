@@ -175,6 +175,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             if (currentColor == Color.WHITE) {
                 // Change text color to red
                 textView.setTextColor(Color.RED)
+                // Remove the ingredient from the map
                 if (ingredientList.containsKey(textView.text)) {
                     ingredientList.remove(textView.text)
                     saveMap(this, ingredientList)
