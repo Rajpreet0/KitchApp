@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
@@ -16,12 +16,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.gson.JsonObject
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
-import org.json.JSONArray
 
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
@@ -230,8 +232,12 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
     private fun onCLick(view: View, name: String) {
-        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
-        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.bg_roundedcorners)
+        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this,
+            R.drawable.choosen_recipe_layout
+        )
+        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this,
+            R.drawable.bg_roundedcorners
+        )
 
         val currentDrawable = view.background
 

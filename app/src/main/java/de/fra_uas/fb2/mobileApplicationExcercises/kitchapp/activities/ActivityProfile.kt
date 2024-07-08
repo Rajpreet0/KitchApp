@@ -1,17 +1,37 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
-class ActivityRecipes : AppCompatActivity() {
+
+class ActivityProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main_recipes)
+        setContentView(R.layout.activity_profile)
 
+        setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
+    }
+    private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
+        // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            arrayResourceId,
+            layoutResourceId
+        )
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Initialize the Spinner
+        val spinner = findViewById<Spinner>(spinnerId)
+
+        // Apply the adapter to the spinner
+        spinner.adapter = adapter
     }
 
     fun homeButton(view: View){

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D6EBEB"
-    tools:context=".ActivityHome">
+    tools:context=".activities.ActivityHome">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDelete"
