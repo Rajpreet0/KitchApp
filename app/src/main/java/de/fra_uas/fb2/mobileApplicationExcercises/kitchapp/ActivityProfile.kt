@@ -27,7 +27,7 @@ class ActivityProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        // Initialize views after setContentView
+        // Initialize views
         etName = findViewById(R.id.etName)
         etEmail = findViewById(R.id.etEmail)
         icSave = findViewById(R.id.iconSave)
@@ -149,7 +149,6 @@ class ActivityProfile : AppCompatActivity() {
             Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
 
     private fun updateRemoveButtonsVisibility() {
