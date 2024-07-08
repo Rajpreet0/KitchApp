@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -11,23 +11,23 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.size
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
-class ActivityPantry : AppCompatActivity() {
+class ActivityFridge : AppCompatActivity() {
     private var productText: LinearLayout? = null
     private var productAmount: LinearLayout? = null
     private val ingredientList: MutableMap<String, Int> = mutableMapOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_pantry)
+        setContentView(R.layout.activity_main_fridge)
         productText = findViewById(R.id.leftLayout)
         productAmount = findViewById(R.id.rightLayout)
         ingredientList.putAll(getMap(this))
         buildProductList()
-    }                           //List to store the items+amount
+    }                         //List to store the items+amount
     //this function removes the old ingredient list and puts the new one into the text fields
     private fun buildProductList(){
         productText!!.removeAllViews()
@@ -51,13 +51,13 @@ class ActivityPantry : AppCompatActivity() {
 
         // Convert the map to a JSON string
         val jsonString = Gson().toJson(map)
-        editor.putString("pantryMap", jsonString)
+        editor.putString("fridgeMap", jsonString)
         editor.apply()
     }
 
     private fun getMap(context: Context): MutableMap<String, Int> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
-        val jsonString = sharedPreferences.getString("pantryMap", "")
+        val jsonString = sharedPreferences.getString("fridgeMap", "")
 
         // Convert the JSON string back to a map
         return if (!jsonString.isNullOrEmpty()) {

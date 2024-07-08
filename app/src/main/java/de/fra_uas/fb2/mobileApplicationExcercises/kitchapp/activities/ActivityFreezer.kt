@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -13,23 +13,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
-class ActivityGrocery : AppCompatActivity() {
+class ActivityFreezer : AppCompatActivity() {
     private var productText: LinearLayout? = null
     private var productAmount: LinearLayout? = null
-
     private val ingredientList: MutableMap<String, Int> = mutableMapOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_grocery)
+        setContentView(R.layout.activity_main_freezer)
         productText = findViewById(R.id.leftLayout)
         productAmount = findViewById(R.id.rightLayout)
         ingredientList.putAll(getMap(this))
         buildProductList()
-    }
-
-                             //List to store the items+amount
+    }                          //List to store the items+amount
     //this function removes the old ingredient list and puts the new one into the text fields
     private fun buildProductList(){
         productText!!.removeAllViews()
@@ -46,20 +44,20 @@ class ActivityGrocery : AppCompatActivity() {
             productAmount!!.addView(amountTextView)
         }
     }
-
+    //function for the pop up that is shown after ic_pen_filled_yellow/add/delete button pressed
     private fun saveMap(context: Context, map: MutableMap<String, Int>) {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         // Convert the map to a JSON string
         val jsonString = Gson().toJson(map)
-        editor.putString("groceryMap", jsonString)
+        editor.putString("freezerMap", jsonString)
         editor.apply()
     }
 
     private fun getMap(context: Context): MutableMap<String, Int> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
-        val jsonString = sharedPreferences.getString("groceryMap", "")
+        val jsonString = sharedPreferences.getString("freezerMap", "")
 
         // Convert the JSON string back to a map
         return if (!jsonString.isNullOrEmpty()) {

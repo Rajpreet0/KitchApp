@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -15,6 +15,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,9 +58,21 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spTimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spComplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spNationality, R.array.nationality_array, R.layout.spinner_items_preferences)
+        setupSpinner(
+            R.id.spTimerequired,
+            R.array.timerequired_array,
+            R.layout.spinner_items_preferences
+        )
+        setupSpinner(
+            R.id.spComplexity,
+            R.array.complexity_array,
+            R.layout.spinner_items_preferences
+        )
+        setupSpinner(
+            R.id.spNationality,
+            R.array.nationality_array,
+            R.layout.spinner_items_preferences
+        )
 
         etSpecials = findViewById(R.id.etSpecials)
         etWithout = findViewById(R.id.etWithout)
