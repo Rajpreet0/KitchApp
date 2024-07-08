@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -15,6 +15,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,9 +59,21 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spTimerequired, R.array.timerequired_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spComplexity, R.array.complexity_array, R.layout.spinner_items_preferences)
-        setupSpinner(R.id.spNationality, R.array.nationality_array, R.layout.spinner_items_preferences)
+        setupSpinner(
+            R.id.spTimerequired,
+            R.array.timerequired_array,
+            R.layout.spinner_items_preferences
+        )
+        setupSpinner(
+            R.id.spComplexity,
+            R.array.complexity_array,
+            R.layout.spinner_items_preferences
+        )
+        setupSpinner(
+            R.id.spNationality,
+            R.array.nationality_array,
+            R.layout.spinner_items_preferences
+        )
 
         etSpecials = findViewById(R.id.etSpecials)
         etWithout = findViewById(R.id.etWithout)
@@ -123,12 +139,23 @@ class ActivityRecipePreferences : AppCompatActivity() {
     }
 
     fun nextButton(view: View) {
-
         val portionTxt = portion.selectedItem as String;
         val categoryTxt = category.selectedItem as String;
         val timeTxt = time.selectedItem as String;
         val complexityTxt = complexity.selectedItem as String;
         val nationalityTxt = nationality.selectedItem as String
+
+
+        val validationError = ValidationUtil.validateRecipePreferences(
+            portionTxt, categoryTxt, timeTxt, complexityTxt, nationalityTxt
+        )
+
+        if (validationError != null) {
+            Toast.makeText(this, validationError, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+
         val ingredientList = getRecipeMap(this)
         val ingredientString = StringBuilder()
         for ((key, value) in ingredientList) {
@@ -159,7 +186,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
                     Log.d("Data for response: ", response.toString())
-                   /* val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
+                    val intent = Intent(applicationContext, ActivitySuggestions::class.java).apply {
                         putExtra("response", response.toString())
                         putExtra("portion", portionTxt)
                         putExtra("category", categoryTxt)
@@ -170,7 +197,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("withoutIngredients", withoutIngredients)
                         putExtra("specialIngredients", specialIngredients)
                     }
-                    startActivity(intent)*/
+                    startActivity(intent)
                 }
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")

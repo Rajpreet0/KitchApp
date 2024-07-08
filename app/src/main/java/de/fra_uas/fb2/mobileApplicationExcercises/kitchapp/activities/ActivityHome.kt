@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,8 +1,7 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -10,11 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okio.IOException
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
 
 class ActivityLogin : AppCompatActivity() {
 
@@ -53,6 +51,14 @@ class ActivityLogin : AppCompatActivity() {
     * */
 
     fun loginButton(view: View){
+
+        /*val validationError = ValidationUtil.validateLoginInputs(email.text.toString(), password.text.toString())
+
+        if (validationError != null) {
+            Toast.makeText(applicationContext, validationError, Toast.LENGTH_SHORT).show()
+            return
+        }*/
+
         val intent = Intent(this, ActivityHome::class.java)
         startActivity(intent)
         /*CoroutineScope(Dispatchers.IO).launch {
@@ -79,54 +85,3 @@ class ActivityLogin : AppCompatActivity() {
         //to be designed
     }
 }
-
-
-/*** EXAMPLE JSON RESPONSE ***/
-/*
-
-{
-  "recipes": [
-    {
-      "recipes": [
-        {
-          "name": "Paprika Salsa Noodles",
-          "description": "Noodles with a paprika salsa twist",
-          "time": "30",
-          "ingredients": [
-            "paprika",
-            "salsa",
-            "pepper",
-            "noodles"
-          ],
-          "instructions": "1. Cook noodles. 2. Sauté paprika with salsa and pepper. 3. Mix noodles with the paprika salsa sauce."
-        },
-        {
-          "name": "Spicy Veggie Noodles",
-          "description": "Noodles with rich spicy flavors",
-          "time": "30",
-          "ingredients": [
-            "paprika",
-            "salsa",
-            "pepper",
-            "noodles"
-          ],
-          "instructions": "1. Cook noodles. 2. Make a sauce with salsa, paprika, and pepper. 3. Toss noodles in the sauce."
-        },
-        {
-          "name": "Peppery Salsa Pasta",
-          "description": "Pasta with a vibrant salsa mix",
-          "time": "30",
-          "ingredients": [
-            "paprika",
-            "salsa",
-            "pepper",
-            "noodles"
-          ],
-          "instructions": "1. Cook noodles. 2. Stir-fry paprika with salsa and pepper. 3. Combine noodles with the stir-fried salsa."
-        }
-      ]
-    }
-  ]
-}
-
- */

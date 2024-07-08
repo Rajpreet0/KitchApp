@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#212928"
-    tools:context=".ActivityHome">
+    tools:context=".activities.ActivityHome">
 
     <!-- ConstraintLayout für den Inhalt -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,10 +51,47 @@
             app:layout_constraintTop_toBottomOf="@+id/tvRecipes"
             app:layout_constraintVertical_bias="0.0" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/rahmen"
+                android:layout_width="364dp"
+                android:layout_height="388dp"
+                android:background="#212928"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.659"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Produktliste -->
+                <ScrollView
+                    android:id="@+id/svRecipes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#212928"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:id="@+id/containerRecipes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/switchOption">
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/navigationBar"

@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import org.json.JSONObject
 
 class ActivityRecipeDisplay : AppCompatActivity() {
@@ -39,7 +40,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
-            val recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes").getJSONObject(0).getJSONArray("recipes")
 
             for (i in 0 until recipesArray.length()) {
                 val recipe = recipesArray.getJSONObject(i)
@@ -47,10 +48,9 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                 if(name.equals(recipeName)){
                     recipeTitle.text=name
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
+                    instructions = recipe.getString("instructions").replace("\"", "")
                     recipeText.text=ingredients
-                    val instructionsArray = recipe.getJSONArray("instructions")
-                    instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-
+                    break
                 }
                 //val ingredients = recipe.getJSONArray("ingredients").join(", ")
                 //val instructionsArray = recipe.getJSONArray("instructions")

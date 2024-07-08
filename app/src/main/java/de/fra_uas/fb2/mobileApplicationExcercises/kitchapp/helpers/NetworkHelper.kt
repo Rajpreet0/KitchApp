@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -122,9 +122,9 @@ class NetworkHelper {
 
     companion object {
         const val BASE_URL="https://kitch-app-server.vercel.app"
-        const val SERVER_ADDRESS_OPENAI = "${BASE_URL}"
-        const val SERVER_ADDRESS_LOGIN = "${BASE_URL}/users/login"
-        const val SERVER_ADDRESS_REGISTER = "${BASE_URL}/users/register"
-        const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "${BASE_URL}/recipes"
+        const val SERVER_ADDRESS_OPENAI = "$BASE_URL"
+        const val SERVER_ADDRESS_LOGIN = "$BASE_URL/users/login"
+        const val SERVER_ADDRESS_REGISTER = "$BASE_URL/users/register"
+        const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "$BASE_URL/recipes"
     }
 }

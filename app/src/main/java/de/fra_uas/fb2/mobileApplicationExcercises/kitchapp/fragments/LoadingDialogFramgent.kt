@@ -1,10 +1,11 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments
 
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
 class LoadingDialogFragment : DialogFragment() {
 

@@ -1,5 +1,6 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -15,21 +16,22 @@ import org.json.JSONObject
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
 import com.google.gson.JsonObject
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
-import org.json.JSONArray
 
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
     private lateinit var loadingDialog: LoadingDialogFragment
 
     private lateinit var container: LinearLayout
-
-    private lateinit var recipesArray: JSONArray
 
     private lateinit var choosenRecipe: String
     private lateinit var response:String
@@ -43,6 +45,7 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var specialIngredients: String
     private lateinit var newResponse: JsonObject
     private lateinit var frameLayout: FrameLayout
+    private val recipeList: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +63,7 @@ class ActivitySuggestions : AppCompatActivity() {
         ingredientString = intent.getStringExtra("ingredientString") ?: ""
         withoutIngredients = intent.getStringExtra("withoutIngredients") ?: ""
         specialIngredients = intent.getStringExtra("specialIngredients") ?: ""
-
+        recipeList.putAll(getMap(this))
         loadingDialog= LoadingDialogFragment()
 
 
@@ -68,18 +71,20 @@ class ActivitySuggestions : AppCompatActivity() {
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
-            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes")
 
+            Log.d("RECIPE ARRAY", recipesArray.toString())
             for (i in 0 until recipesArray.length()) {
-                val recipe = recipesArray.getJSONObject(i)
-                val name = recipe.getString("name")
-                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                //val instructionsArray = recipe.getJSONArray("instructions")
-                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-
-                val description = recipe.getString("description")
-
-                addRow(name, description)
+                val recipesObject = recipesArray.getJSONObject(i).getJSONArray("recipes")
+                for (j in 0 until recipesObject.length()) {
+                    val recipe = recipesObject.getJSONObject(j)
+                    val name = recipe.getString("name")
+                    val description = recipe.getString("description")
+                    //val ingredients = recipe.getJSONArray("ingredients").join(", ")
+                    //val instructionsArray = recipe.getJSONArray("instructions")
+                    // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+                    addRow(name, description)
+                }
             }
         } catch (e: Exception) {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
@@ -109,6 +114,8 @@ class ActivitySuggestions : AppCompatActivity() {
 
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
+                    response = newResponse.toString()
+                    parseAndDisplayRecipes(response)
                 }
             } catch (e: IOException) {
                 Log.d("SERVER ERROR", "${e}")
@@ -122,25 +129,50 @@ class ActivitySuggestions : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+    private fun parseAndDisplayRecipes(response: String) {
         try {
             val jsonResponse = JSONObject(response)
-            recipesArray = jsonResponse.getJSONObject("reply").getJSONArray("recipes")
+            val recipesArray = jsonResponse.getJSONArray("recipes")
 
             for (i in 0 until recipesArray.length()) {
-                val recipe = recipesArray.getJSONObject(i)
-                val name = recipe.getString("name")
-                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                //val instructionsArray = recipe.getJSONArray("instructions")
-                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
+                val recipesObject = recipesArray.getJSONObject(i).getJSONArray("recipes")
 
-                val description = recipe.getString("description")
-
-                addRow(name, description)
+                for (j in 0 until recipesObject.length()) {
+                    val recipe = recipesObject.getJSONObject(j)
+                    val name = recipe.getString("name")
+                    val description = recipe.getString("description")
+                    addRow(name, description)
+                }
             }
         } catch (e: Exception) {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
         }
     }
+
+    private fun saveMap(context: Context, map: MutableMap<String, String>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("savedRecipeMap", jsonString)
+        editor.apply()
+    }
+
+    private fun getMap(context: Context): MutableMap<String, String> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("savedRecipeMap", null)
+        return if (jsonString != null) {
+            Gson().fromJson(jsonString, MutableMap::class.java) as MutableMap<String, String>
+        } else {
+            mutableMapOf()
+        }
+    }
+
+
 
     private fun addRow(name: String, description: String) {
         // Inflate the row layout
@@ -171,10 +203,14 @@ class ActivitySuggestions : AppCompatActivity() {
             if (isFavorite) {
                 icon_save.setImageResource(R.drawable.heart_icon_filled)
                 // TODO: create detailed Recipe
+                recipeList[name] = description
+                saveMap(this, recipeList)
                 // TODO: add to saved recipes
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
+                recipeList.remove(name)
+                saveMap(this, recipeList)
             }
         }
 
@@ -223,8 +259,12 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
     private fun onCLick(view: View, name: String) {
-        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
-        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.bg_roundedcorners)
+        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this,
+            R.drawable.choosen_recipe_layout
+        )
+        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this,
+            R.drawable.bg_roundedcorners
+        )
 
         val currentDrawable = view.background
 

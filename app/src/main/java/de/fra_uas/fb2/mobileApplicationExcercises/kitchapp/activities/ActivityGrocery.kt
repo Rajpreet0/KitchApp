@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
 class ActivityGrocery : AppCompatActivity() {
     private var productText: LinearLayout? = null
@@ -125,17 +126,17 @@ class ActivityGrocery : AppCompatActivity() {
                 dialog.dismiss()
             }
             builder.create().show()
-            //if ic_pen_filled_yellow is pressed we can add or remove amounts from ingredients -> remove ingredient if amount is <=0
-        }else if(method == "ic_pen_filled_yellow"){
+            //if edit is pressed we can add or remove amounts from ingredients -> remove ingredient if amount is <=0
+        }else if(method == "edit"){
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Edit ingredient")
             builder.setView(dialogView)
-            amountText.hint = "Amount to remove or add"
+            amountText.hint = "Amount to remove (use -) or add"
             builder.setPositiveButton("Confirm") { dialog, _ ->
                 val inputIngredient= ingredientText.text.toString()
                 val inputAmountText = amountText.text.toString()
-                if (inputIngredient.isEmpty()||inputAmountText.isEmpty()) {
-                    Toast.makeText(this, "Please enter all fields", Toast.LENGTH_SHORT).show()
+                if (inputIngredient.isEmpty()||inputAmountText.isEmpty()|| ingredientList[inputIngredient]==null) {
+                    Toast.makeText(this, "Please enter all fields and use a valid ingredient", Toast.LENGTH_SHORT).show()
                 } else {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null) {
@@ -190,7 +191,7 @@ class ActivityGrocery : AppCompatActivity() {
         showInputDialog("add")
     }
     fun editButton(view: View){
-        showInputDialog("ic_pen_filled_yellow")
+        showInputDialog("edit")
     }
     fun deleteButton(view: View){
         showInputDialog("delete")
