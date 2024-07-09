@@ -8,6 +8,14 @@
         <item>Spanish</item>
     </string-array>
 
+    <string-array name="units">
+        <item>pc</item>
+        <item>gr</item>
+        <item>ml</item>
+        <item>tbsp</item>
+    </string-array>
+
+
     <string-array name="portions_array">
         <item>1</item>
         <item>2</item>

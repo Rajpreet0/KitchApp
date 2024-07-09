@@ -26,8 +26,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rahmen"
-        android:layout_width="333dp"
-        android:layout_height="450dp"
+        android:layout_width="360dp"
+        android:layout_height="500dp"
         android:background="@drawable/bg_white_roundstroke"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +37,7 @@
         app:layout_constraintVertical_bias="0.459">
 
         <!-- Produktliste -->
+
         <ScrollView
             android:id="@+id/svOptions"
             android:layout_width="match_parent"
@@ -48,29 +49,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/parentLayout"
+                android:id="@+id/containerIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <!-- Left part of the ScrollView -->
-                <LinearLayout
-                    android:id="@+id/leftLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <!-- Right part of the ScrollView -->
-                <LinearLayout
-                    android:id="@+id/rightLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
@@ -203,6 +187,24 @@
             app:iconPadding="2dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icSave"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_roundstroke"
+        android:drawableStart="@drawable/ic_save"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:onClick="saveButton"
+        android:padding="5dp"
+        android:src="@drawable/ic_save"
+        app:layout_constraintBottom_toTopOf="@+id/rahmen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGroceryList"
+        android:visibility="gone"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
