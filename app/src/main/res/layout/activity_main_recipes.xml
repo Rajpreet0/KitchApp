@@ -31,54 +31,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.063" />
 
-            <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tvRecipe"
-            android:layout_width="347dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="39dp"
-            android:background="@drawable/recipes_button"
-            android:drawableStart="@drawable/ic_heart_unfilled"
-            android:drawableEnd="@drawable/ic_clock"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:text="Salmon Rice Bowl - 60min"
-            android:textAllCaps="false"
-            android:textColor="#212"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRecipes"
-            app:layout_constraintVertical_bias="0.0" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rahmen"
-                android:layout_width="364dp"
-                android:layout_height="388dp"
-                android:background="#212928"
-                android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.659"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
                 <!-- Produktliste -->
                 <ScrollView
                     android:id="@+id/svRecipes"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="600dp"
                     android:background="#212928"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="25dp"
+                    android:padding="25dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/tvRecipes"
+                    app:layout_constraintBottom_toTopOf="@id/button">
 
                     <LinearLayout
                         android:id="@+id/containerRecipes"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
                         android:orientation="vertical"
                         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -88,19 +59,21 @@
                     </LinearLayout>
                 </ScrollView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="116dp"
+
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/bg_white_roundstroke"
                 android:onClick="delete"
                 android:text="delete all"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rahmen" />
+                app:layout_constraintTop_toBottomOf="@+id/svRecipes" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

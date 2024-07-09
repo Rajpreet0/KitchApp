@@ -203,7 +203,7 @@ class ActivitySuggestions : AppCompatActivity() {
         // Handle the favorite icon logic
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
         var isFavorite = false // Initial state, not favorited
-        icon_save.setImageResource(R.drawable.ic_heart_unfilled) // Unfilled heart icon by default
+        icon_save.setImageResource(R.drawable.ic_heart_unfilled_white) // Unfilled heart icon by default
 
         icon_save.setOnClickListener {
             isFavorite = !isFavorite
