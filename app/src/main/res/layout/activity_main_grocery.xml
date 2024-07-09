@@ -196,7 +196,6 @@
         android:drawableStart="@drawable/ic_save"
         android:drawablePadding="0dp"
         android:gravity="center"
-        android:onClick="saveButton"
         android:padding="5dp"
         android:src="@drawable/ic_save"
         app:layout_constraintBottom_toTopOf="@+id/rahmen"
