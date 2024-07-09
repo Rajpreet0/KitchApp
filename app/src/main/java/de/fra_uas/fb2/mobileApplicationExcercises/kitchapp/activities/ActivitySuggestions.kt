@@ -26,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
+import org.w3c.dom.Text
 
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
@@ -80,10 +81,11 @@ class ActivitySuggestions : AppCompatActivity() {
                     val recipe = recipesObject.getJSONObject(j)
                     val name = recipe.getString("name")
                     val description = recipe.getString("description")
+                    val time = recipe.getString("time")
                     //val ingredients = recipe.getJSONArray("ingredients").join(", ")
                     //val instructionsArray = recipe.getJSONArray("instructions")
                     // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-                    addRow(name, description)
+                    addRow(name, description, time)
                 }
             }
         } catch (e: Exception) {
@@ -144,7 +146,8 @@ class ActivitySuggestions : AppCompatActivity() {
                     val recipe = recipesObject.getJSONObject(j)
                     val name = recipe.getString("name")
                     val description = recipe.getString("description")
-                    addRow(name, description)
+                    val time = recipe.getString("time")
+                    addRow(name, description, time)
                 }
             }
         } catch (e: Exception) {
@@ -174,7 +177,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
 
-    private fun addRow(name: String, description: String) {
+    private fun addRow(name: String, description: String, time: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
         val rowView: View = inflater.inflate(R.layout.suggestions_layout_row, container, false)
@@ -187,6 +190,9 @@ class ActivitySuggestions : AppCompatActivity() {
 
         val descriptionRecipe: TextView = rowView.findViewById(R.id.tvDescriptionRecipe)
         descriptionRecipe.text = description
+
+        val timeRecipe: TextView = rowView.findViewById(R.id.tvTime)
+        timeRecipe.text = "$time min"
 
         // Set click listener on the frameRecipe to handle background change
         frameRecipe.setOnClickListener {
