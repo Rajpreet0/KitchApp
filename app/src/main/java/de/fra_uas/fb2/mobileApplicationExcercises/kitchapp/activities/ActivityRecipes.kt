@@ -31,6 +31,12 @@ class ActivityRecipes : AppCompatActivity() {
             val nameTextView = TextView(this)
             nameTextView.textSize = 20f                                                       //improves readability
             nameTextView.text = name
+            nameTextView.setOnClickListener {
+                val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
+                    putExtra("nameTime", name)
+                }
+                startActivity(intent)
+            }
             recipeText!!.addView(nameTextView)
         }
     }
@@ -45,6 +51,15 @@ class ActivityRecipes : AppCompatActivity() {
         } else {
             mutableMapOf()
         }
+    }
+
+    fun delete(view: View){
+        val sharedPreferences = getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("savedRecipeMap")
+        editor.apply()
+        recipeList.clear()
+        buildRecipeList()
     }
 
     fun homeButton(view: View){

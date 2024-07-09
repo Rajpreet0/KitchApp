@@ -208,20 +208,39 @@ class ActivitySuggestions : AppCompatActivity() {
             isFavorite = !isFavorite
             if (isFavorite) {
                 icon_save.setImageResource(R.drawable.heart_icon_filled)
-                // TODO: create detailed Recipe
-                recipeList[name] = description
-                saveMap(this, recipeList)
-                // TODO: add to saved recipes
+                saveRecipe(name)
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
-                recipeList.remove(name)
+                recipeList.remove("$name - $time"+"min")
                 saveMap(this, recipeList)
             }
         }
 
         // Add the inflated row layout to the container
         container.addView(rowView)
+    }
+
+    private fun saveRecipe(name: String){
+        val jsonResponse = JSONObject(response)
+        val recipesArray = jsonResponse.getJSONArray("recipes")
+
+        for (i in 0 until recipesArray.length()) {
+            val recipesObject = recipesArray.getJSONObject(i).getJSONArray("recipes")
+
+            for (j in 0 until recipesObject.length()) {
+                val recipe = recipesObject.getJSONObject(j)
+                if(name == recipe.getString("name")){
+                    val time = recipe.getString("time")
+                    val nameTime = "$name - $time"+"min"
+                    val ingredients= recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
+                    val instructions = recipe.getString("instructions").replace("\"", "")
+                    val portionIngredientsInstructions = "$portionTxt § $ingredients § $instructions"
+                    recipeList[nameTime]=portionIngredientsInstructions
+                    saveMap(this, recipeList)
+                    }
+            }
+        }
     }
 
 
@@ -256,6 +275,7 @@ class ActivitySuggestions : AppCompatActivity() {
             val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
                 putExtra("response", response)
                 putExtra("name", choosenRecipe)
+                putExtra("portion", portionTxt)
             }
             startActivity(intent)
         }else{
