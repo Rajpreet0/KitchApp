@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +20,8 @@ import java.io.IOException
 
 class ActivityHome : AppCompatActivity() {
 
-    private val networkHelper = NetworkHelper()
+    private lateinit var sessionManager: SessionManager
+    private lateinit var tvGreeting: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +33,11 @@ class ActivityHome : AppCompatActivity() {
             insets
         }
 
+        sessionManager = SessionManager(this)
+        tvGreeting = findViewById(R.id.tvGreeting);
 
+        tvGreeting.text = "Hi, ${sessionManager.getUsername()}"
 
-        val query = "Hi ChatGPT, whats up!"
-
-
-        // Use a CoroutineScope to run the network request on a background thread
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                // Call the sendRequest function to get the server response
-                val response = networkHelper.sendOpenAIRequest(query)
-                // Switch to the main thread to update the UI
-                withContext(Dispatchers.Main) {
-                    Log.d("Data from ChatGPT: ", response)
-                }
-            } catch (e: IOException) {
-                withContext(Dispatchers.Main) {
-                    Log.d("Data from ChatGPT: ", "FAILED")
-                }
-            }
-        }
     }
     fun createRecipeButton(view: View){
         val intent = Intent(this, ActivityExcludeIngredients::class.java)
