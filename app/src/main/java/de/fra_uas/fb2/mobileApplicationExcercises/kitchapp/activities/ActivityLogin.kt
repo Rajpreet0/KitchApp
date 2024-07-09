@@ -12,7 +12,15 @@ import androidx.core.view.WindowInsetsCompat
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
+import android.util.Log
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
+import org.json.JSONObject
+import java.io.IOException
 
 class ActivityLogin : AppCompatActivity() {
 
@@ -20,6 +28,7 @@ class ActivityLogin : AppCompatActivity() {
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var loadingDialog: LoadingDialogFragment
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +44,11 @@ class ActivityLogin : AppCompatActivity() {
         password = findViewById(R.id.etPassword)
 
         loadingDialog = LoadingDialogFragment()
+        sessionManager = SessionManager(this)
+
+        if (sessionManager.isLoggedIn()) {
+            navigateToMainActivity()
+        }
     }
 
     fun signUpButton(view: View){
@@ -52,24 +66,25 @@ class ActivityLogin : AppCompatActivity() {
 
     fun loginButton(view: View){
 
-        /*val validationError = ValidationUtil.validateLoginInputs(email.text.toString(), password.text.toString())
+        val validationError = ValidationUtil.validateLoginInputs(email.text.toString(), password.text.toString())
 
         if (validationError != null) {
             Toast.makeText(applicationContext, validationError, Toast.LENGTH_SHORT).show()
             return
-        }*/
+        }
 
         val intent = Intent(this, ActivityHome::class.java)
-        startActivity(intent)
-        /*CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             try {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
                 val response = networkHelper.login(email.text.toString(), password.text.toString())
+                val userData = JSONObject(response.toString())
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()
                     Log.d("Data from Login: ", response.toString())
+                    sessionManager.createLoginSession(userData)
                     startActivity(intent)
                 }
             } catch (e: IOException) {
@@ -79,8 +94,15 @@ class ActivityLogin : AppCompatActivity() {
                     Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
                 }
             }
-        }*/
+        }
     }
+
+    private fun navigateToMainActivity() {
+        val intent: Intent = Intent(this, ActivityHome::class.java)
+        startActivity(intent)
+        finish()
+    }
+
     fun forgotPasswordButton(view: View){
         //to be designed
     }
