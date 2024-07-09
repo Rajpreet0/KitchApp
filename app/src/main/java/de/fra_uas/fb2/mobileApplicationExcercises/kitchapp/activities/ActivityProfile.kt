@@ -16,6 +16,7 @@ class ActivityProfile : AppCompatActivity() {
 
         setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
     }
+
     private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
         // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
         val adapter = ArrayAdapter.createFromResource(
@@ -34,29 +35,33 @@ class ActivityProfile : AppCompatActivity() {
         spinner.adapter = adapter
     }
 
-    fun homeButton(view: View){
+    fun homeButton(view: View) {
         val intent = Intent(this, ActivityHome::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
-    fun groceryButton(view: View){
+
+    fun groceryButton(view: View) {
         val intent = Intent(this, ActivityGrocery::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
-    fun recipesButton(view: View){
+
+    fun recipesButton(view: View) {
         val intent = Intent(this, ActivityRecipes::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
 
-    fun profileButton(view: View){
+    fun profileButton(view: View) {
         val intent = Intent(this, ActivityProfile::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
+
 }
+

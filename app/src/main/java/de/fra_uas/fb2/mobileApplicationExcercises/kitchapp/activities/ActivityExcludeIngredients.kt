@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,6 +14,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.children
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
@@ -66,6 +68,38 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             addRow(storageType, name)
         }
         saveMap(this, ingredientList)
+
+
+        // checkbox for excluding all ingrediens
+        val excludeAll: CheckBox = findViewById(R.id.button3)
+
+        // Set an OnCheckedChangeListener
+        excludeAll.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Checkbox is checked
+                ingredientList.clear()
+                saveMap(this, ingredientList)
+
+                container.children.forEach { view ->
+                    val textView = view.findViewById<TextView>(R.id.tvIngredientName)
+                    textView.setTextColor(Color.RED)
+                }
+
+            } else {
+                // Checkbox is unchecked
+                ingredientList.putAll(pantryMap)
+                ingredientList.putAll(freezerMap)
+                ingredientList.putAll(fridgeMap)
+
+                saveMap(this, ingredientList)
+
+                container.children.forEach { view ->
+                    val textView = view.findViewById<TextView>(R.id.tvIngredientName)
+                    textView.setTextColor(Color.WHITE)
+                }
+            }
+        }
+
     }
 
 
@@ -141,6 +175,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             if (currentColor == Color.WHITE) {
                 // Change text color to red
                 textView.setTextColor(Color.RED)
+                // Remove the ingredient from the map
                 if (ingredientList.containsKey(textView.text)) {
                     ingredientList.remove(textView.text)
                     saveMap(this, ingredientList)

@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- checkbox_background.xml -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item>
+    <!-- Unchecked state -->
+    <item android:state_checked="false">
         <shape android:shape="rectangle">
-            <solid android:color="@android:color/transparent"/> <!-- Unchecked background color -->
+            <solid android:color="@color/dark_background"/>
             <corners android:radius="8dp"/>
             <stroke
                 android:width="2dp"
-                android:color="#FFFFFF"/> <!-- Border color -->
+                android:color="#FFFFFF"/>
         </shape>
     </item>
+
+    <!-- Checked state -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/dark_background"/>
+            <corners android:radius="8dp"/>
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
 </selector>
+
