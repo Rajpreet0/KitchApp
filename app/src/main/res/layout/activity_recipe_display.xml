@@ -102,7 +102,7 @@
         app:srcCompat="@drawable/ic_clock" />
 
     <TextView
-        android:id="@+id/frameLayout"
+        android:id="@+id/tvShowTime"
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"

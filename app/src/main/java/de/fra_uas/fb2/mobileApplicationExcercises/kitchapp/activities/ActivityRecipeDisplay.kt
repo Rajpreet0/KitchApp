@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.gson.Gson
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import org.json.JSONObject
@@ -16,10 +18,13 @@ import org.json.JSONObject
 class ActivityRecipeDisplay : AppCompatActivity() {
     private lateinit var recipeTitle: TextView
     private lateinit var recipeText: TextView
+    private lateinit var recipeTime: TextView
+    private lateinit var recipePortion: TextView
 
     private lateinit var ingredients: String
     private lateinit var instructions: String
-
+    private lateinit var portion: String
+    private val recipeList: MutableMap<String, String> = mutableMapOf()
     private var instruction: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +38,25 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         }
         val response = intent.getStringExtra("response") ?: ""
         val recipeName = intent.getStringExtra("name")?:""
+        val recipeNameTime = intent.getStringExtra("nameTime")?:""
+        val portions = intent.getStringExtra("portion")?:""
 
         recipeTitle = findViewById(R.id.tvRecipeName)
         recipeText = findViewById(R.id.recipeText)
+        recipeTime = findViewById(R.id.tvShowTime)
+        recipePortion = findViewById(R.id.tvServingSize)
+
+        recipeTitle.text = recipeNameTime.split(" - ")[0].trim()                            //0 is the name and 1 is the time
+        recipeList.putAll(getMap(this))
+        instructions = recipeList[recipeNameTime]?.split(" § ")?.get(2)?.trim() ?: ""       //0 is the portion, 1 is the ingredients, 2 is the instructions
+        ingredients = recipeList[recipeNameTime]?.split(" § ")?.get(1)?.trim() ?: ""
+        portion = recipeList[recipeNameTime]?.split(" § ")?.get(0)?.trim() ?: ""
+        if(recipeNameTime!="") {
+            recipeTime.text = recipeNameTime.split(" - ")[1].trim()
+            recipePortion.text = portion
+            recipeText.text = ingredients
+        }
+
 
 
         // Parse the JSON response
@@ -48,9 +69,12 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                 val name = recipe.getString("name")
                 if(name.equals(recipeName)){
                     recipeTitle.text=name
+                    val time = recipe.getString("time")
+                    recipeTime.text="$time"+"min"
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     instructions = recipe.getString("instructions").replace("\"", "")
                     recipeText.text=ingredients
+                    recipePortion.text=portions
                     break
                 }
                 //val ingredients = recipe.getJSONArray("ingredients").join(", ")
@@ -64,6 +88,16 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
         }
 
+    }
+
+    private fun getMap(context: Context): MutableMap<String, String> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("savedRecipeMap", null)
+        return if (jsonString != null) {
+            Gson().fromJson(jsonString, MutableMap::class.java) as MutableMap<String, String>
+        } else {
+            mutableMapOf()
+        }
     }
 
     fun switchOnClick(view: View) {
