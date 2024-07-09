@@ -3,7 +3,7 @@
     <string name="icon_for_storage_type">Icon for Storage Type</string>
 
     <string-array name="languages">
-        <item>English (default)</item>
+        <item>English</item>
         <item>German</item>
         <item>Spanish</item>
     </string-array>

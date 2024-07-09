@@ -88,7 +88,9 @@ class ActivityHome : AppCompatActivity() {
     fun profileButton(view: View){
         val intent = Intent(this, ActivityProfile::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+
         }
+
         startActivity(intent)
     }
 

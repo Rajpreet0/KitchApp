@@ -2,8 +2,10 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ImageView
@@ -16,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityGrocery
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityHome
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityRecipes
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
 
 
 // This activity handles the user profile, allowing the user to edit their name and email,
@@ -27,6 +30,9 @@ class ActivityProfile : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var icSave: ImageView
     private lateinit var containerIngr: LinearLayout
+    private lateinit var spLanguage: Spinner
+
+    private lateinit var sessionManager: SessionManager
 
     // Tracks whether the profile is being edited or not
     private var isEditing = false
@@ -40,12 +46,38 @@ class ActivityProfile : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmail)
         icSave = findViewById(R.id.iconSave)
         containerIngr = findViewById(R.id.containerIngredients)
+        spLanguage = findViewById(R.id.spLanguage)
+
+        sessionManager = SessionManager(this)
+
+        etName.setText(sessionManager.getUsername())
+        etEmail.setText(sessionManager.getUserEmail())
 
         // Set initial state of EditTexts to be disabled
         setEditTextsEnabled(false)
 
         // Setup the language selection spinner
         setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
+
+
+
+        // Update the session with the selected language when user chooses a different language
+        spLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedLanguage = parent.getItemAtPosition(position).toString()
+                sessionManager.setLanguage(selectedLanguage)
+                Log.d("SESSION UPDATE LANGUAGE", "$selectedLanguage selected")
+                Toast.makeText(this@ActivityProfile, "Language updated", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
+
+        // Set the selected value for the spinner to the first item = English
+        spLanguage.setSelection(0)
+        Log.d("SPINNER LANGUAGE", "First item selected")
     }
 
     // Function to setup the spinner with provided parameters
@@ -59,6 +91,10 @@ class ActivityProfile : AppCompatActivity() {
 
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Update session manager language with default language = English
+        sessionManager.setLanguage(adapter.getItem(0).toString())
+        Log.d("SESSION LANGUAGE", "First item assigned in SharedPreferences")
 
         // Initialize the Spinner
         val spinner = findViewById<Spinner>(spinnerId)
@@ -116,6 +152,11 @@ class ActivityProfile : AppCompatActivity() {
 
         // Update visibility of remove buttons for ingredients
         updateRemoveButtonsVisibility()
+
+        if (!isEditing) {
+            etName.setText(sessionManager.getUsername())
+        }
+
     }
 
     // Function to handle the save button click
@@ -134,6 +175,10 @@ class ActivityProfile : AppCompatActivity() {
             updateRemoveButtonsVisibility()
 
             // TODO: Save profile changes to database
+            sessionManager.setUserName(etName.text.toString())
+            sessionManager.setLanguage(spLanguage.selectedItem.toString())
+
+            Log.d("UPDATED NAME" ,"${etName.text}")
 
             // Show a confirmation message
             Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
@@ -145,9 +190,6 @@ class ActivityProfile : AppCompatActivity() {
         etName.isEnabled = enabled
         etName.isFocusable = enabled
         etName.isFocusableInTouchMode = enabled
-        etEmail.isEnabled = enabled
-        etEmail.isFocusable = enabled
-        etEmail.isFocusableInTouchMode = enabled
     }
 
     // Function to handle the add ingredient button click

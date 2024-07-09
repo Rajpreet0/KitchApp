@@ -14,6 +14,7 @@ class SessionManager(context: Context) {
         private const val KEY_USER_ID = "user_id"
         private const val KEY_USER_EMAIL = "user_email"
         private const val KEY_USERNAME = "username"
+        private const val KEY_LANGUAGE = "language"
         private const val KEY_SESSION_EXPIRY = "session_expiry"
         private const val SESSION_DURATION = 24*60*60*1000;
     }
@@ -24,6 +25,7 @@ class SessionManager(context: Context) {
         editor.putString(KEY_USER_ID, userData.getString("_id"))
         editor.putString(KEY_USERNAME, userData.getString("username"))
         editor.putString(KEY_USER_EMAIL, userData.getString("email"))
+        editor.putString(KEY_LANGUAGE, userData.getString("language"))
         editor.putLong(KEY_SESSION_EXPIRY, System.currentTimeMillis() + SESSION_DURATION)
         editor.apply()
     }
@@ -48,6 +50,22 @@ class SessionManager(context: Context) {
 
     fun getUsername(): String? {
         return prefs.getString(KEY_USERNAME, null)
+    }
+
+    fun getLanguage(): String? {
+        return prefs.getString(KEY_LANGUAGE, null)
+    }
+
+    fun setLanguage(language: String) {
+        val editor = prefs.edit()
+        editor.putString(KEY_LANGUAGE, language)
+        editor.apply()
+    }
+
+    fun setUserName(username: String) {
+        val editor = prefs.edit()
+        editor.putString(KEY_USERNAME, username)
+        editor.apply()
     }
 
     fun logout() {
