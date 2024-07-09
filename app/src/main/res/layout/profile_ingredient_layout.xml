@@ -29,7 +29,6 @@
         android:drawableTint="@color/white"
         android:focusable="false"
         android:clickable="false"
-        android:onClick="removeIngredient"
         android:visibility="gone"
         android:src="@drawable/ic_remove"/>
 
