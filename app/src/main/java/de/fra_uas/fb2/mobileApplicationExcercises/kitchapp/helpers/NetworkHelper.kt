@@ -92,6 +92,29 @@ class NetworkHelper {
         }
     }
 
+    fun deleteUser(email: String): String {
+        val json = JsonObject().apply {
+            addProperty("email", email);
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_DELETE_USER)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val responseData = response.body!!.string()
+            val jsonObject = Gson().fromJson(responseData, JsonObject::class.java)
+
+            return jsonObject.get("message").asString
+        }
+    }
+
     fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String): JsonObject {
         val json = JsonObject().apply {
             addProperty("portions", portions);
@@ -125,6 +148,7 @@ class NetworkHelper {
         const val SERVER_ADDRESS_OPENAI = "$BASE_URL"
         const val SERVER_ADDRESS_LOGIN = "$BASE_URL/users/login"
         const val SERVER_ADDRESS_REGISTER = "$BASE_URL/users/register"
+        const val SERVER_ADDRESS_DELETE_USER = "$BASE_URL/users/delete"
         const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "$BASE_URL/recipes"
     }
 }
