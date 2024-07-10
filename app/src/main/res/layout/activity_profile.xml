@@ -157,7 +157,7 @@
         android:gravity="center"
         android:text="Excluded Ingredients"
         android:textColor="@color/white"
-        android:textSize="33sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spLanguage" />
@@ -168,7 +168,7 @@
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="366dp"
         android:background="@android:color/transparent"
 
@@ -177,9 +177,10 @@
         android:onClick="addExclButton"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
 
+        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
         app:srcCompat="@drawable/ic_add_yellow_rounded" />
 
     <TextView
