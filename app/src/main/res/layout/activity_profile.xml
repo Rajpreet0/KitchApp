@@ -268,11 +268,9 @@
         android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_trashcan_red"
-
         android:clickable="true"
         android:focusable="true"
         android:onClick="deleteAccountButton"
-
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogout" />
@@ -291,6 +289,7 @@
         android:textColor="@color/red"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:onClick="deleteAccountButton"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnDelete"
