@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityGrocery
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityHome
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityLogin
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityRecipes
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
 
@@ -270,7 +271,11 @@ class ActivityProfile : AppCompatActivity() {
 
 
     fun logoutButton(view: View) {
-        // TODO: LOGOUT USER
+        sessionManager.logout()
+        val intent = Intent(this, ActivityLogin::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
     }
 
     fun deleteAccountButton(view: View) {
