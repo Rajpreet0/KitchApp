@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 import org.w3c.dom.Text
+import kotlin.properties.Delegates
 
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
@@ -36,7 +37,7 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var container: LinearLayout
 
     private lateinit var choosenRecipe: String
-    private lateinit var response:String
+    private lateinit var response: String
     private lateinit var portionTxt: String
     private lateinit var categoryTxt: String
     private lateinit var timeTxt: String
@@ -48,6 +49,9 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var newResponse: JsonObject
     private lateinit var frameLayout: FrameLayout
     private val recipeList: MutableMap<String, String> = mutableMapOf()
+
+    private var selectedView: View? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,8 +70,7 @@ class ActivitySuggestions : AppCompatActivity() {
         withoutIngredients = intent.getStringExtra("withoutIngredients") ?: ""
         specialIngredients = intent.getStringExtra("specialIngredients") ?: ""
         recipeList.putAll(getMap(this))
-        loadingDialog= LoadingDialogFragment()
-
+        loadingDialog = LoadingDialogFragment()
 
 
         // Parse the JSON response
@@ -95,6 +98,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
     }
+
     fun generateButton(view: View) {
         container.removeAllViews()
         CoroutineScope(Dispatchers.Main).launch {
@@ -102,7 +106,7 @@ class ActivitySuggestions : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
-                newResponse =  withContext(Dispatchers.IO) {
+                newResponse = withContext(Dispatchers.IO) {
                     networkHelper.suggestRecipe(
                         portionTxt,
                         categoryTxt,
@@ -177,7 +181,6 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
 
-
     private fun addRow(name: String, description: String, time: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
@@ -197,8 +200,10 @@ class ActivitySuggestions : AppCompatActivity() {
 
         // Set click listener on the frameRecipe to handle background change
         frameRecipe.setOnClickListener {
-            onCLick(frameRecipe, name)
+            onCLickSelect(frameRecipe, name, container)
         }
+
+
 
         // Handle the favorite icon logic
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
@@ -213,7 +218,7 @@ class ActivitySuggestions : AppCompatActivity() {
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
-                recipeList.remove("$name - $time"+"min")
+                recipeList.remove("$name - $time" + "min")
                 saveMap(this, recipeList)
             }
         }
@@ -222,7 +227,29 @@ class ActivitySuggestions : AppCompatActivity() {
         container.addView(rowView)
     }
 
-    private fun saveRecipe(name: String){
+    private fun onCLickSelect(view: View, name: String, container: LinearLayout) {
+        val choosenDrawable: Drawable? =
+            ContextCompat.getDrawable(this, R.drawable.choosen_recipe_layout)
+        val defaultDrawable: Drawable? =
+            ContextCompat.getDrawable(this, R.drawable.bg_roundedcorners)
+
+        if (view == selectedView) {
+            // Deselect if the same view is clicked again
+            view.background = defaultDrawable
+            selectedView = null
+            choosenRecipe = ""
+        } else {
+            // Deselect the previously selected view
+            selectedView?.background = defaultDrawable
+
+            // Select the new view
+            view.background = choosenDrawable
+            selectedView = view
+            choosenRecipe = name
+        }
+    }
+
+    private fun saveRecipe(name: String) {
         val jsonResponse = JSONObject(response)
         val recipesArray = jsonResponse.getJSONArray("recipes")
 
@@ -231,40 +258,44 @@ class ActivitySuggestions : AppCompatActivity() {
 
             for (j in 0 until recipesObject.length()) {
                 val recipe = recipesObject.getJSONObject(j)
-                if(name == recipe.getString("name")){
+                if (name == recipe.getString("name")) {
                     val time = recipe.getString("time")
-                    val nameTime = "$name - $time"+"min"
-                    val ingredients= recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
+                    val nameTime = "$name - $time" + "min"
+                    val ingredients =
+                        recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     val instructions = recipe.getString("instructions").replace("\"", "")
-                    val portionIngredientsInstructions = "$portionTxt § $ingredients § $instructions"
-                    recipeList[nameTime]=portionIngredientsInstructions
+                    val portionIngredientsInstructions =
+                        "$portionTxt § $ingredients § $instructions"
+                    recipeList[nameTime] = portionIngredientsInstructions
                     saveMap(this, recipeList)
-                    }
+                }
             }
         }
     }
 
 
-    fun homeButton(view: View){
+    fun homeButton(view: View) {
         val intent = Intent(this, ActivityHome::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
-    fun groceryButton(view: View){
+
+    fun groceryButton(view: View) {
         val intent = Intent(this, ActivityGrocery::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
-    fun recipesButton(view: View){
+
+    fun recipesButton(view: View) {
         val intent = Intent(this, ActivityRecipes::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
 
-    fun profileButton(view: View){
+    fun profileButton(view: View) {
         val intent = Intent(this, ActivityProfile::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
@@ -272,36 +303,18 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
     fun nextButton(view: View) {
-        if(choosenRecipe.isNotEmpty()) {
+        if (choosenRecipe.isNotEmpty()) {
             val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
                 putExtra("response", response)
                 putExtra("name", choosenRecipe)
                 putExtra("portion", portionTxt)
             }
             startActivity(intent)
-        }else{
+        } else {
             Toast.makeText(this, "Please select a Recipe", Toast.LENGTH_SHORT).show()
         }
     }
 
-
-    private fun onCLick(view: View, name: String) {
-        val choosenDrawable: Drawable? = ContextCompat.getDrawable(this,
-            R.drawable.choosen_recipe_layout
-        )
-        val defaultDrawable: Drawable? = ContextCompat.getDrawable(this,
-            R.drawable.bg_roundedcorners
-        )
-
-        val currentDrawable = view.background
-
-        if (currentDrawable?.constantState == defaultDrawable?.constantState) {
-            view.background = choosenDrawable
-            choosenRecipe = name
-        } else {
-            view.background = defaultDrawable
-            choosenRecipe = ""
-        }
-    }
-
 }
+
+

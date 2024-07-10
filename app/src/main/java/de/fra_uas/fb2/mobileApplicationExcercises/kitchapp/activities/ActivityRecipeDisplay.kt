@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,8 @@ class ActivityRecipeDisplay : AppCompatActivity() {
     private lateinit var portion: String
     private val recipeList: MutableMap<String, String> = mutableMapOf()
     private var instruction: Boolean = false
+    private var isFavorite: Boolean = false
+    private var icon_save: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +39,8 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // TODO: GET BOOLEAN TO CHECK IF ALLREADY SAVED TO DISPLAY CORRECT ICON (FILLED OR UNFILLED); ASSIGN DRAWRABLE TO ICON
         val response = intent.getStringExtra("response") ?: ""
         val recipeName = intent.getStringExtra("name")?:""
         val recipeNameTime = intent.getStringExtra("nameTime")?:""
@@ -45,6 +50,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         recipeText = findViewById(R.id.recipeText)
         recipeTime = findViewById(R.id.tvShowTime)
         recipePortion = findViewById(R.id.tvServingSize)
+        icon_save = findViewById(R.id.iconSave)
 
         recipeTitle.text = recipeNameTime.split(" - ")[0].trim()                            //0 is the name and 1 is the time
         recipeList.putAll(getMap(this))
@@ -107,6 +113,18 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         }else{
             recipeText.text = ingredients
             instruction=false
+        }
+    }
+
+    fun saveRecipe(view: View) {
+        isFavorite = !isFavorite
+        if (isFavorite) {
+            icon_save?.setImageResource(R.drawable.heart_icon_filled)
+            // TODO: SAVE RECIPE
+        } else {
+            icon_save?.setImageResource(R.drawable.ic_heart_unfilled)
+            // TODO: remove from recipes
+            //recipeList.remove("$name - $time" + "min")
         }
     }
 

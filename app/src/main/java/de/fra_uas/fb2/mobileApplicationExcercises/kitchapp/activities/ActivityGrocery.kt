@@ -40,7 +40,7 @@ class ActivityGrocery : AppCompatActivity() {
     private var icSave: ImageView? = null
 
     // Data structures
-    private val ingredientList: MutableMap<String, String> = mutableMapOf()
+    private val ingredientList: MutableMap<String, String> = mutableMapOf()                         //has name and unit as key "name~unit" and amount as value
     private val markedForDeletion = mutableSetOf<String>()
 
     // State variables
@@ -60,7 +60,6 @@ class ActivityGrocery : AppCompatActivity() {
 
         // Load saved ingredients
         ingredientList.putAll(getMap(this))
-
         // Build the product list UI
         buildProductList()
 
@@ -75,6 +74,17 @@ class ActivityGrocery : AppCompatActivity() {
         setEditTextsEnabled(false)
         icSave?.visibility = View.GONE
         isEditing = false
+        ingredientList.clear()
+        containerIngredients?.let { container ->
+            for (i in 0 until container.childCount) {
+                val rowView = container.getChildAt(i)
+                val ingredient = rowView.findViewById<EditText>(R.id.tvIngredientName).text.toString()
+                val amount = rowView.findViewById<EditText>(R.id.etAmount).text.toString()
+                val unit = rowView.findViewById<Spinner>(R.id.spUnit).getSelectedItem().toString()
+                ingredientList["$ingredient~$unit"]=amount
+                saveMap(this, ingredientList)
+            }
+        }
     }
 
     // Hide the soft keyboard
@@ -103,8 +113,18 @@ class ActivityGrocery : AppCompatActivity() {
         }
     }
 
+    private fun checkUnit(unit: String): Int {
+        if(unit=="pc"){
+            return 0
+        }else if(unit=="gr"){
+            return 1
+        }else if(unit=="ml") {
+            return 2
+        }else return 3
+    }
+
     // Add a row to the ingredient list UI
-    private fun addRow(nameIngredient: String, amount: String) {
+    private fun addRow(nameAmountIngredient: String, amount: String) {
         val inflater = LayoutInflater.from(this)
         val rowView: View = inflater.inflate(R.layout.ingredient_layout_row, containerIngredients, false)
 
@@ -115,15 +135,16 @@ class ActivityGrocery : AppCompatActivity() {
         val cbDelete: CheckBox = rowView.findViewById(R.id.cbDelete)
 
         // Set values
-        tvName.setText(nameIngredient)
+        tvName.setText(nameAmountIngredient.split("~")[0].trim())
+        val selection = checkUnit(nameAmountIngredient.split("~")[1].trim())
         etAmount.setText(amount)
 
         // Setup spinner
-        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_unit)
+        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_unit, selection)
 
         // Set up listeners
         cbDelete.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) markedForDeletion.add(nameIngredient) else markedForDeletion.remove(nameIngredient)
+            if (isChecked) markedForDeletion.add(nameAmountIngredient) else markedForDeletion.remove(nameAmountIngredient)
         }
 
         tvName.setOnFocusChangeListener { view, hasFocus ->
@@ -151,10 +172,11 @@ class ActivityGrocery : AppCompatActivity() {
     }
 
     // Setup spinner with custom adapter
-    private fun setupSpinner(spinner: Spinner, arrayResourceId: Int, layoutResourceId: Int) {
+    private fun setupSpinner(spinner: Spinner, arrayResourceId: Int, layoutResourceId: Int, selection: Int) {
         val adapter = ArrayAdapter.createFromResource(this, arrayResourceId, layoutResourceId)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+        spinner.setSelection(selection)
     }
 
     // Save ingredient list to SharedPreferences
@@ -194,7 +216,7 @@ class ActivityGrocery : AppCompatActivity() {
                 .setTitle("Delete selected ingredients?")
                 .setMessage("Are you sure you want to delete the selected ingredients?")
                 .setPositiveButton("Delete") { _, _ ->
-                    // Remove ingredients from list and UI
+                    // Remove ingredients from list and UI+
                     markedForDeletion.forEach { ingredient ->
                         ingredientList.remove(ingredient)
                     }
@@ -218,7 +240,7 @@ class ActivityGrocery : AppCompatActivity() {
         val amountNumber = dialogView.findViewById<EditText>(R.id.etAmount)
         val spUnit = dialogView.findViewById<Spinner>(R.id.spUnit)
 
-        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_profile)
+        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_profile, 0)
 
         AlertDialog.Builder(this)
             .setView(dialogView)
@@ -232,7 +254,7 @@ class ActivityGrocery : AppCompatActivity() {
                 if (inputIngredient.isNotEmpty() && inputAmountText.isNotEmpty()) {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null && inputAmount > 0) {
-                        ingredientList[inputIngredient] = inputAmountText
+                        ingredientList["$inputIngredient~$selectedUnit"] = inputAmountText
                         saveMap(this, ingredientList)
                         buildProductList()
                     } else {

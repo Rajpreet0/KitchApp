@@ -157,7 +157,7 @@
         android:gravity="center"
         android:text="Excluded Ingredients"
         android:textColor="@color/white"
-        android:textSize="33sp"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spLanguage" />
@@ -168,7 +168,7 @@
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="366dp"
         android:background="@android:color/transparent"
 
@@ -177,9 +177,10 @@
         android:onClick="addExclButton"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
 
+        app:layout_constraintTop_toBottomOf="@+id/tvExcludeIngr"
         app:srcCompat="@drawable/ic_add_yellow_rounded" />
 
     <TextView
@@ -233,11 +234,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
         android:src="@drawable/ic_logout"
-
         android:clickable="true"
         android:focusable="true"
         android:onClick="logoutButton"
-
         app:layout_constraintBottom_toTopOf="@+id/btnDelete"
         app:layout_constraintEnd_toStartOf="@+id/tvLogout"
         app:layout_constraintStart_toStartOf="parent"
@@ -255,6 +254,7 @@
         android:text="Log out"
         android:textColor="@color/light_brown"
         android:textSize="24sp"
+        android:onClick="logoutButton"
         app:layout_constraintBottom_toTopOf="@+id/tvDelete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnLogout"
@@ -269,11 +269,9 @@
         android:layout_marginBottom="14dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_trashcan_red"
-
         android:clickable="true"
         android:focusable="true"
         android:onClick="deleteAccountButton"
-
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnLogout" />
@@ -292,6 +290,7 @@
         android:textColor="@color/red"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:onClick="deleteAccountButton"
         app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnDelete"
