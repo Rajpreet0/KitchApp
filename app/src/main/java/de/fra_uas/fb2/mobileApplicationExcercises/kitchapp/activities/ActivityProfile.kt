@@ -19,7 +19,15 @@ import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityGr
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityHome
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityLogin
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityRecipes
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import java.io.IOException
 
 
 // This activity handles the user profile, allowing the user to edit their name and email,
@@ -32,7 +40,9 @@ class ActivityProfile : AppCompatActivity() {
     private lateinit var icSave: ImageView
     private lateinit var containerIngr: LinearLayout
     private lateinit var spLanguage: Spinner
+    private lateinit var loadingDialog: LoadingDialogFragment
 
+    private  val networkHelper = NetworkHelper()
     private lateinit var sessionManager: SessionManager
 
     // Tracks whether the profile is being edited or not
@@ -60,7 +70,7 @@ class ActivityProfile : AppCompatActivity() {
         // Setup the language selection spinner
         setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
 
-
+        loadingDialog = LoadingDialogFragment()
 
         // Update the session with the selected language when user chooses a different language
         spLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -279,6 +289,29 @@ class ActivityProfile : AppCompatActivity() {
     }
 
     fun deleteAccountButton(view: View) {
-        //TODO: DELETE ACCOUNT
+        val intent = Intent(this, ActivityLogin::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+                }
+                val response = networkHelper.deleteUser(sessionManager.getUserEmail().toString())
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                    sessionManager.logout()
+                    Toast.makeText(applicationContext, "User Deleted", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }
+            } catch (e: IOException) {
+                withContext(Dispatchers.Main) {
+                    loadingDialog.dismiss()
+                    Log.d("SERVER ERROR", "Deleting User Failed - ${e}")
+                    Toast.makeText(applicationContext, "Deletion Failed", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 }
