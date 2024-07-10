@@ -16,6 +16,9 @@
         android:theme="@style/noAnimTheme"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ActivityForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".activities.ActivityResetPassword"
             android:exported="false" />
         <activity
