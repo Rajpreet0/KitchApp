@@ -43,6 +43,18 @@ object ValidationUtil {
         return null
     }
 
+    fun validateUpdatePassword(password: String, confirmPassword: String): String? {
+        if (password.isBlank() || confirmPassword.isBlank()) {
+            return "Please fill in both password and confirm password"
+        }
+
+        if (!isValidPassword(password)) {
+            return "Password must be at least 6 characters long and contain a number"
+        }
+
+        return null
+    }
+
     fun validateRecipePreferences(portion: String?, category: String?, time: String?, complexity: String?, nationality: String?): String? {
         if (portion.isNullOrEmpty()) {
             return "Please select a portion size"
