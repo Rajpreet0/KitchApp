@@ -5,28 +5,61 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D6EBEB"
+    android:background="@color/pastel_mint"
     tools:context=".activities.ActivityHome">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnDelete"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:background="@drawable/bg_lightbrown"
-        android:drawableStart="@drawable/ic_trashcan"
-        android:drawablePadding="0dp"
-        android:gravity="center"
-        android:onClick="deleteButton"
-        android:padding="15dp"
-        android:stateListAnimator="@null"
-        android:textAllCaps="false"
-        android:textColor="#000000"
+    <TextView
+        android:id="@+id/tvFridge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Fridge"
+        android:textColor="@color/black"
+        android:textSize="42dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rahmen"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rahmen"
+        android:layout_width="360dp"
+        android:layout_height="500dp"
+        android:background="@drawable/bg_white_roundstroke"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459">
+
+        <!-- Produktliste -->
+
+        <ScrollView
+            android:id="@+id/svOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/containerIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="vertical">
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdd"
@@ -51,6 +84,27 @@
         app:layout_constraintVertical_bias="0.148" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDelete"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:background="@drawable/bg_lightbrown"
+        android:drawableStart="@drawable/ic_trashcan"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:onClick="deleteButton"
+        android:padding="15dp"
+        android:stateListAnimator="@null"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rahmen"
+        app:layout_constraintVertical_bias="0.148" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEdit"
         android:layout_width="58dp"
         android:layout_height="58dp"
@@ -71,81 +125,13 @@
         app:layout_constraintTop_toBottomOf="@+id/rahmen"
         app:layout_constraintVertical_bias="0.148" />
 
-    <TextView
-        android:id="@+id/tvMyFreezer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Fridge"
-        android:textColor="#212928"
-        android:textSize="42dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rahmen"
-        android:layout_width="333dp"
-        android:layout_height="450dp"
-        android:background="@drawable/bg_white_roundstroke"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459">
-
-        <ScrollView
-            android:id="@+id/svOptions"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/parentLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-
-                <!-- Left part of the ScrollView -->
-                <LinearLayout
-                    android:id="@+id/leftLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-                <!-- Right part of the ScrollView -->
-                <LinearLayout
-                    android:id="@+id/rightLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!-- Navigationsleiste -->
     <LinearLayout
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
@@ -201,5 +187,22 @@
             app:iconPadding="2dp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/icSave"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_roundstroke"
+        android:drawableStart="@drawable/ic_save"
+        android:drawablePadding="0dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:src="@drawable/ic_save"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/rahmen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPantry" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
