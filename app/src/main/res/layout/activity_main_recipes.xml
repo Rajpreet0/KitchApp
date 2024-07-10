@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="Recipes"
                 android:textColor="#FFFFFF"
-                android:textSize="42dp"
+                android:textSize="48dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
