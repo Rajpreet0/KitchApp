@@ -3,16 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/bg_white_roundstroke" >
 
     <EditText
         android:id="@+id/editText_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your ingredient here" />
+
     <EditText
         android:id="@+id/editText_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter the amount here" />
+
 </LinearLayout>

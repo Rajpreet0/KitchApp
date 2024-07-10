@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:text="My Fridge"
         android:textColor="#212928"
-        android:textSize="42dp"
+        android:textSize="48dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

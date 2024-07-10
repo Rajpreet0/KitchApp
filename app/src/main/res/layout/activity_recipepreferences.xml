@@ -152,7 +152,8 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0">
 
 
         <LinearLayout
@@ -362,9 +363,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="36dp"
+            android:fontFamily="@font/light"
             android:text="nationality:"
             android:textColor="#FFFFFF"
-            android:fontFamily="@font/light"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -376,8 +377,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="36dp"
-            android:text="without..."
             android:fontFamily="@font/light"
+            android:text="without..."
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
