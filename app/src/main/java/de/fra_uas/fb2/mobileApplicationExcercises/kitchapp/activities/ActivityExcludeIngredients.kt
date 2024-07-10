@@ -49,23 +49,20 @@ class ActivityExcludeIngredients : AppCompatActivity() {
 
         //the pantry items get icon 2
         for((key, value) in pantryMap) {
-            pantryMap[key] = 2
+            ingredientList["$key~$value"] = 2
         }
         //the freezer items get icon 0
         for((key, value) in freezerMap) {
-            freezerMap[key] = 0
+            ingredientList["$key~$value"] = 0
         }
         //the fridge items get icon 1
         for((key, value) in fridgeMap) {
-            fridgeMap[key] = 1
+            ingredientList["$key~$value"] = 1
         }
-        ingredientList.putAll(pantryMap)
-        ingredientList.putAll(freezerMap)
-        ingredientList.putAll(fridgeMap)
 
         for (ingredient in ingredientList) {
             val storageType = ingredient.value
-            val name = ingredient.key
+            val name = ingredient.key.split("~")[0]
             addRow(storageType, name)
         }
         saveMap(this, ingredientList)
@@ -88,9 +85,18 @@ class ActivityExcludeIngredients : AppCompatActivity() {
 
             } else {
                 // Checkbox is unchecked
-                ingredientList.putAll(pantryMap)
-                ingredientList.putAll(freezerMap)
-                ingredientList.putAll(fridgeMap)
+                //the pantry items get icon 2
+                for((key, value) in pantryMap) {
+                    ingredientList["$key~$value"] = 2
+                }
+                //the freezer items get icon 0
+                for((key, value) in freezerMap) {
+                    ingredientList["$key~$value"] = 0
+                }
+                //the fridge items get icon 1
+                for((key, value) in fridgeMap) {
+                    ingredientList["$key~$value"] = 1
+                }
 
                 saveMap(this, ingredientList)
 
