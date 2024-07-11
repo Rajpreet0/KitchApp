@@ -2,6 +2,7 @@ package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers
 
 import android.util.Patterns
 
+// BEGIN: Raj
 object ValidationUtil {
 
     fun isValidEmail(email: String): Boolean {
@@ -74,3 +75,4 @@ object ValidationUtil {
         return null
     }
 }
+// END: Raj

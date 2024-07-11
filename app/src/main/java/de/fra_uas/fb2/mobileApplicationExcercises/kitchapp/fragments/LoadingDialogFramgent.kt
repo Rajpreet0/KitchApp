@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
+// Begin: Raj
 class LoadingDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -18,3 +19,5 @@ class LoadingDialogFragment : DialogFragment() {
         return builder.create()
     }
 }
+
+// End: Raj

@@ -22,13 +22,16 @@ import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
 class ActivityExcludeIngredients : AppCompatActivity() {
 
+    // BEGIN: Daria
     private lateinit var container: LinearLayout
-    private val ingredientList: MutableMap<String, Int> = mutableMapOf()
+    private val ingredientList: MutableMap<String, Int> = mutableMapOf() // Ron
+
 
     private val icons = arrayOf(
         R.drawable.ic_freezer,
         R.drawable.ic_fridge,
     )
+    // END: Daria
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +43,12 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             insets
         }
 
+        // BEGIN: Daria
         // Initializing the container
         container = findViewById(R.id.containerIngredients)
+        // END: Daria
 
+        // BEGIN: Ron
         val pantryMap = getPantryMap(this)
         val freezerMap = getFreezerMap(this)
         val fridgeMap = getFridgeMap(this)
@@ -67,14 +73,16 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             addRow(2, "will be randomly!")
         }else {
             for (ingredient in ingredientList) {
-                val storageType = ingredient.value
+                val storageType = ingredient.value // Daria
                 val name = ingredient.key.split("~")[0]
-                addRow(storageType, name)
+                addRow(storageType, name) // Daria
             }
             saveMap(this, ingredientList)
         }
 
+        // END: RON
 
+        // BEGIN: Daria
         // checkbox for excluding all ingredients
         val excludeAll: CheckBox = findViewById(R.id.button3)
 
@@ -89,7 +97,8 @@ class ActivityExcludeIngredients : AppCompatActivity() {
                     val textView = view.findViewById<TextView>(R.id.tvIngredientName)
                     textView.setTextColor(Color.RED)
                 }
-
+        // END: Daria
+        // BEGIN: Ron
             } else {
                 // Checkbox is unchecked
                 //the pantry items get icon 2
@@ -104,7 +113,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
                 for((key, value) in fridgeMap) {
                     ingredientList["$key~$value"] = 1
                 }
+                // END: Ron
 
+                // BEGIN: Daria
                 saveMap(this, ingredientList)
 
                 container.children.forEach { view ->
@@ -115,8 +126,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         }
 
     }
+    // END: Daria
 
-
+    // BEGIN: Ron
     private fun saveMap(context: Context, map: MutableMap<String, Int>) {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -161,7 +173,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             mutableMapOf()
         }
     }
+    // END: Ron
 
+    // BEGIN: Daria
     private fun addRow(storageType: Int, nameIngredient: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
@@ -199,7 +213,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         // Add the inflated row layout to the container
         container.addView(rowView)
     }
+    // END: Daira
 
+    // BEGIN: Ron, Raj
     fun homeButton(view: View){
         val intent = Intent(this, ActivityHome::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -225,6 +241,10 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    // END: Ron, Raj
+
+    // BEGIN: Ron
     private fun checkExcluded() {
         container.children.forEach { view ->
             val textView = view.findViewById<TextView>(R.id.tvIngredientName)
@@ -248,4 +268,6 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         checkExcluded()
         startActivity(intent)
     }
+
+    // END: Ron
 }

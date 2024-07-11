@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class ActivityForgotPassword : AppCompatActivity() {
-
+    // BEGIN: Raj
     private lateinit var editTextEmail: EditText
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
@@ -72,3 +72,4 @@ class ActivityForgotPassword : AppCompatActivity() {
         }
     }
 }
+// END: Raj

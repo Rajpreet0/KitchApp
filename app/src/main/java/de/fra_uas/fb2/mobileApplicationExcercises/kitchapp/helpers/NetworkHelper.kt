@@ -8,6 +8,7 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.IOException
 
+// Begin: Raj
 class NetworkHelper {
     private val client = OkHttpClient()
 
@@ -173,7 +174,7 @@ class NetworkHelper {
             addProperty("withoutIngredients", withoutIngredients);
             addProperty("specials", special);
             addProperty("supriseMe", supriseMe)
-            addProperty("number", number)
+            addProperty("number", number) // Ron
         }.toString()
 
         val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
@@ -203,3 +204,5 @@ class NetworkHelper {
         const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "$BASE_URL/recipes"
     }
 }
+
+// END: Raj

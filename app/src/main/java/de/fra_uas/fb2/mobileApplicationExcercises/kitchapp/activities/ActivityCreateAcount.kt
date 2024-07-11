@@ -22,6 +22,7 @@ import okio.IOException
 
 class ActivityCreateAcount : AppCompatActivity() {
 
+    // BEGIN: Raj
     private  val networkHelper = NetworkHelper()
     private lateinit var username: EditText
     private lateinit var email: EditText
@@ -41,14 +42,18 @@ class ActivityCreateAcount : AppCompatActivity() {
         }
 
         loadingDialog = LoadingDialogFragment()
+        // END: Raj
 
+        // BEGIN: Daria
         username = findViewById(R.id.etUsername);
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPassword);
         confirmPassword = findViewById(R.id.etPasswordconfirmation);
+        // END: Daria
 
     }
 
+    // BEGIN: Raj
     fun signUpButton(view: View){
 
         val validationError = ValidationUtil.validateRegisterInput(
@@ -93,7 +98,9 @@ class ActivityCreateAcount : AppCompatActivity() {
             }
         }
     }
+    // END: Raj
 
+    // BEGIN: Ron
     // Register a User
     fun signInButton(view: View){
         val intent = Intent(this, ActivityLogin::class.java)
@@ -107,3 +114,5 @@ class ActivityCreateAcount : AppCompatActivity() {
         startActivity(intent)
     }
 }
+
+// END: Ron
