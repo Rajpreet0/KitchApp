@@ -22,13 +22,14 @@ class ActivityRecipeDisplay : AppCompatActivity() {
     private lateinit var recipeTime: TextView
     private lateinit var recipePortion: TextView
 
+    private lateinit var recipeNameTime: String
     private lateinit var ingredients: String
     private lateinit var instructions: String
     private lateinit var portion: String
     private val recipeList: MutableMap<String, String> = mutableMapOf()
     private var instruction: Boolean = false
     private var isFavorite: Boolean = false
-    private var icon_save: ImageView? = null
+    private var iconSave: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +42,23 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         }
 
         // TODO: GET BOOLEAN TO CHECK IF ALLREADY SAVED TO DISPLAY CORRECT ICON (FILLED OR UNFILLED); ASSIGN DRAWRABLE TO ICON
+        val heartIcon = intent.getBooleanExtra("isFavorite", false)
         val response = intent.getStringExtra("response") ?: ""
         val recipeName = intent.getStringExtra("name")?:""
-        val recipeNameTime = intent.getStringExtra("nameTime")?:""
         val portions = intent.getStringExtra("portion")?:""
+        recipeNameTime = intent.getStringExtra("nameTime")?:""
 
         recipeTitle = findViewById(R.id.tvRecipeName)
         recipeText = findViewById(R.id.recipeText)
         recipeTime = findViewById(R.id.tvShowTime)
         recipePortion = findViewById(R.id.tvServingSize)
-        icon_save = findViewById(R.id.iconSave)
+        iconSave = findViewById(R.id.iconSave)
+        if (heartIcon) {
+            iconSave?.setImageResource(R.drawable.heart_icon_filled)
+            isFavorite=true
+        } else {
+            iconSave?.setImageResource(R.drawable.ic_heart_unfilled)
+        }
 
         recipeTitle.text = recipeNameTime.split(" - ")[0].trim()                            //0 is the name and 1 is the time
         recipeList.putAll(getMap(this))
@@ -76,7 +84,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                 if(name.equals(recipeName)){
                     recipeTitle.text=name
                     val time = recipe.getString("time")
-                    recipeTime.text="$time"+"min"
+                    recipeTime.text=time
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     instructions = recipe.getString("instructions").replace("\"", "")
                     recipeText.text=ingredients
@@ -106,6 +114,16 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         }
     }
 
+    private fun saveMap(context: Context, map: MutableMap<String, String>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("savedRecipeMap", jsonString)
+        editor.apply()
+    }
+
     fun switchOnClick(view: View) {
         if (!instruction) {
             recipeText.text = instructions
@@ -119,12 +137,13 @@ class ActivityRecipeDisplay : AppCompatActivity() {
     fun saveRecipe(view: View) {
         isFavorite = !isFavorite
         if (isFavorite) {
-            icon_save?.setImageResource(R.drawable.heart_icon_filled)
-            // TODO: SAVE RECIPE
+            iconSave?.setImageResource(R.drawable.heart_icon_filled)
+            recipeList[recipeTitle.text.toString()+" - "+recipeTime.text.toString()] = "$portion § $ingredients § $instructions"
+            saveMap(this, recipeList)
         } else {
-            icon_save?.setImageResource(R.drawable.ic_heart_unfilled)
-            // TODO: remove from recipes
-            //recipeList.remove("$name - $time" + "min")
+            iconSave?.setImageResource(R.drawable.ic_heart_unfilled)
+            recipeList.remove(recipeTitle.text.toString()+" - "+recipeTime.text.toString())
+            saveMap(this, recipeList)
         }
     }
 

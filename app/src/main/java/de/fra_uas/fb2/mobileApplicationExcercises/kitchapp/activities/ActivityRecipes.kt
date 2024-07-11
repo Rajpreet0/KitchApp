@@ -19,6 +19,7 @@ import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 class ActivityRecipes : AppCompatActivity() {
     private var recipeContainer: LinearLayout? = null
     private val recipeList: MutableMap<String, String> = mutableMapOf()
+    private val markedForDeletion = mutableSetOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,7 +34,7 @@ class ActivityRecipes : AppCompatActivity() {
     private fun buildRecipeList(){
         recipeContainer!!.removeAllViews()
         recipeList.forEach{
-                addRow(it.key, "10") // TODO: get time from database/recipe
+                addRow(it.key.split("-")[0], it.key.split("-")[1], it.key)
         }
     }
 
@@ -51,7 +52,7 @@ class ActivityRecipes : AppCompatActivity() {
             recipeContainer!!.addView(nameTextView)
      */
 
-    private fun addRow(name: String, time: String) {
+    private fun addRow(name: String, time: String, key: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
         val rowView: View = inflater.inflate(R.layout.savedrecipe_layout_row, recipeContainer, false)
@@ -63,7 +64,7 @@ class ActivityRecipes : AppCompatActivity() {
 
 
         val timeRecipe: TextView = rowView.findViewById(R.id.tvTime)
-        timeRecipe.text = "$time min"
+        timeRecipe.text = time
 
 
         // Handle the favorite icon logic
@@ -76,17 +77,19 @@ class ActivityRecipes : AppCompatActivity() {
             if (isFavorite) {
                 icon_save.setImageResource(R.drawable.heart_icon_filled)
                 saveRecipe(name)
+                markedForDeletion.remove(key)
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled_white)
                 // TODO: remove from recipes after intent / activity change
-
+                markedForDeletion.add(key)
             }
         }
 
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
         frameRecipe.setOnClickListener {
             val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
-                putExtra("nameTime", name)
+                putExtra("nameTime", "$name-$time")
+                putExtra("isFavorite", true)
             }
             startActivity(intent)
         }
@@ -95,7 +98,15 @@ class ActivityRecipes : AppCompatActivity() {
         recipeContainer?.addView(rowView)
     }
 
+    private fun saveMap(context: Context, map: MutableMap<String, String>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
+        // Convert the map to a JSON string
+        val jsonString = Gson().toJson(map)
+        editor.putString("savedRecipeMap", jsonString)
+        editor.apply()
+    }
 
 
     private fun getMap(context: Context): MutableMap<String, String> {
@@ -111,11 +122,10 @@ class ActivityRecipes : AppCompatActivity() {
     }
 
     fun delete(view: View){
-        val sharedPreferences = getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.remove("savedRecipeMap")
-        editor.apply()
-        recipeList.clear()
+        for (key in markedForDeletion) {
+            recipeList.remove(key)
+        }
+        saveMap(this, recipeList)
         buildRecipeList()
     }
 
