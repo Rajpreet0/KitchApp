@@ -26,7 +26,7 @@ import org.json.JSONObject
 import java.io.IOException
 
 class ActivityHome : AppCompatActivity() {
-
+    // BEGIN: Raj
     private lateinit var sessionManager: SessionManager
     private lateinit var tvGreeting: TextView
     private lateinit var btnSuggestions1: AppCompatButton
@@ -122,8 +122,9 @@ class ActivityHome : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    // END: Raj
 
-
+    // BEGIN: Ron
     fun createRecipeButton(view: View){
         val intent = Intent(this, ActivityExcludeIngredients::class.java)
         startActivity(intent)
@@ -143,13 +144,9 @@ class ActivityHome : AppCompatActivity() {
         val intent = Intent(this, ActivityPantry::class.java)
         startActivity(intent)
     }
-    fun suggestionOneButton(view: View){
-        //here you should get to the screen where the recipe is shown in more detail
-    }
-    fun suggestionTwoButton(view: View){
-        //same as in suggestion One
-    }
+    // END: Ron
 
+    // BEGIN:  Raj
     fun homeButton(view: View){
         val intent = Intent(this, ActivityHome::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -177,5 +174,6 @@ class ActivityHome : AppCompatActivity() {
 
         startActivity(intent)
     }
+    // END: Raj
 
 }
