@@ -349,10 +349,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_heart_selected"
+            android:drawableTop="@drawable/ic_heart_unfilled"
             android:onClick="recipesButton"
             android:text="Recipes"
-            android:textColor="@color/dark_red"
+            android:textColor="#212928"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 
@@ -362,10 +362,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_profile_black"
+            android:drawableTop="@drawable/ic_profile_selected"
             android:onClick="profileButton"
             android:text="Profile"
-            android:textColor="#212928"
+            android:textColor="@color/dark_red"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 
