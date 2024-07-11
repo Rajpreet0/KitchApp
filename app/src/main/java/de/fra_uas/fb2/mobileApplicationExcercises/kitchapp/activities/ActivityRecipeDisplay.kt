@@ -12,10 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.gson.Gson
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import org.json.JSONObject
-
+//BEGIN_Ron
 class ActivityRecipeDisplay : AppCompatActivity() {
     private lateinit var recipeTitle: TextView
     private lateinit var recipeText: TextView
@@ -40,8 +39,6 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // TODO: GET BOOLEAN TO CHECK IF ALLREADY SAVED TO DISPLAY CORRECT ICON (FILLED OR UNFILLED); ASSIGN DRAWRABLE TO ICON
         val heartIcon = intent.getBooleanExtra("isFavorite", false)
         val response = intent.getStringExtra("response") ?: ""
         val recipeName = intent.getStringExtra("name")?:""
@@ -72,8 +69,6 @@ class ActivityRecipeDisplay : AppCompatActivity() {
 
         }
 
-
-
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
@@ -92,12 +87,6 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                     recipePortion.text=portions
                     break
                 }
-                //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                //val instructionsArray = recipe.getJSONArray("instructions")
-                // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
-
-                //val description = recipe.getString("description")
-
             }
         } catch (e: Exception) {
             Log.e("ActivitySuggestions", "Error parsing JSON response", e)
@@ -134,7 +123,6 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             instruction=false
         }
     }
-
     fun saveRecipe(view: View) {
         isFavorite = !isFavorite
         if (isFavorite) {
@@ -174,3 +162,4 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         startActivity(intent)
     }
 }
+//END_Ron

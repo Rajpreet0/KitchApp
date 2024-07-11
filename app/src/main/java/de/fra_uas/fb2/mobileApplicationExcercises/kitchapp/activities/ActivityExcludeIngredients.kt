@@ -17,7 +17,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
 class ActivityExcludeIngredients : AppCompatActivity() {

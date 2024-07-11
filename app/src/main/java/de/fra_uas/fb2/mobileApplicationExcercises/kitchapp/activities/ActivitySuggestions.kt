@@ -18,7 +18,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
@@ -27,8 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
-import org.w3c.dom.Text
-import kotlin.properties.Delegates
+
 //BEGIN_Ron
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()

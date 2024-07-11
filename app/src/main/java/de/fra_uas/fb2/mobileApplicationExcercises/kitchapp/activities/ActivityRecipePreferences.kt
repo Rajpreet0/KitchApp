@@ -22,7 +22,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isEmpty
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
@@ -32,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
-
+//BEGIN_Daria
 class ActivityRecipePreferences : AppCompatActivity() {
 
     private lateinit var portion: Spinner
@@ -78,8 +77,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         withoutList = mutableListOf() // TODO: get from storagetype
         specialsList = mutableListOf() // TODO: get from storagetype
-
-
+        //End_Daria
+        //BEGIN_Raj
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
         setupSpinner(
@@ -109,7 +108,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 supriseMe = false
             }
         }
-
+        //END_Raj
+        //BEGIN_Ron
         cbImport.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 val specialIngredients = getMap(this)
@@ -139,7 +139,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
             mutableListOf()
         }
     }
-
+    //END_Ron
+    //BEGIN_Daria
     private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
         // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
         val adapter = ArrayAdapter.createFromResource(
@@ -238,8 +239,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
             Toast.makeText(this, "Error adding ingredient. Please try again.", Toast.LENGTH_SHORT).show()
         }
     }
-
-
+    //END_Daria
+    //BEGIN_Ron
     fun homeButton(view: View){
         val intent = Intent(this, ActivityHome::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -277,7 +278,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
             mutableMapOf()
         }
     }
-
+    //END_Ron
+    //BEGIN_Raj
     fun nextButton(view: View) {
         val portionTxt = portion.selectedItem as String;
         val categoryTxt = category.selectedItem as String;
@@ -310,6 +312,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
+                //END_Raj
+                //BEGIN_Daria
                 var without = StringBuilder()
 
                 withoutList.forEach {
@@ -325,9 +329,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 }
 
                 val specialString = specials.toString()
-
-
-
+                //END_Daria
+                //BEGIN_Raj
                 val response =  withContext(Dispatchers.IO) {
                     networkHelper.suggestRecipe(
                          portionTxt,
@@ -372,10 +375,4 @@ class ActivityRecipePreferences : AppCompatActivity() {
         }
     }
 }
-
-// ADD:
-//            Log.d("EXCLUDE", it)
-//
-//
-//
-//        }
+//END_Raj
