@@ -59,16 +59,23 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         for((key, value) in fridgeMap) {
             ingredientList["$key~$value"] = 1
         }
-
-        for (ingredient in ingredientList) {
-            val storageType = ingredient.value
-            val name = ingredient.key.split("~")[0]
-            addRow(storageType, name)
+        if(ingredientList.isEmpty()){
+            addRow(2, "Please put some")
+            addRow(2, "ingredients in")
+            addRow(2, "your storages.")
+            addRow(2, "Otherwise generation")
+            addRow(2, "will be randomly!")
+        }else {
+            for (ingredient in ingredientList) {
+                val storageType = ingredient.value
+                val name = ingredient.key.split("~")[0]
+                addRow(storageType, name)
+            }
+            saveMap(this, ingredientList)
         }
-        saveMap(this, ingredientList)
 
 
-        // checkbox for excluding all ingrediens
+        // checkbox for excluding all ingredients
         val excludeAll: CheckBox = findViewById(R.id.button3)
 
         // Set an OnCheckedChangeListener
