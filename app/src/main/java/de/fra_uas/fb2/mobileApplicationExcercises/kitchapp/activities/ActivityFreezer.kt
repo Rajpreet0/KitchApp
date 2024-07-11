@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 //BEGIN_Ron_Daria
 //Ron worked mainly on data storage + buttons and functionality

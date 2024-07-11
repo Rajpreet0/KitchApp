@@ -1,4 +1,4 @@
-package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
+package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities
 
 import android.content.Context
 import android.content.Intent
@@ -18,10 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityGrocery
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityHome
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityLogin
-import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityRecipes
+import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.fragments.LoadingDialogFragment
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.NetworkHelper
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.SessionManager
@@ -30,7 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
-
+//BEGIN_Daria
 
 // This activity handles the user profile, allowing the user to edit their name and email,
 // navigate to other sections of the app, and manage a list of ingredients to exclude.
@@ -259,7 +256,8 @@ class ActivityProfile : AppCompatActivity() {
             Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
         }
     }
-
+    //END_Daria
+    //BEGIN_Ron
     private fun saveIngredients(context: Context, specials: List<String>) {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val jsonString = Gson().toJson(specials)
@@ -275,7 +273,8 @@ class ActivityProfile : AppCompatActivity() {
             mutableListOf()
         }
     }
-
+    //END_Ron
+    //BEGIN_Daria
     // Function to update the visibility of remove buttons for ingredients
     private fun updateRemoveButtonsVisibility() {
         for (i in 0 until containerSpecials.childCount) {
@@ -314,8 +313,8 @@ class ActivityProfile : AppCompatActivity() {
             Toast.makeText(this, "Error adding ingredient. Please try again.", Toast.LENGTH_SHORT).show()
         }
     }
-
-
+    //END_Daria
+    //BEGIN_Ron
     fun logoutButton(view: View) {
         val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
         val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
@@ -336,7 +335,8 @@ class ActivityProfile : AppCompatActivity() {
             create().show()
         }
     }
-
+    //END_Ron
+    //BEGIN_Raj
     fun deleteAccountButton(view: View) {
         val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
         val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
@@ -377,3 +377,4 @@ class ActivityProfile : AppCompatActivity() {
         }
     }
 }
+//END_Raj
