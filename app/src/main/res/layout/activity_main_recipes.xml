@@ -16,12 +16,12 @@
             android:layout_above="@id/navigationBar"
             android:layout_alignParentTop="true">
 
-            <!-- Hier kommt dein bisheriger Inhalt rein -->
+
             <TextView
                 android:id="@+id/tvRecipes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recipes"
+                android:text="@string/recipes"
                 android:textColor="#FFFFFF"
                 android:textSize="42dp"
                 android:textStyle="bold"
@@ -33,43 +33,49 @@
 
 
 
-                <!-- Produktliste -->
-                <ScrollView
-                    android:id="@+id/svRecipes"
+                <!-- Saved Recipes list -->
+            <ScrollView
+                android:id="@+id/svRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:layout_marginTop="25dp"
+                android:background="#212928"
+                android:padding="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRecipes">
+
+                <LinearLayout
+                    android:id="@+id/containerRecipes"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
-                    android:background="#212928"
-                    android:layout_marginTop="25dp"
-                    android:padding="25dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/navigationBar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRecipes"
-                    app:layout_constraintBottom_toTopOf="@id/button">
+                    app:layout_constraintTop_toBottomOf="@+id/switchOption">
 
-                    <LinearLayout
-                        android:id="@+id/containerRecipes"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switchOption">
-
-                    </LinearLayout>
-                </ScrollView>
+                </LinearLayout>
+            </ScrollView>
 
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="65dp"
 
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/bg_white_roundstroke"
+                android:background="@drawable/bg_roundstroke"
                 android:onClick="delete"
-                android:text="delete disliked"
+                android:text="@string/disliked"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/ic_trashcan"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/light_brown"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
