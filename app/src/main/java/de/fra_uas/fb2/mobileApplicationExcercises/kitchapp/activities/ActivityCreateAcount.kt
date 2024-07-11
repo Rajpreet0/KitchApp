@@ -62,7 +62,9 @@ class ActivityCreateAcount : AppCompatActivity() {
             return
         }
 
-        val intent = Intent(this, ActivityHome::class.java)
+        val intent = Intent(this, ActivityLogin::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 withContext(Dispatchers.Main) {
@@ -73,6 +75,7 @@ class ActivityCreateAcount : AppCompatActivity() {
                     }
                     withContext(Dispatchers.Main) {
                         loadingDialog.dismiss()
+                        Toast.makeText(applicationContext, "Successfully registered! Please login", Toast.LENGTH_SHORT).show()
                         Log.d("Data from Register: ", response.toString())
                         startActivity(intent)
                         finish()
