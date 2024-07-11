@@ -30,7 +30,6 @@ class ActivityHome : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var tvGreeting: TextView
     private lateinit var btnSuggestions1: AppCompatButton
-    private lateinit var btnSuggestions2: AppCompatButton
     private lateinit var progessCircular: ProgressBar
 
     private var response: String = ""
@@ -52,11 +51,9 @@ class ActivityHome : AppCompatActivity() {
         sessionManager = SessionManager(this)
         tvGreeting = findViewById(R.id.tvGreeting);
         btnSuggestions1 = findViewById(R.id.btnSuggestions1);
-        btnSuggestions2 = findViewById(R.id.btnSuggestions2)
         progessCircular = findViewById(R.id.progessCircular);
 
         btnSuggestions1.visibility = View.GONE
-        btnSuggestions2.visibility = View.GONE
 
         tvGreeting.text = "Hi, ${sessionManager.getUsername()}"
 
@@ -97,12 +94,6 @@ class ActivityHome : AppCompatActivity() {
                              btnSuggestions1.visibility = View.VISIBLE
                              progessCircular.visibility = View.GONE
 
-                             if (recipesArray.length() >= 2) {
-                                 val secondRecipe = recipesArray.getJSONObject(1).getJSONArray("recipes").getJSONObject(0)
-                                 val secondRecipeTitle = secondRecipe.getString("name")
-                                 btnSuggestions2.setText(secondRecipeTitle)
-                                 btnSuggestions2.visibility = View.VISIBLE
-                             }
 
                          } else {
                              Log.d("Recipes: ", "Recipes key is not a JSONArray or does not exist")
@@ -117,34 +108,21 @@ class ActivityHome : AppCompatActivity() {
                  }
              } catch (e: IOException) {
                  Log.d("SERVER ERROR", "${e}")
-                 withContext(Dispatchers.Main) {
-                     Toast.makeText(
-                         applicationContext,
-                         "SERVER ERROR: Prompt Error",
-                         Toast.LENGTH_SHORT
-                     ).show()
-                 }
              }
          }
     }
 
-    private fun changeTwoSugesstions(name: String) {
+
+    fun suggestionBtnOne(view: View) {
         val intent: Intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
             putExtra("response", response)
-            putExtra("name", name)
+            putExtra("name", btnSuggestions1.text.toString())
             putExtra("portion", portion)
         }
         startActivity(intent)
         finish()
     }
 
-    fun suggestionBtnOne(view: View) {
-        changeTwoSugesstions(btnSuggestions1.text.toString())
-    }
-
-    fun suggestionBtnTwo(view: View) {
-        changeTwoSugesstions(btnSuggestions2.text.toString())
-    }
 
     fun createRecipeButton(view: View){
         val intent = Intent(this, ActivityExcludeIngredients::class.java)
