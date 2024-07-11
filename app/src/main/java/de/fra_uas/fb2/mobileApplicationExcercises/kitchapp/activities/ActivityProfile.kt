@@ -38,15 +38,19 @@ class ActivityProfile : AppCompatActivity() {
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText
     private lateinit var icSave: ImageView
+    private lateinit var icEdit: ImageView
     private lateinit var containerIngr: LinearLayout
     private lateinit var spLanguage: Spinner
     private lateinit var loadingDialog: LoadingDialogFragment
 
-    private  val networkHelper = NetworkHelper()
+    private val networkHelper = NetworkHelper()
     private lateinit var sessionManager: SessionManager
 
     // Tracks whether the profile is being edited or not
     private var isEditing = false
+
+    // Flag to indicate if the spinner is being initialized
+    private var isSpinnerInitialized = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +60,7 @@ class ActivityProfile : AppCompatActivity() {
         etName = findViewById(R.id.etName)
         etEmail = findViewById(R.id.etEmail)
         icSave = findViewById(R.id.iconSave)
+        icEdit = findViewById(R.id.iconEdit)
         containerIngr = findViewById(R.id.containerIngredients)
         spLanguage = findViewById(R.id.spLanguage)
 
@@ -75,20 +80,20 @@ class ActivityProfile : AppCompatActivity() {
         // Update the session with the selected language when user chooses a different language
         spLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                val selectedLanguage = parent.getItemAtPosition(position).toString()
-                sessionManager.setLanguage(selectedLanguage)
-                Log.d("SESSION UPDATE LANGUAGE", "$selectedLanguage selected")
-                Toast.makeText(this@ActivityProfile, "Language updated", Toast.LENGTH_SHORT).show()
+                if (isSpinnerInitialized) {
+                    val selectedLanguage = parent.getItemAtPosition(position).toString()
+                    sessionManager.setLanguage(selectedLanguage)
+                    Log.d("SESSION UPDATE LANGUAGE", "$selectedLanguage selected")
+                    Toast.makeText(this@ActivityProfile, "Language updated", Toast.LENGTH_SHORT).show()
+                } else {
+                    isSpinnerInitialized = true
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Do nothing
             }
         }
-
-        // Set the selected value for the spinner to the first item = English
-        spLanguage.setSelection(0)
-        Log.d("SPINNER LANGUAGE", "First item selected")
     }
 
     // Function to setup the spinner with provided parameters
@@ -158,6 +163,7 @@ class ActivityProfile : AppCompatActivity() {
         // Enable or disable EditTexts based on the editing state
         setEditTextsEnabled(isEditing)
 
+
         // Show or hide the save icon based on the editing state
         icSave.visibility = if (isEditing) View.VISIBLE else View.GONE
 
@@ -201,6 +207,8 @@ class ActivityProfile : AppCompatActivity() {
         etName.isEnabled = enabled
         etName.isFocusable = enabled
         etName.isFocusableInTouchMode = enabled
+
+        icEdit.isClickable = !enabled
     }
 
     // Function to handle the add ingredient button click
