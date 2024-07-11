@@ -69,6 +69,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             recipeTime.text = recipeNameTime.split(" - ")[1].trim()
             recipePortion.text = portion
             recipeText.text = ingredients
+
         }
 
 
