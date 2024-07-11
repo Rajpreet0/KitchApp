@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.helpers.ValidationUtil
 import org.json.JSONObject
 import java.io.IOException
-
+//BEGIN_Raj
 class ActivityLogin : AppCompatActivity() {
 
     private  val networkHelper = NetworkHelper()
@@ -55,14 +55,6 @@ class ActivityLogin : AppCompatActivity() {
         val intent = Intent(this, ActivityCreateAcount::class.java)
         startActivity(intent)
     }
-
-    /*
-    *  Two Users are in the DB here is the Login Data
-    *
-    *   email: test2@example.com
-    *   password: password123
-    *
-    * */
 
     fun loginButton(view: View){
 
@@ -109,3 +101,4 @@ class ActivityLogin : AppCompatActivity() {
         finish()
     }
 }
+//END_Raj

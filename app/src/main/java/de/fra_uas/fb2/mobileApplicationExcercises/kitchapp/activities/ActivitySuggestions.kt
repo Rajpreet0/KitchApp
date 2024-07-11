@@ -29,7 +29,7 @@ import kotlinx.coroutines.withContext
 import okio.IOException
 import org.w3c.dom.Text
 import kotlin.properties.Delegates
-
+//BEGIN_Ron
 class ActivitySuggestions : AppCompatActivity() {
     private val networkHelper = NetworkHelper()
     private lateinit var loadingDialog: LoadingDialogFragment
@@ -75,7 +75,8 @@ class ActivitySuggestions : AppCompatActivity() {
         recipeList.putAll(getMap(this))
         loadingDialog = LoadingDialogFragment()
 
-
+        //END_Ron
+        //BEGIN_Raj
         // Parse the JSON response
         try {
             val jsonResponse = JSONObject(response)
@@ -101,7 +102,8 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
     }
-
+    //END_Raj
+    //BEGIN_Ron
     fun generateButton(view: View) {
         container.removeAllViews()
         CoroutineScope(Dispatchers.Main).launch {
@@ -184,8 +186,8 @@ class ActivitySuggestions : AppCompatActivity() {
             mutableMapOf()
         }
     }
-
-
+    //END_Ron
+    //BEGIN_Daria
     private fun addRow(name: String, description: String, time: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
@@ -253,7 +255,8 @@ class ActivitySuggestions : AppCompatActivity() {
             choosenRecipe = name
         }
     }
-
+    //END_Daria
+    //BEGIN_Ron
     private fun saveRecipe(name: String) {
         val jsonResponse = JSONObject(response)
         val recipesArray = jsonResponse.getJSONArray("recipes")
@@ -325,5 +328,6 @@ class ActivitySuggestions : AppCompatActivity() {
     }
 
 }
+//END_Ron
 
 
