@@ -4,13 +4,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -34,10 +39,13 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var time: Spinner
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
-    private lateinit var etWithout: EditText
-    private lateinit var etSpecials: EditText
     private lateinit var cbSurprise: CheckBox
     private var supriseMe = false
+    private lateinit var containerWithout: LinearLayout
+    private lateinit var containerSpecials: LinearLayout
+    private lateinit var withoutList: MutableList<String>
+    private lateinit var specialsList: MutableList<String>
+
 
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
@@ -55,12 +63,19 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         loadingDialog = LoadingDialogFragment()
 
-        portion = findViewById<Spinner>(R.id.spPortions);
-        category = findViewById<Spinner>(R.id.spCategory);
-        time = findViewById<Spinner>(R.id.spTimerequired);
-        complexity = findViewById<Spinner>(R.id.spComplexity);
-        nationality = findViewById<Spinner>(R.id.spNationality);
         cbSurprise = findViewById<CheckBox>(R.id.cbSurprise);
+        portion = findViewById<Spinner>(R.id.spPortions)
+        category = findViewById<Spinner>(R.id.spCategory)
+        time = findViewById<Spinner>(R.id.spTimerequired)
+        complexity = findViewById<Spinner>(R.id.spComplexity)
+        nationality = findViewById<Spinner>(R.id.spNationality)
+        containerWithout = findViewById(R.id.containerWithout)
+        containerSpecials = findViewById(R.id.containerSpecials)
+
+
+        withoutList = mutableListOf() // TODO: get from storagetype
+        specialsList = mutableListOf() // TODO: get from storagetype
+
 
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
@@ -80,6 +95,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
             R.layout.spinner_items_preferences
         )
 
+
         cbSurprise.isChecked = false
 
         cbSurprise.setOnCheckedChangeListener{_, isChecked ->
@@ -90,10 +106,6 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 supriseMe = false
             }
         }
-
-        etSpecials = findViewById(R.id.etSpecials)
-        etWithout = findViewById(R.id.etWithout)
-
 
     }
 
@@ -113,6 +125,84 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         // Apply the adapter to the spinner
         spinner.adapter = adapter
+    }
+
+    fun addButton(view: View) {
+        if (view.id == R.id.btnWithout) {
+            // POPUP
+            dialogBuilder("Add Ingredient to Exclude", containerWithout, list = withoutList)
+
+        } else if (view.id == R.id.btnSpecials) {
+            // POPUP
+            dialogBuilder("Add Special Meal", containerSpecials, list = specialsList)
+        }
+    }
+
+    fun dialogBuilder (title: String, container: LinearLayout, list: MutableList<String>) {
+        try {
+            // Inflate the custom layout for the dialog
+            val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
+            val ingredientText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
+
+            // Create and show the dialog for adding an ingredient
+            AlertDialog.Builder(this).apply {
+                setTitle(title)
+                setView(dialogView)
+                setPositiveButton("Add") { dialog, _ ->
+                    val inputIngredient = ingredientText?.text?.toString()?.trim() ?: ""
+
+                    if (inputIngredient.isEmpty()) {
+                        // Show a message if the input is empty
+                        Toast.makeText(
+                            this@ActivityRecipePreferences,
+                            "Please fill the field",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        // Add the ingredient to the view
+                        addIngredientToView(inputIngredient, container, list)
+                        list += inputIngredient
+                        // TODO: Add ingredient to exclude to database
+                    }
+                }
+                setNegativeButton("Cancel") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                create().show()
+            }
+        } catch (e: Exception) {
+            // Show an error message in case of an exception
+            Toast.makeText(this, "An error occurred. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun addIngredientToView(ingredient: String, container: LinearLayout, list: MutableList<String>) {
+        try {
+            // Inflate the custom layout for the ingredient row
+            val inflater = LayoutInflater.from(this)
+            val rowView = inflater.inflate(R.layout.ingredient_layout_preferences, container, false)
+
+            // Set the ingredient name
+            val tvIngredient = rowView.findViewById<TextView>(R.id.tvIngredientName)
+            tvIngredient.text = ingredient
+
+            // Handle the remove button click
+            val icRemove = rowView.findViewById<ImageView>(R.id.icRemove)
+            icRemove.setOnClickListener {
+                container.removeView(rowView)
+                // TODO: Remove ingredient from LIST
+                list.remove(ingredient)
+            }
+
+            // Add the row to the container
+            container.addView(rowView)
+
+            // Show a confirmation message
+            Toast.makeText(this, "Ingredient added: $ingredient", Toast.LENGTH_SHORT).show()
+        } catch (e: Exception) {
+            // Show an error message in case of an exception
+            Toast.makeText(this, "Error adding ingredient. Please try again.", Toast.LENGTH_SHORT).show()
+        }
     }
 
 
@@ -186,8 +276,24 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
-                val withoutIngredients = etWithout.text.toString()
-                val specialIngredients = etSpecials.text.toString()
+                var without = StringBuilder()
+
+                withoutList.forEach {
+                    without.append(it + ", ")
+                }
+
+                val withoutString = without.toString()
+
+                var specials = StringBuilder()
+
+                specialsList.forEach {
+                    specials.append(it + ", ")
+                }
+
+                val specialString = specials.toString()
+
+
+
                 val response =  withContext(Dispatchers.IO) {
                     networkHelper.suggestRecipe(
                          portionTxt,
@@ -196,9 +302,9 @@ class ActivityRecipePreferences : AppCompatActivity() {
                          complexityTxt,
                          nationalityTxt,
                          ingredientString.toString(),
-                         withoutIngredients,
-                         specialIngredients,
-                         supriseMe
+                         withoutString,
+                         specialString,
+                         supriseMe,
                     )
                 }
 
@@ -213,8 +319,6 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("complexity", complexityTxt)
                         putExtra("nationality", nationalityTxt)
                         putExtra("ingredientString", ingredientString.toString())
-                        putExtra("withoutIngredients", withoutIngredients)
-                        putExtra("specialIngredients", specialIngredients)
                         putExtra("supriseMe", supriseMe)
                     }
                     startActivity(intent)
@@ -233,3 +337,10 @@ class ActivityRecipePreferences : AppCompatActivity() {
         }
     }
 }
+
+// ADD:
+//            Log.d("EXCLUDE", it)
+//
+//
+//
+//        }

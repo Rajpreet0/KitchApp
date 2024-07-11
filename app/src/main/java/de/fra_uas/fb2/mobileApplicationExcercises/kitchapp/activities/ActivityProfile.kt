@@ -1,5 +1,6 @@
 package de.fra_uas.fb2.mobileApplicationExcercises.kitchapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityGrocery
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityHome
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.activities.ActivityLogin
@@ -26,7 +29,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 import java.io.IOException
 
 
@@ -39,7 +41,7 @@ class ActivityProfile : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var icSave: ImageView
     private lateinit var icEdit: ImageView
-    private lateinit var containerIngr: LinearLayout
+    private lateinit var containerIngredients: LinearLayout
     private lateinit var spLanguage: Spinner
     private lateinit var loadingDialog: LoadingDialogFragment
 
@@ -48,6 +50,8 @@ class ActivityProfile : AppCompatActivity() {
 
     // Tracks whether the profile is being edited or not
     private var isEditing = false
+
+    private val excludedIngredients = mutableListOf<String>()
 
     // Flag to indicate if the spinner is being initialized
     private var isSpinnerInitialized = false
@@ -61,7 +65,7 @@ class ActivityProfile : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmail)
         icSave = findViewById(R.id.iconSave)
         icEdit = findViewById(R.id.iconEdit)
-        containerIngr = findViewById(R.id.containerIngredients)
+        containerIngredients = findViewById(R.id.containerIngredients)
         spLanguage = findViewById(R.id.spLanguage)
 
         sessionManager = SessionManager(this)
@@ -72,10 +76,15 @@ class ActivityProfile : AppCompatActivity() {
         // Set initial state of EditTexts to be disabled
         setEditTextsEnabled(false)
 
+        excludedIngredients.addAll(getMap(this))
         // Setup the language selection spinner
         setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
 
         loadingDialog = LoadingDialogFragment()
+
+        for (ingredient in excludedIngredients) {
+            addIngredientToView(ingredient)
+        }
 
         // Update the session with the selected language when user chooses a different language
         spLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -235,7 +244,9 @@ class ActivityProfile : AppCompatActivity() {
                     } else {
                         // Add the ingredient to the view
                         addIngredientToView(inputIngredient)
-                        // TODO: Add ingredient to exclude to database
+                        excludedIngredients.add(inputIngredient)
+                        saveIngredients(this@ActivityProfile, excludedIngredients)
+                        dialog.dismiss()
                     }
                 }
                 setNegativeButton("Cancel") { dialog, _ ->
@@ -249,10 +260,26 @@ class ActivityProfile : AppCompatActivity() {
         }
     }
 
+    private fun saveIngredients(context: Context, ingredients: List<String>) {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = Gson().toJson(ingredients)
+        sharedPreferences.edit().putString("excludedIngredients", jsonString).apply()
+    }
+
+    private fun getMap(context: Context): MutableList<String> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("excludedIngredients", "")
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableList<String>>() {}.type)
+        } else {
+            mutableListOf()
+        }
+    }
+
     // Function to update the visibility of remove buttons for ingredients
     private fun updateRemoveButtonsVisibility() {
-        for (i in 0 until containerIngr.childCount) {
-            val childView = containerIngr.getChildAt(i)
+        for (i in 0 until containerIngredients.childCount) {
+            val childView = containerIngredients.getChildAt(i)
             val icRemove = childView.findViewById<ImageView>(R.id.icRemove)
             icRemove.visibility = if (isEditing) View.VISIBLE else View.GONE
         }
@@ -263,7 +290,7 @@ class ActivityProfile : AppCompatActivity() {
         try {
             // Inflate the custom layout for the ingredient row
             val inflater = LayoutInflater.from(this)
-            val rowView = inflater.inflate(R.layout.profile_ingredient_layout, containerIngr, false)
+            val rowView = inflater.inflate(R.layout.profile_ingredient_layout, containerIngredients, false)
 
             // Set the ingredient name
             val tvIngredient = rowView.findViewById<TextView>(R.id.tvIngredientName)
@@ -272,15 +299,16 @@ class ActivityProfile : AppCompatActivity() {
             // Handle the remove button click
             val icRemove = rowView.findViewById<ImageView>(R.id.icRemove)
             icRemove.setOnClickListener {
-                containerIngr.removeView(rowView)
+                containerIngredients.removeView(rowView)
                 // TODO: Remove ingredient from database
+                excludedIngredients.remove(ingredient)
+                saveIngredients(this, excludedIngredients)
             }
 
             // Add the row to the container
-            containerIngr.addView(rowView)
+            containerIngredients.addView(rowView)
 
             // Show a confirmation message
-            Toast.makeText(this, "Ingredient added: $ingredient", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             // Show an error message in case of an exception
             Toast.makeText(this, "Error adding ingredient. Please try again.", Toast.LENGTH_SHORT).show()

@@ -23,7 +23,8 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
 
             <TextView
                 android:id="@+id/tvPreferances"
@@ -222,33 +223,6 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/etSpecials"
-            android:layout_width="105dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#FFFFFF"
-            android:fontFamily="@font/light"
-            android:hint="Ingredient"
-            android:inputType="text"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnSpecials"
-            app:layout_constraintTop_toBottomOf="@+id/etWithout"
-            tools:layout_constraintEnd_toStartOf="@id/btnAdd" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSpecials"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
-
         <Spinner
             android:id="@+id/spComplexity"
             android:layout_width="150dp"
@@ -286,20 +260,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/tvSpecials"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="65dp"
-            android:fontFamily="@font/light"
-            android:text="specials:"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvWithout" />
 
         <TextView
             android:id="@+id/tvCategory"
@@ -373,47 +333,110 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvComplexity" />
 
-        <TextView
-            android:id="@+id/tvWithout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="36dp"
-            android:text="without..."
-            android:fontFamily="@font/light"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNationality" />
+        <FrameLayout
+            android:id="@+id/flWithout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvNationality"
+            tools:layout_editor_absoluteX="20dp">
+            <!-- TextView -->
+            <TextView
+                android:id="@+id/tvWithout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/light"
+                android:text="without..."
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- AppCompatButton -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnWithout"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:onClick="addButton"
+                android:background="@drawable/bg_roundstroke"
+                android:drawableTop="@drawable/btn_plus_nostroke"
+                android:drawableTint="@color/white"/>
+
+            <!-- LinearLayout on the right side -->
+            <ScrollView
+                android:id="@+id/llWithout"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|top"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/bg_roundstroke">
+
+                <LinearLayout
+                    android:id="@+id/containerWithout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
 
 
-        <EditText
-            android:id="@+id/etWithout"
-            android:layout_width="105dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#FFFFFF"
-            android:fontFamily="@font/light"
-            android:hint="Ingredient"
-            android:inputType="text"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@id/btnAdd"
-            app:layout_constraintTop_toBottomOf="@+id/spNationality"
-            tools:layout_constraintEnd_toStartOf="@id/btnAdd" />
+            </ScrollView>
+        </FrameLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnAdd"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="25dp"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spNationality" />
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/flSpecials"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="25dp"
+            app:layout_constraintTop_toBottomOf="@+id/flWithout"
+            app:layout_constraintBottom_toTopOf="@+id/navigationBar">
+
+            <!-- TextView -->
+            <TextView
+                android:id="@+id/tvSpecials"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/light"
+                android:text="specials:"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="start"
+                android:layout_marginEnd="10dp" />
+
+            <!-- AppCompatButton -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSpecials"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:onClick="addButton"
+                android:background="@drawable/bg_roundstroke"
+                android:drawableTop="@drawable/btn_plus_nostroke"
+                android:drawableTint="@color/white"/>
+
+            <!-- ScrollView on the right side -->
+            <ScrollView
+                android:id="@+id/scrollSpecials"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|top"
+                android:background="@drawable/bg_roundstroke">
+
+                <LinearLayout
+                    android:id="@+id/containerSpecials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </ScrollView>
+        </FrameLayout>
+
+
+
 
         <Spinner
             android:id="@+id/spTimerequired"
@@ -439,6 +462,8 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spPortions" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

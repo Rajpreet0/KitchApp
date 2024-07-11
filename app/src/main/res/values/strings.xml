@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">KitchApp</string>
     <string name="icon_for_storage_type">Icon for Storage Type</string>
+    <string name="add_special_meal_requirements">Add Special Meal requirements</string>
+    <string name="special_dietary">Special Dietary</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="delete_account">Delete account</string>
+    <string name="disliked">disliked</string>
+    <string name="recipes">Recipes</string>
 
     <string-array name="languages">
         <item>English</item>

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/regular"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/pastel_yellow"
             android:textSize="42sp"
             android:textStyle="bold"
@@ -141,13 +141,13 @@
         android:dropDownHeight="wrap_content"
 
         android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/tvExcludeIngr"
+        app:layout_constraintBottom_toTopOf="@+id/tvSpecialsTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
-        android:id="@+id/tvExcludeIngr"
+        android:id="@+id/tvSpecialsTitle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"
@@ -155,7 +155,7 @@
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/regular"
         android:gravity="center"
-        android:text="Excluded Ingredients"
+        android:text="@string/special_dietary"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/llAddExcl"
@@ -187,12 +187,12 @@
             app:srcCompat="@drawable/ic_add_yellow_rounded" />
 
         <TextView
-            android:id="@+id/addExclText"
+            android:id="@+id/tvAddMeal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/regular"
-            android:text="Add an Ingredient to exclude"
+            android:text="@string/add_special_meal_requirements"
             android:textColor="@color/pastel_yellow"
             android:textSize="20sp" />
     </LinearLayout>
@@ -267,7 +267,7 @@
                 android:layout_marginStart="12dp"
                 android:fontFamily="@font/regular"
                 android:onClick="logoutButton"
-                android:text="Log out"
+                android:text="@string/log_out"
                 android:textColor="@color/light_brown"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -299,7 +299,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/regular"
                 android:onClick="deleteAccountButton"
-                android:text="Delete account"
+                android:text="@string/delete_account"
                 android:textColor="@color/red"
                 android:textSize="24sp"
                 android:textStyle="bold" />
