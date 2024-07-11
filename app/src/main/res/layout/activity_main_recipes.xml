@@ -125,10 +125,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_heart_unfilled"
+            android:drawableTop="@drawable/ic_heart_selected"
             android:onClick="recipesButton"
             android:text="Recipes"
-            android:textColor="#212928"
+            android:textColor="@color/dark_red"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 
