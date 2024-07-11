@@ -77,7 +77,8 @@ class ActivityHome : AppCompatActivity() {
                         "",
                         "",
                         "",
-                        true
+                        true,
+                        (0..9).random()
                     )
                 }
 

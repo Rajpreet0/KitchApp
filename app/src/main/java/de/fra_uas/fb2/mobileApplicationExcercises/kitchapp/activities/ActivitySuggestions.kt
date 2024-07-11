@@ -119,7 +119,8 @@ class ActivitySuggestions : AppCompatActivity() {
                         ingredientString.toString(),
                         withoutIngredients,
                         specialIngredients,
-                        supriseMe
+                        supriseMe,
+                        0
                     )
                 }
 

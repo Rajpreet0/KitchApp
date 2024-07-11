@@ -339,6 +339,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                          withoutString,
                          specialString,
                          supriseMe,
+                        0
                     )
                 }
 
