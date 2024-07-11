@@ -183,17 +183,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
                 // Change text color to red
                 textView.setTextColor(Color.RED)
                 // Remove the ingredient from the map
-                if (ingredientList.containsKey(textView.text)) {
-                    ingredientList.remove(textView.text)
-                    saveMap(this, ingredientList)
-                }
             } else {
                     // Change text color back to white
                     textView.setTextColor(Color.WHITE)
-                    val ingredient = textView.text.toString()
-                    ingredientList[ingredient] = 1
-                    saveMap(this, ingredientList)
-
             }
         }
 
@@ -226,9 +218,27 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
+    private fun checkExcluded() {
+        container.children.forEach { view ->
+            val textView = view.findViewById<TextView>(R.id.tvIngredientName)
+            val name =textView.text.toString()
+            if (textView.currentTextColor == Color.RED) {
+                var safeKey = ""
+                for ((key, value) in ingredientList) {
+                    if (key.split("~")[0] == name) {
+                        safeKey = key
+                    }
+                }
+                if (ingredientList.containsKey(safeKey)) {
+                    ingredientList.remove(safeKey)
+                    saveMap(this, ingredientList)
+                }
+            }
+        }
+    }
     fun nextButton(view: View) {
         val intent = Intent(this, ActivityRecipePreferences::class.java)
+        checkExcluded()
         startActivity(intent)
     }
 }
