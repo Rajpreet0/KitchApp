@@ -80,10 +80,17 @@ class ActivityGrocery : AppCompatActivity() {
                 val rowView = container.getChildAt(i)
                 val ingredient = rowView.findViewById<EditText>(R.id.tvIngredientName).text.toString()
                 val amount = rowView.findViewById<EditText>(R.id.etAmount).text.toString()
-                val unit = rowView.findViewById<Spinner>(R.id.spUnit).getSelectedItem().toString()
-                ingredientList["$ingredient~$unit"]=amount
-                saveMap(this, ingredientList)
+                val spinner = rowView.findViewById<Spinner>(R.id.spUnit)
+                val unit = if (spinner.selectedItemPosition > 0) {
+                    spinner.selectedItem.toString()
+                } else {
+                    "" // or some default value
+                }
+                if (ingredient.isNotEmpty() && amount.isNotEmpty() && unit.isNotEmpty()) {
+                    ingredientList["$ingredient~$unit"] = amount
+                }
             }
+            saveMap(this, ingredientList)
         }
     }
 
@@ -114,13 +121,12 @@ class ActivityGrocery : AppCompatActivity() {
     }
 
     private fun checkUnit(unit: String): Int {
-        if(unit=="pc"){
-            return 0
-        }else if(unit=="gr"){
-            return 1
-        }else if(unit=="ml") {
-            return 2
-        }else return 3
+        return when (unit) {
+            "pc" -> 0
+            "gr" -> 1
+            "ml" -> 2
+            else -> 3
+        }
     }
 
     // Add a row to the ingredient list UI
@@ -136,11 +142,16 @@ class ActivityGrocery : AppCompatActivity() {
 
         // Set values
         tvName.setText(nameAmountIngredient.split("~")[0].trim())
-        val selection = checkUnit(nameAmountIngredient.split("~")[1].trim())
+        val unit = nameAmountIngredient.split("~")[1].trim()
+        val selection = checkUnit(unit)
+
         etAmount.setText(amount)
+
 
         // Setup spinner
         setupSpinner(spUnit, R.array.units, R.layout.spinner_items_unit, selection)
+        // Set the correct selection after setup
+        spUnit.setSelection(selection + 1) // +1 because we added a hint item
 
         // Set up listeners
         cbDelete.setOnCheckedChangeListener { _, isChecked ->
@@ -173,7 +184,8 @@ class ActivityGrocery : AppCompatActivity() {
 
     // Setup spinner with custom adapter
     private fun setupSpinner(spinner: Spinner, arrayResourceId: Int, layoutResourceId: Int, selection: Int) {
-        val adapter = ArrayAdapter.createFromResource(this, arrayResourceId, layoutResourceId)
+        val items = mutableListOf("Unit") + resources.getStringArray(arrayResourceId).toList()
+        val adapter = ArrayAdapter(this, layoutResourceId, items)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
         spinner.setSelection(selection)
@@ -199,7 +211,7 @@ class ActivityGrocery : AppCompatActivity() {
 
     // Handle add button click
     fun addButton(view: View) {
-        showInputDialog("add")
+        showInputDialog()
     }
 
     // Handle edit button click
@@ -213,7 +225,7 @@ class ActivityGrocery : AppCompatActivity() {
     fun deleteButton(view: View) {
         if (markedForDeletion.isNotEmpty()) {
             AlertDialog.Builder(this)
-                .setTitle("Delete selected ingredients?")
+                .setTitle("Delete ingredients")
                 .setMessage("Are you sure you want to delete the selected ingredients?")
                 .setPositiveButton("Delete") { _, _ ->
                     // Remove ingredients from list and UI+
@@ -234,13 +246,14 @@ class ActivityGrocery : AppCompatActivity() {
 
 
     // Show input dialog for adding new ingredients
-    private fun showInputDialog(method: String) {
+    private fun showInputDialog() {
         val dialogView = layoutInflater.inflate(R.layout.ingredient_dialog_add, null)
         val nameIngredient = dialogView.findViewById<EditText>(R.id.tvIngredientName)
         val amountNumber = dialogView.findViewById<EditText>(R.id.etAmount)
         val spUnit = dialogView.findViewById<Spinner>(R.id.spUnit)
 
-        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_profile, 0)
+        // Setup the spinner
+        setupSpinner(spUnit, R.array.units, R.layout.spinner_items_unit, 0)
 
         AlertDialog.Builder(this)
             .setView(dialogView)
@@ -249,9 +262,8 @@ class ActivityGrocery : AppCompatActivity() {
                 val inputIngredient = nameIngredient.text.toString()
                 val inputAmountText = amountNumber.text.toString()
                 val selectedUnit = spUnit.selectedItem.toString()
-                // TODO: SELECTED UNIT MUST BE STORED TO BE DISPLAYED ON LINEAR LAYOUT / CONTAINER
 
-                if (inputIngredient.isNotEmpty() && inputAmountText.isNotEmpty()) {
+                if (inputIngredient.isNotEmpty() && inputAmountText.isNotEmpty() && selectedUnit != "Unit") {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null && inputAmount > 0) {
                         ingredientList["$inputIngredient~$selectedUnit"] = inputAmountText
@@ -267,7 +279,6 @@ class ActivityGrocery : AppCompatActivity() {
             .setNegativeButton("Cancel", null)
             .show()
     }
-
     // Function to handle the home button click
     fun homeButton(view: View) {
         // Start ActivityHome without animation
