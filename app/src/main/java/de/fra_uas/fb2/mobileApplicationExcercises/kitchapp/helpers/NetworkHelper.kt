@@ -162,7 +162,7 @@ class NetworkHelper {
         }
     }
 
-    fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String): JsonObject {
+    fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String, supriseMe: Boolean): JsonObject {
         val json = JsonObject().apply {
             addProperty("portions", portions);
             addProperty("category", category);
@@ -172,6 +172,7 @@ class NetworkHelper {
             addProperty("ingredients", ingredients);
             addProperty("withoutIngredients", withoutIngredients);
             addProperty("specials", special);
+            addProperty("supriseMe", supriseMe)
         }.toString()
 
         val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()

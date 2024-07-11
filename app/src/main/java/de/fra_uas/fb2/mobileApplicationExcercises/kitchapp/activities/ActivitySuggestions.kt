@@ -49,6 +49,7 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var specialIngredients: String
     private lateinit var newResponse: JsonObject
     private lateinit var frameLayout: FrameLayout
+    private var supriseMe: Boolean = false
     private val recipeList: MutableMap<String, String> = mutableMapOf()
 
     private var selectedView: View? = null
@@ -70,6 +71,7 @@ class ActivitySuggestions : AppCompatActivity() {
         ingredientString = intent.getStringExtra("ingredientString") ?: ""
         withoutIngredients = intent.getStringExtra("withoutIngredients") ?: ""
         specialIngredients = intent.getStringExtra("specialIngredients") ?: ""
+        supriseMe = intent.getBooleanExtra("supriseMe", false)
         recipeList.putAll(getMap(this))
         loadingDialog = LoadingDialogFragment()
 
@@ -116,7 +118,8 @@ class ActivitySuggestions : AppCompatActivity() {
                         nationalityTxt,
                         ingredientString.toString(),
                         withoutIngredients,
-                        specialIngredients
+                        specialIngredients,
+                        supriseMe
                     )
                 }
 

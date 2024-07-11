@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -35,6 +36,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var nationality: Spinner
     private lateinit var etWithout: EditText
     private lateinit var etSpecials: EditText
+    private lateinit var cbSurprise: CheckBox
+    private var supriseMe = false
 
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
@@ -57,6 +60,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
         time = findViewById<Spinner>(R.id.spTimerequired);
         complexity = findViewById<Spinner>(R.id.spComplexity);
         nationality = findViewById<Spinner>(R.id.spNationality);
+        cbSurprise = findViewById<CheckBox>(R.id.cbSurprise);
 
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
         setupSpinner(R.id.spCategory, R.array.category_array, R.layout.spinner_items_preferences)
@@ -75,6 +79,17 @@ class ActivityRecipePreferences : AppCompatActivity() {
             R.array.nationality_array,
             R.layout.spinner_items_preferences
         )
+
+        cbSurprise.isChecked = false
+
+        cbSurprise.setOnCheckedChangeListener{_, isChecked ->
+            if(isChecked){
+                supriseMe = true
+                Toast.makeText(this, "Everything except Ingredients and Portions will be ignored", Toast.LENGTH_LONG).show()
+            } else {
+                supriseMe = false
+            }
+        }
 
         etSpecials = findViewById(R.id.etSpecials)
         etWithout = findViewById(R.id.etWithout)
@@ -182,7 +197,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                          nationalityTxt,
                          ingredientString.toString(),
                          withoutIngredients,
-                         specialIngredients
+                         specialIngredients,
+                         supriseMe
                     )
                 }
 
@@ -199,6 +215,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("ingredientString", ingredientString.toString())
                         putExtra("withoutIngredients", withoutIngredients)
                         putExtra("specialIngredients", specialIngredients)
+                        putExtra("supriseMe", supriseMe)
                     }
                     startActivity(intent)
                 }
