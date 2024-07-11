@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isEmpty
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
@@ -41,6 +42,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var nationality: Spinner
     private lateinit var cbSurprise: CheckBox
     private var supriseMe = false
+    private lateinit var cbImport: CheckBox
     private lateinit var containerWithout: LinearLayout
     private lateinit var containerSpecials: LinearLayout
     private lateinit var withoutList: MutableList<String>
@@ -63,6 +65,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         loadingDialog = LoadingDialogFragment()
 
+        cbImport = findViewById<CheckBox>(R.id.cbImport);
         cbSurprise = findViewById<CheckBox>(R.id.cbSurprise);
         portion = findViewById<Spinner>(R.id.spPortions)
         category = findViewById<Spinner>(R.id.spCategory)
@@ -107,6 +110,34 @@ class ActivityRecipePreferences : AppCompatActivity() {
             }
         }
 
+        cbImport.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val specialIngredients = getMap(this)
+                specialsList.clear()
+                for (ingredient in specialIngredients) {
+                    containerSpecials.removeAllViews()
+                    addIngredientToView(ingredient, containerSpecials, specialsList)
+                    specialsList.add(ingredient)
+                }
+                Toast.makeText(this, "Imported special preferences", Toast.LENGTH_LONG)
+                    .show()
+            }else{
+                containerSpecials.removeAllViews()
+                specialsList.clear()
+            }
+        }
+
+
+    }
+
+    private fun getMap(context: Context): MutableList<String> {
+        val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+        val jsonString = sharedPreferences.getString("specialPreferences", "")
+        return if (!jsonString.isNullOrEmpty()) {
+            Gson().fromJson(jsonString, object : TypeToken<MutableList<String>>() {}.type)
+        } else {
+            mutableListOf()
+        }
     }
 
     private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
@@ -192,13 +223,16 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 container.removeView(rowView)
                 // TODO: Remove ingredient from LIST
                 list.remove(ingredient)
+                if(container.isEmpty()){
+                    cbImport.isChecked = false
+                }
             }
 
             // Add the row to the container
             container.addView(rowView)
 
             // Show a confirmation message
-            Toast.makeText(this, "Ingredient added: $ingredient", Toast.LENGTH_SHORT).show()
+
         } catch (e: Exception) {
             // Show an error message in case of an exception
             Toast.makeText(this, "Error adding ingredient. Please try again.", Toast.LENGTH_SHORT).show()
