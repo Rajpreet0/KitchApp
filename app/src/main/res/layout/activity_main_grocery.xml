@@ -153,10 +153,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_list"
+            android:drawableTop="@drawable/ic_list_select"
             android:onClick="groceryButton"
             android:text="Grocery"
-            android:textColor="#212928"
+            android:textColor="@color/dark_red"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 

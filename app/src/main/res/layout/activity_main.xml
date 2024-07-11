@@ -215,10 +215,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_home"
+            android:drawableTop="@drawable/ic_home_select"
             android:onClick="homeButton"
             android:text="Home"
-            android:textColor="#212928"
+            android:textColor="@color/dark_red"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 
