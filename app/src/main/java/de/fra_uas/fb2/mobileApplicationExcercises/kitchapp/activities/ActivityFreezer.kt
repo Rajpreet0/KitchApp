@@ -246,9 +246,9 @@ class ActivityFreezer : AppCompatActivity() {
             .setView(dialogView)
             .setTitle("Add ingredient")
             .setPositiveButton("Add") { _, _ ->
-                val inputIngredient = nameIngredient.text.toString()
-                val inputAmountText = amountNumber.text.toString()
-                val selectedUnit = spUnit.selectedItem.toString()
+                val inputIngredient = nameIngredient.text.toString().trim()
+                val inputAmountText = amountNumber.text.toString().trim()
+                val selectedUnit = spUnit.selectedItem.toString().trim()
                 if (inputIngredient.isNotEmpty() && inputAmountText.isNotEmpty()) {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null && inputAmount > 0) {
