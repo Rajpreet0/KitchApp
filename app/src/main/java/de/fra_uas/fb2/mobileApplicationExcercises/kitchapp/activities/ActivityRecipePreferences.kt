@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -38,6 +39,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var time: Spinner
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
+    private lateinit var cbSurprise: CheckBox
+    private var supriseMe = false
     private lateinit var containerWithout: LinearLayout
     private lateinit var containerSpecials: LinearLayout
     private lateinit var withoutList: MutableList<String>
@@ -60,6 +63,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         loadingDialog = LoadingDialogFragment()
 
+        cbSurprise = findViewById<CheckBox>(R.id.cbSurprise);
         portion = findViewById<Spinner>(R.id.spPortions)
         category = findViewById<Spinner>(R.id.spCategory)
         time = findViewById<Spinner>(R.id.spTimerequired)
@@ -71,12 +75,6 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         withoutList = mutableListOf() // TODO: get from storagetype
         specialsList = mutableListOf() // TODO: get from storagetype
-
-
-
-
-
-
 
 
         setupSpinner(R.id.spPortions, R.array.portions_array, R.layout.spinner_items_preferences)
@@ -98,7 +96,16 @@ class ActivityRecipePreferences : AppCompatActivity() {
         )
 
 
+        cbSurprise.isChecked = false
 
+        cbSurprise.setOnCheckedChangeListener{_, isChecked ->
+            if(isChecked){
+                supriseMe = true
+                Toast.makeText(this, "Everything except Ingredients and Portions will be ignored", Toast.LENGTH_LONG).show()
+            } else {
+                supriseMe = false
+            }
+        }
 
     }
 
@@ -296,7 +303,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
                          nationalityTxt,
                          ingredientString.toString(),
                          withoutString,
-                         specialString
+                         specialString,
+                         supriseMe,
                     )
                 }
 
@@ -311,8 +319,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("complexity", complexityTxt)
                         putExtra("nationality", nationalityTxt)
                         putExtra("ingredientString", ingredientString.toString())
-                        putExtra("withoutIngredients", withoutString)
-                        putExtra("specialIngredients", specialString)
+                        putExtra("supriseMe", supriseMe)
                     }
                     startActivity(intent)
                 }
