@@ -28,6 +28,6 @@
         android:contentDescription="IconStorageType"
         android:layout_gravity="center"
         android:padding="8dp"
-        android:drawableTint="@color/white"/>
+        app:tint="@android:color/white"/>
 
 </LinearLayout>
