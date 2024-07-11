@@ -20,8 +20,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.ActivityProfile
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
+//BEGIN_Ron_Daria
+//Ron worked mainly on data storage + buttons and functionality
+//Daria worked mainly on dynamically generating UI and text + buttons
 
-// This activity handles the grocery list functionality of the KitchApp.
+// This activity handles the freezer list functionality of the KitchApp.
 // It allows users to:
 // - View a list of ingredients
 // - Add new ingredients
@@ -315,3 +318,4 @@ class ActivityFridge : AppCompatActivity() {
         startActivity(intent)
     }
 }
+//END_Ron_Daria
