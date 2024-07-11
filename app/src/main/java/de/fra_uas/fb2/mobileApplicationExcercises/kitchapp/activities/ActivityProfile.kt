@@ -317,37 +317,63 @@ class ActivityProfile : AppCompatActivity() {
 
 
     fun logoutButton(view: View) {
-        sessionManager.logout()
-        val intent = Intent(this, ActivityLogin::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
+        val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
+        infoText.visibility=View.GONE
+        AlertDialog.Builder(this).apply {
+            setTitle("Are you sure you want to logout?")
+            setView(dialogView)
+            setPositiveButton("Yes") { dialog, _ ->
+                sessionManager.logout()
+                val intent = Intent(this@ActivityProfile, ActivityLogin::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+            }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            create().show()
         }
-        startActivity(intent)
     }
 
     fun deleteAccountButton(view: View) {
-        val intent = Intent(this, ActivityLogin::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                withContext(Dispatchers.Main) {
-                    loadingDialog.show(supportFragmentManager, "loadingDialog")
+        val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
+        val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
+        infoText.visibility=View.GONE
+        AlertDialog.Builder(this).apply {
+            setTitle("Do you really want to delete your account?")
+            setView(dialogView)
+            setPositiveButton("Yes") { dialog, _ ->
+                val intent = Intent(this@ActivityProfile, ActivityLogin::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
-                val response = networkHelper.deleteUser(sessionManager.getUserEmail().toString())
-                withContext(Dispatchers.Main) {
-                    loadingDialog.dismiss()
-                    sessionManager.logout()
-                    Toast.makeText(applicationContext, "User Deleted", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        withContext(Dispatchers.Main) {
+                            loadingDialog.show(supportFragmentManager, "loadingDialog")
+                        }
+                        val response = networkHelper.deleteUser(sessionManager.getUserEmail().toString())
+                        withContext(Dispatchers.Main) {
+                            loadingDialog.dismiss()
+                            sessionManager.logout()
+                            Toast.makeText(applicationContext, "User Deleted", Toast.LENGTH_SHORT).show()
+                            startActivity(intent)
+                        }
+                    } catch (e: IOException) {
+                        withContext(Dispatchers.Main) {
+                            loadingDialog.dismiss()
+                            Log.d("SERVER ERROR", "Deleting User Failed - ${e}")
+                            Toast.makeText(applicationContext, "Deletion Failed", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
-            } catch (e: IOException) {
-                withContext(Dispatchers.Main) {
-                    loadingDialog.dismiss()
-                    Log.d("SERVER ERROR", "Deleting User Failed - ${e}")
-                    Toast.makeText(applicationContext, "Deletion Failed", Toast.LENGTH_SHORT).show()
-                }
+                startActivity(intent)
             }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            create().show()
         }
     }
 }
