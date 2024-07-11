@@ -41,7 +41,7 @@ class ActivityProfile : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var icSave: ImageView
     private lateinit var icEdit: ImageView
-    private lateinit var containerIngredients: LinearLayout
+    private lateinit var containerSpecials: LinearLayout
     private lateinit var spLanguage: Spinner
     private lateinit var loadingDialog: LoadingDialogFragment
 
@@ -51,7 +51,7 @@ class ActivityProfile : AppCompatActivity() {
     // Tracks whether the profile is being edited or not
     private var isEditing = false
 
-    private val excludedIngredients = mutableListOf<String>()
+    private val specialPreferences = mutableListOf<String>()
 
     // Flag to indicate if the spinner is being initialized
     private var isSpinnerInitialized = false
@@ -65,7 +65,7 @@ class ActivityProfile : AppCompatActivity() {
         etEmail = findViewById(R.id.etEmail)
         icSave = findViewById(R.id.iconSave)
         icEdit = findViewById(R.id.iconEdit)
-        containerIngredients = findViewById(R.id.containerIngredients)
+        containerSpecials = findViewById(R.id.containerSpecials)
         spLanguage = findViewById(R.id.spLanguage)
 
         sessionManager = SessionManager(this)
@@ -76,13 +76,13 @@ class ActivityProfile : AppCompatActivity() {
         // Set initial state of EditTexts to be disabled
         setEditTextsEnabled(false)
 
-        excludedIngredients.addAll(getMap(this))
+        specialPreferences.addAll(getMap(this))
         // Setup the language selection spinner
         setupSpinner(R.id.spLanguage, R.array.languages, R.layout.spinner_items_profile)
 
         loadingDialog = LoadingDialogFragment()
 
-        for (ingredient in excludedIngredients) {
+        for (ingredient in specialPreferences) {
             addIngredientToView(ingredient)
         }
 
@@ -244,8 +244,8 @@ class ActivityProfile : AppCompatActivity() {
                     } else {
                         // Add the ingredient to the view
                         addIngredientToView(inputIngredient)
-                        excludedIngredients.add(inputIngredient)
-                        saveIngredients(this@ActivityProfile, excludedIngredients)
+                        specialPreferences.add(inputIngredient)
+                        saveIngredients(this@ActivityProfile, specialPreferences)
                         dialog.dismiss()
                     }
                 }
@@ -260,15 +260,15 @@ class ActivityProfile : AppCompatActivity() {
         }
     }
 
-    private fun saveIngredients(context: Context, ingredients: List<String>) {
+    private fun saveIngredients(context: Context, specials: List<String>) {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
-        val jsonString = Gson().toJson(ingredients)
-        sharedPreferences.edit().putString("excludedIngredients", jsonString).apply()
+        val jsonString = Gson().toJson(specials)
+        sharedPreferences.edit().putString("specialPreferences", jsonString).apply()
     }
 
     private fun getMap(context: Context): MutableList<String> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
-        val jsonString = sharedPreferences.getString("excludedIngredients", "")
+        val jsonString = sharedPreferences.getString("specialPreferences", "")
         return if (!jsonString.isNullOrEmpty()) {
             Gson().fromJson(jsonString, object : TypeToken<MutableList<String>>() {}.type)
         } else {
@@ -278,8 +278,8 @@ class ActivityProfile : AppCompatActivity() {
 
     // Function to update the visibility of remove buttons for ingredients
     private fun updateRemoveButtonsVisibility() {
-        for (i in 0 until containerIngredients.childCount) {
-            val childView = containerIngredients.getChildAt(i)
+        for (i in 0 until containerSpecials.childCount) {
+            val childView = containerSpecials.getChildAt(i)
             val icRemove = childView.findViewById<ImageView>(R.id.icRemove)
             icRemove.visibility = if (isEditing) View.VISIBLE else View.GONE
         }
@@ -290,7 +290,7 @@ class ActivityProfile : AppCompatActivity() {
         try {
             // Inflate the custom layout for the ingredient row
             val inflater = LayoutInflater.from(this)
-            val rowView = inflater.inflate(R.layout.profile_ingredient_layout, containerIngredients, false)
+            val rowView = inflater.inflate(R.layout.profile_ingredient_layout, containerSpecials, false)
 
             // Set the ingredient name
             val tvIngredient = rowView.findViewById<TextView>(R.id.tvIngredientName)
@@ -299,14 +299,14 @@ class ActivityProfile : AppCompatActivity() {
             // Handle the remove button click
             val icRemove = rowView.findViewById<ImageView>(R.id.icRemove)
             icRemove.setOnClickListener {
-                containerIngredients.removeView(rowView)
+                containerSpecials.removeView(rowView)
                 // TODO: Remove ingredient from database
-                excludedIngredients.remove(ingredient)
-                saveIngredients(this, excludedIngredients)
+                specialPreferences.remove(ingredient)
+                saveIngredients(this, specialPreferences)
             }
 
             // Add the row to the container
-            containerIngredients.addView(rowView)
+            containerSpecials.addView(rowView)
 
             // Show a confirmation message
         } catch (e: Exception) {

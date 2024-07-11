@@ -172,7 +172,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/svExcludedIngredients"
+        app:layout_constraintBottom_toTopOf="@+id/svSpecialPreferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -201,7 +201,7 @@
 
     <!-- Produktliste -->
     <ScrollView
-        android:id="@+id/svExcludedIngredients"
+        android:id="@+id/svSpecialPreferences"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="20dp"
@@ -213,7 +213,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:id="@+id/containerIngredients"
+            android:id="@+id/containerSpecials"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
