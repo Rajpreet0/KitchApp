@@ -8,122 +8,7 @@
     android:background="@color/pastel_mint"
     tools:context=".activities.ActivityHome">
 
-    <TextView
-        android:id="@+id/tvFridge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Fridge"
-        android:textColor="@color/black"
-        android:textSize="48dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rahmen"
-        android:layout_width="360dp"
-        android:layout_height="500dp"
-        android:background="@drawable/bg_white_roundstroke"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459">
-
-        <!-- Produktliste -->
-
-        <ScrollView
-            android:id="@+id/svOptions"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/containerIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="vertical">
-
-
-            </LinearLayout>
-        </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAdd"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:background="@drawable/bg_lightbrown"
-        android:drawableBottom="@drawable/btn_plus_nostroke"
-        android:onClick="addButton"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="10dp"
-        android:stateListAnimator="@null"
-
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.79"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rahmen"
-        app:layout_constraintVertical_bias="0.148" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnDelete"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:background="@drawable/bg_lightbrown"
-        android:drawableStart="@drawable/ic_trashcan"
-        android:drawablePadding="0dp"
-        android:gravity="center"
-        android:onClick="deleteButton"
-        android:padding="15dp"
-        android:stateListAnimator="@null"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rahmen"
-        app:layout_constraintVertical_bias="0.148" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEdit"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:background="@drawable/bg_lightbrown"
-        android:drawableBottom="@drawable/ic_pen_unfilled"
-        android:onClick="editButton"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="10dp"
-        android:stateListAnimator="@null"
-        android:textAllCaps="false"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rahmen"
-        app:layout_constraintVertical_bias="0.148" />
+<!--Navigationsbar-->
 
     <LinearLayout
         android:id="@+id/navigationBar"
@@ -206,3 +91,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Jin Kim-->
