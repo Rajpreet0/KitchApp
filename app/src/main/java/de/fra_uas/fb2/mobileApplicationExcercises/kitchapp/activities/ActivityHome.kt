@@ -30,6 +30,7 @@ class ActivityHome : AppCompatActivity() {
     private lateinit var btnSuggestions1: AppCompatButton
     private lateinit var progessCircular: ProgressBar
 
+    private var error: Boolean = false
     private var response: String = ""
     private val portion: String = "1"
 
@@ -88,37 +89,59 @@ class ActivityHome : AppCompatActivity() {
                              val firstRecipe = recipesArray.getJSONObject(0).getJSONArray("recipes").getJSONObject(0)
                              val firstRecipeTitle = firstRecipe.getString("name")
 
-                             btnSuggestions1.setText(firstRecipeTitle)
+                             btnSuggestions1.text = firstRecipeTitle
                              btnSuggestions1.visibility = View.VISIBLE
                              progessCircular.visibility = View.GONE
 
 
                          } else {
                              Log.d("Recipes: ", "Recipes key is not a JSONArray or does not exist")
-                             progessCircular.visibility = View.GONE
-                             Toast.makeText(applicationContext, "Error loading suggestions", Toast.LENGTH_SHORT).show()
+                             withContext(Dispatchers.Main) {
+                                 progessCircular.visibility = View.GONE
+                                 btnSuggestions1.visibility = View.VISIBLE
+                                 btnSuggestions1.text = "Oops something went wrong"
+                             }
+                             error = true
                          }
                      } catch (e: Exception) {
                          Log.e("JSON Parsing Error", "Error parsing JSON response", e)
-                         progessCircular.visibility = View.GONE
-                         Toast.makeText(applicationContext, "Loading Suggenstions Failed", Toast.LENGTH_SHORT).show()
+                         withContext(Dispatchers.Main) {
+                             progessCircular.visibility = View.GONE
+                             btnSuggestions1.visibility = View.VISIBLE
+                             btnSuggestions1.text = "Oops something went wrong"
+                         }
+                         error = true
                      }
                  }
              } catch (e: IOException) {
                  Log.d("SERVER ERROR", "${e}")
+                 withContext(Dispatchers.Main) {
+                     progessCircular.visibility = View.GONE
+                     btnSuggestions1.visibility = View.VISIBLE
+                     btnSuggestions1.text = "Oops something went wrong"
+                 }
+                 error = true
+
              }
          }
     }
 
 
     fun suggestionBtnOne(view: View) {
-        val intent: Intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
-            putExtra("response", response)
-            putExtra("name", btnSuggestions1.text.toString())
-            putExtra("portion", portion)
+        if(error) {
+            generateSuggestions()
+            progessCircular.visibility = View.VISIBLE
+            btnSuggestions1.visibility = View.GONE
+            error = true
+        } else {
+            val intent: Intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
+                putExtra("response", response)
+                putExtra("name", btnSuggestions1.text.toString())
+                putExtra("portion", portion)
+            }
+            startActivity(intent)
+            finish()
         }
-        startActivity(intent)
-        finish()
     }
     // END: Raj
 
