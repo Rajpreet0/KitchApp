@@ -62,9 +62,15 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         instructions = recipeList[recipeNameTime]?.split("§")?.get(2)?.trim() ?: ""       //0 is the portion, 1 is the ingredients, 2 is the instructions
         ingredients = recipeList[recipeNameTime]?.split("§")?.get(1)?.trim() ?: ""
         portion = recipeList[recipeNameTime]?.split("§")?.get(0)?.trim() ?: ""
+        if (portions == "") {
+            portions = "1"
+            recipePortion.text = portions
+        }
         if(recipeNameTime!="") {
             recipeTime.text = recipeNameTime.split("§")[1].trim()
-            recipePortion.text = portion
+            if(portion!="") {
+                recipePortion.text = portion
+            }
             recipeText.text = ingredients
 
         }
@@ -87,9 +93,6 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     instructions = recipe.getString("instructions").replace("\"", "")
                     recipeText.text=ingredients
-                    if(portions==""){
-                        portions="1"
-                    }
                     recipePortion.text=portions
                     break
                 }
