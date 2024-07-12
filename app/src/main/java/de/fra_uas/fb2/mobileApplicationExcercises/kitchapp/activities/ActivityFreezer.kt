@@ -42,7 +42,7 @@ class ActivityFreezer : AppCompatActivity() {
     private var icSave: ImageView? = null
 
     // Data structures
-    private val ingredientList: MutableMap<String, String> = mutableMapOf()                         //has name and unit as key "name~unit" and amount as value
+    private val ingredientList: MutableMap<String, String> = mutableMapOf()                         //has name and unit as key "name§unit" and amount as value
     private val markedForDeletion = mutableSetOf<String>()
 
     // State variables
@@ -89,7 +89,7 @@ class ActivityFreezer : AppCompatActivity() {
                     "" // or some default value
                 }
                 if (ingredient.isNotEmpty() && amount.isNotEmpty() && unit.isNotEmpty()) {
-                    ingredientList["$ingredient~$unit"] = amount
+                    ingredientList["$ingredient§$unit"] = amount
                 }
             }
             saveMap(this, ingredientList)
@@ -144,8 +144,8 @@ class ActivityFreezer : AppCompatActivity() {
         val cbDelete: CheckBox = rowView.findViewById(R.id.cbDelete)
 
         // Set values
-        tvName.setText(nameAmountIngredient.split("~")[0].trim())
-        val unit = nameAmountIngredient.split("~")[1].trim()
+        tvName.setText(nameAmountIngredient.split("§")[0].trim())
+        val unit = nameAmountIngredient.split("§")[1].trim()
         val selection = checkUnit(unit)
 
         etAmount.setText(amount)
@@ -269,7 +269,7 @@ class ActivityFreezer : AppCompatActivity() {
                 if (inputIngredient.isNotEmpty() && inputAmountText.isNotEmpty() && selectedUnit != "Unit") {
                     val inputAmount = inputAmountText.toIntOrNull()
                     if (inputAmount != null && inputAmount > 0) {
-                        ingredientList["$inputIngredient~$selectedUnit"] = inputAmountText
+                        ingredientList["$inputIngredient§$selectedUnit"] = inputAmountText
                         saveMap(this, ingredientList)
                         buildProductList()
                     } else {

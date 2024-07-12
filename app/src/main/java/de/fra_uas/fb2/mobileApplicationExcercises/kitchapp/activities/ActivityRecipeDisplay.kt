@@ -42,7 +42,7 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         val heartIcon = intent.getBooleanExtra("isFavorite", false)
         val response = intent.getStringExtra("response") ?: ""
         val recipeName = intent.getStringExtra("name")?:""
-        val portions = intent.getStringExtra("portion")?:""
+        var portions = intent.getStringExtra("portion")?:""
         recipeNameTime = intent.getStringExtra("nameTime")?:""
 
         recipeTitle = findViewById(R.id.tvRecipeName)
@@ -57,14 +57,20 @@ class ActivityRecipeDisplay : AppCompatActivity() {
             iconSave?.setImageResource(R.drawable.ic_heart_unfilled)
         }
 
-        recipeTitle.text = recipeNameTime.split(" - ")[0].trim()                            //0 is the name and 1 is the time
+        recipeTitle.text = recipeNameTime.split("§")[0].trim()                            //0 is the name and 1 is the time
         recipeList.putAll(getMap(this))
-        instructions = recipeList[recipeNameTime]?.split(" § ")?.get(2)?.trim() ?: ""       //0 is the portion, 1 is the ingredients, 2 is the instructions
-        ingredients = recipeList[recipeNameTime]?.split(" § ")?.get(1)?.trim() ?: ""
-        portion = recipeList[recipeNameTime]?.split(" § ")?.get(0)?.trim() ?: ""
+        instructions = recipeList[recipeNameTime]?.split("§")?.get(2)?.trim() ?: ""       //0 is the portion, 1 is the ingredients, 2 is the instructions
+        ingredients = recipeList[recipeNameTime]?.split("§")?.get(1)?.trim() ?: ""
+        portion = recipeList[recipeNameTime]?.split("§")?.get(0)?.trim() ?: ""
+        if (portions == "") {
+            portions = "1"
+            recipePortion.text = portions
+        }
         if(recipeNameTime!="") {
-            recipeTime.text = recipeNameTime.split(" - ")[1].trim()
-            recipePortion.text = portion
+            recipeTime.text = recipeNameTime.split("§")[1].trim()
+            if(portion!="") {
+                recipePortion.text = portion
+            }
             recipeText.text = ingredients
 
         }
@@ -79,7 +85,10 @@ class ActivityRecipeDisplay : AppCompatActivity() {
                 val name = recipe.getString("name")
                 if(name.equals(recipeName)){
                     recipeTitle.text=name
-                    val time = recipe.getString("time")
+                    var time = recipe.getString("time")
+                    if(!time.contains("min")){
+                        time= "$time min"
+                    }
                     recipeTime.text=time
                     ingredients=recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     instructions = recipe.getString("instructions").replace("\"", "")
@@ -127,11 +136,11 @@ class ActivityRecipeDisplay : AppCompatActivity() {
         isFavorite = !isFavorite
         if (isFavorite) {
             iconSave?.setImageResource(R.drawable.heart_icon_filled)
-            recipeList[recipeTitle.text.toString()+" - "+recipeTime.text.toString()] = "$portion § $ingredients § $instructions"
+            recipeList[recipeTitle.text.toString()+"§"+recipeTime.text.toString()] = "$portion§$ingredients§$instructions"
             saveMap(this, recipeList)
         } else {
             iconSave?.setImageResource(R.drawable.ic_heart_unfilled)
-            recipeList.remove(recipeTitle.text.toString()+" - "+recipeTime.text.toString())
+            recipeList.remove(recipeTitle.text.toString()+"§"+recipeTime.text.toString())
             saveMap(this, recipeList)
         }
     }

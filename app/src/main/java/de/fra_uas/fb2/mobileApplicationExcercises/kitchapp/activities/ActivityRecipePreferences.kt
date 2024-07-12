@@ -301,8 +301,8 @@ class ActivityRecipePreferences : AppCompatActivity() {
         val ingredientList = getRecipeMap(this)
         val ingredientString = StringBuilder()
         for ((key, value) in ingredientList) {
-            val promptIngredient = key.split("~")[2]+" "+key.split("~")[1]+     //2 is amount 1 is unit 0 is name
-                    " "+key.split("~")[0]
+            val promptIngredient = key.split("§")[2]+" "+key.split("§")[1]+     //2 is amount 1 is unit 0 is name
+                    " "+key.split("§")[0]
             ingredientString.append("$promptIngredient, ")
         }
 

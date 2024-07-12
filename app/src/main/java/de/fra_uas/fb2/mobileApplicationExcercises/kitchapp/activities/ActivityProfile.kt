@@ -323,6 +323,8 @@ class ActivityProfile : AppCompatActivity() {
             setTitle("Are you sure you want to logout?")
             setView(dialogView)
             setPositiveButton("Yes") { dialog, _ ->
+                val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+                sharedPreferences.edit().clear().apply()
                 sessionManager.logout()
                 val intent = Intent(this@ActivityProfile, ActivityLogin::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -348,6 +350,8 @@ class ActivityProfile : AppCompatActivity() {
                 val intent = Intent(this@ActivityProfile, ActivityLogin::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 }
+                val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
+                sharedPreferences.edit().clear().apply()
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         withContext(Dispatchers.Main) {
