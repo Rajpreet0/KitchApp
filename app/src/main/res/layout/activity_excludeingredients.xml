@@ -9,6 +9,8 @@
     tools:context=".activities.ActivityExcludeIngredients">
 
 
+    <!-- BEGIN: Emre-->
+
 
     <LinearLayout
         android:id="@+id/containerTitle"
@@ -119,6 +121,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vDivider2">
 
+
+        <!-- Ende: Emre-->
+
         <!-- BEGIN: Daria-->
         <!-- Ingredient List for dynamicaly added views in the activities -->
         <ScrollView
@@ -147,6 +152,8 @@
         <!-- END: Daria-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <LinearLayout
         android:id="@+id/navigationBar"
