@@ -60,6 +60,7 @@ class ActivityHome : AppCompatActivity() {
 
     }
 
+    // Function to generate random recipe Suggestion
     private fun generateSuggestions() {
          CoroutineScope(Dispatchers.IO).launch {
              try {

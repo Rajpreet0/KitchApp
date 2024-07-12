@@ -372,6 +372,7 @@ class ActivityProfile : AppCompatActivity() {
     }
     //END_Ron
     //BEGIN_Raj
+    // Function for deleting a User from DB
     fun deleteAccountButton(view: View) {
         val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
         val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
