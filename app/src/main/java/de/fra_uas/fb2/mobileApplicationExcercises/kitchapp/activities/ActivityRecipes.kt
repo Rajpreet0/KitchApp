@@ -18,13 +18,13 @@ import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 class ActivityRecipes : AppCompatActivity() {
     private var recipeContainer: LinearLayout? = null
     private val recipeList: MutableMap<String, String> = mutableMapOf()
-    private val markedForDeletion = mutableSetOf<String>()
+    private val markedForDeletion = mutableSetOf<String>()    // is used to handle the delete recipe logic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_recipes)
         recipeList.putAll(getMap(this))
-        recipeContainer = findViewById(R.id.containerRecipes)
+        recipeContainer = findViewById(R.id.containerRecipes)       // This is the Linear layout to put the dynamic rows into
         buildRecipeList()
     }
 
@@ -36,40 +36,41 @@ class ActivityRecipes : AppCompatActivity() {
     }
     //END_Ron
     //BEGIN_Daria
+    // This function adds a row (saved Recipe) to the container
     private fun addRow(name: String, time: String, key: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
         val rowView: View = inflater.inflate(R.layout.savedrecipe_layout_row, recipeContainer, false)
 
-        // Find the TextView and set its text
+        //set text of the textview from the layout: Name
         val nameRecipe: TextView = rowView.findViewById(R.id.tvNameRecipe)
         nameRecipe.text = name
         nameRecipe.textSize = 20f
 
-
+        //set text of the textview from the layout: Time
         val timeRecipe: TextView = rowView.findViewById(R.id.tvTime)
         timeRecipe.text = time
 
 
-        // Handle the favorite icon logic
+        // favorite icon logic:
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
         var isFavorite = true // Initial state, not favorited
         icon_save.setImageResource(R.drawable.heart_icon_filled) // Unfilled heart icon by default
 
         icon_save.setOnClickListener {
-            isFavorite = !isFavorite
+            isFavorite = !isFavorite  // Toggle the favorite state
             if (isFavorite) {
                 icon_save.setImageResource(R.drawable.heart_icon_filled)
-                markedForDeletion.remove(key)
+                markedForDeletion.remove(key) // Remove the key from the set if it exists
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled_white)
                 // TODO: remove from recipes after intent / activity change
-                markedForDeletion.add(key)
+                markedForDeletion.add(key) // Add the key to the set if it is not already marked for deletion
             }
         }
 
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
-        frameRecipe.setOnClickListener {
+        frameRecipe.setOnClickListener {        // Opens the recipe in a new activity
             val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
                 putExtra("nameTime", "$name§$time")
                 putExtra("isFavorite", true)

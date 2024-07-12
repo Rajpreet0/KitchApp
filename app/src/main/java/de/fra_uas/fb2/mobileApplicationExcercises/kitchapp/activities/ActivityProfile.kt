@@ -29,8 +29,8 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 //BEGIN_Daria
 
-// This activity handles the user profile, allowing the user to edit their name and email,
-// navigate to other sections of the app, and manage a list of ingredients to exclude.
+// This activity handles the user profile, allowing the user to edit their name and language, and also to add a special meal requirement
+
 class ActivityProfile : AppCompatActivity() {
 
     // Declaring views that will be used in the activity
@@ -70,7 +70,7 @@ class ActivityProfile : AppCompatActivity() {
         etName.setText(sessionManager.getUsername())
         etEmail.setText(sessionManager.getUserEmail())
 
-        // Set initial state of EditTexts to be disabled
+        // initial state of EditTexts = disabled
         setEditTextsEnabled(false)
 
         specialPreferences.addAll(getMap(this))
@@ -87,7 +87,7 @@ class ActivityProfile : AppCompatActivity() {
         spLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 if (isSpinnerInitialized) {
-                    val selectedLanguage = parent.getItemAtPosition(position).toString()
+                    val selectedLanguage = parent.getItemAtPosition(position).toString()        // get the content of the choosen language
                     sessionManager.setLanguage(selectedLanguage)
                     Log.d("SESSION UPDATE LANGUAGE", "$selectedLanguage selected")
                     Toast.makeText(this@ActivityProfile, "Language updated", Toast.LENGTH_SHORT).show()
@@ -104,14 +104,14 @@ class ActivityProfile : AppCompatActivity() {
 
     // Function to setup the spinner with provided parameters
     private fun setupSpinner(spinnerId: Int, arrayResourceId: Int, layoutResourceId: Int) {
-        // Create an ArrayAdapter using a string array resource and a custom layout for spinner items
+        // ArrayAdapter using a string array resource and a custom layout for spinner items
         val adapter = ArrayAdapter.createFromResource(
             this,
             arrayResourceId,
             layoutResourceId
         )
 
-        // Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of languages appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Update session manager language with default language = English
@@ -197,7 +197,7 @@ class ActivityProfile : AppCompatActivity() {
             // Update visibility of remove buttons for ingredients
             updateRemoveButtonsVisibility()
 
-            // TODO: Save profile changes to database
+            // Save profile changes in SharedPreferences
             sessionManager.setUserName(etName.text.toString())
             sessionManager.setLanguage(spLanguage.selectedItem.toString())
 
@@ -214,7 +214,7 @@ class ActivityProfile : AppCompatActivity() {
         etName.isFocusable = enabled
         etName.isFocusableInTouchMode = enabled
 
-        icEdit.isClickable = !enabled
+        icEdit.isClickable = !enabled   // Edit button is clickable only when not in editing mode
     }
 
     // Function to handle the add ingredient button click
@@ -241,7 +241,9 @@ class ActivityProfile : AppCompatActivity() {
                     } else {
                         // Add the ingredient to the view
                         addIngredientToView(inputIngredient)
+                        // Add the ingredient to the specialPreferences list
                         specialPreferences.add(inputIngredient)
+                        // Save the specialPreferences list to SharedPreferences
                         saveIngredients(this@ActivityProfile, specialPreferences)
                         dialog.dismiss()
                     }
@@ -295,12 +297,13 @@ class ActivityProfile : AppCompatActivity() {
             val tvIngredient = rowView.findViewById<TextView>(R.id.tvIngredientName)
             tvIngredient.text = ingredient
 
-            // Handle the remove button click
+            // Handles the remove button click and is only visible when in edit mode
             val icRemove = rowView.findViewById<ImageView>(R.id.icRemove)
             icRemove.setOnClickListener {
                 containerSpecials.removeView(rowView)
-                // TODO: Remove ingredient from database
+                //  Remove ingredient from database
                 specialPreferences.remove(ingredient)
+                // update the specialPreferences list in SharedPreferences
                 saveIngredients(this, specialPreferences)
             }
 

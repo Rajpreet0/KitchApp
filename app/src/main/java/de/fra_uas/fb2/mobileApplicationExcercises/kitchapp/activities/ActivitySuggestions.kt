@@ -46,18 +46,17 @@ class ActivitySuggestions : AppCompatActivity() {
     private lateinit var withoutIngredients: String
     private lateinit var specialIngredients: String
     private lateinit var newResponse: JsonObject
-    private lateinit var frameLayout: FrameLayout
     private var supriseMe: Boolean = false
     private val recipeList: MutableMap<String, String> = mutableMapOf()
 
-    private var selectedView: View? = null
+    private var selectedView: View? = null      // Is used to handle background change of the selected view
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.suggestions)
-        // Initializing the container
+        // Initializing the container(LinearLayout) to hold the rows
         container = findViewById(R.id.containerSuggestions)
 
         response = intent.getStringExtra("response") ?: ""
@@ -183,6 +182,8 @@ class ActivitySuggestions : AppCompatActivity() {
     }
     //END_Ron
     //BEGIN_Daria
+
+    // This function adds a row (suggested Recipe) to the container
     private fun addRow(name: String, description: String, time: String) {
         // Inflate the row layout
         val inflater = LayoutInflater.from(this)
@@ -190,13 +191,15 @@ class ActivitySuggestions : AppCompatActivity() {
 
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
 
-        // Find the TextView and set its text
+        //set text of the textview from the layout: Name of Recipe
         val nameRecipe: TextView = rowView.findViewById(R.id.tvNameRecipe)
         nameRecipe.text = name
 
+        //set text of the textview from the layout: Description of Recipe
         val descriptionRecipe: TextView = rowView.findViewById(R.id.tvDescriptionRecipe)
         descriptionRecipe.text = description
 
+        //set text of the textview from the layout: Time
         val timeRecipe: TextView = rowView.findViewById(R.id.tvTime)
         timeRecipe.text = "$time min"
 
@@ -207,7 +210,7 @@ class ActivitySuggestions : AppCompatActivity() {
 
 
 
-        // Handle the favorite icon logic
+        // favorite icon logic: Saving and removing from favorites
         val icon_save: ImageView = rowView.findViewById(R.id.icHeart)
         isFavorite = false // Initial state, not favorited
         icon_save.setImageResource(R.drawable.ic_heart_unfilled_white) // Unfilled heart icon by default
