@@ -8,6 +8,9 @@
     android:background="#212928"
     tools:context=".activities.ActivityRecipePreferences">
 
+
+    <!-- BEGIN: Emre-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -331,6 +334,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvComplexity" />
 
+
+        <!-- Ende: Emre-->
+
         <!-- BEGIN: Daria -->
         <FrameLayout
             android:id="@+id/flWithout"
@@ -476,6 +482,7 @@
 
 
 
+        <!-- BEGIN: Emre-->
 
         <Spinner
             android:id="@+id/spTimerequired"
@@ -508,3 +515,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Ende: Emre-->

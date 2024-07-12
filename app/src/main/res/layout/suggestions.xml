@@ -8,6 +8,9 @@
     android:background="#212928"
     tools:context=".activities.ActivitySuggestions">
 
+
+    <!-- BEGIN: Emre-->
+
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
@@ -186,3 +189,6 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
