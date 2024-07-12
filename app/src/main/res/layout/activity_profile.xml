@@ -8,6 +8,8 @@
     android:background="@color/dark_background"
     tools:context=".activities.ActivityProfile">
 
+    <!-- BEGIN: Daria-->
+    <!-- profile screen: Name - Email - Language - Special requirements - Logout - Delete account -->
     <LinearLayout
         android:id="@+id/llProfile"
         android:layout_width="match_parent"
@@ -199,7 +201,8 @@
 
 
 
-    <!-- Produktliste -->
+
+    <!-- Specials List for dynamicaly added views in the activities -->
     <ScrollView
         android:id="@+id/svSpecialPreferences"
         android:layout_width="match_parent"
@@ -222,8 +225,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llAddExcl">
 
+            <!-- from specials_layout_row.xml -->
         </LinearLayout>
     </ScrollView>
+
 
 
     <LinearLayout
@@ -372,6 +377,6 @@
     </LinearLayout>
 
 
-
+<!-- END: Daria-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

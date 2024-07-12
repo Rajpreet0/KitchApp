@@ -8,6 +8,7 @@
     android:background="@color/light_brown"
     tools:context=".activities.ActivityRecipeDisplay">
 
+    <!--Daria-->
     <LinearLayout
         android:id="@+id/llDisplay"
         android:layout_width="match_parent"
@@ -165,15 +166,19 @@
         app:layout_constraintTop_toBottomOf="@+id/llServingsize" />
 
 
+    <!-- Switch is used to switch between ingredients and instructions -->
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchOption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/regular"
         android:onClick="switchOnClick"
         android:theme="@style/CustomSwitch"
         android:thumb="@drawable/bg_thumb"
+        app:layout_constraintBottom_toTopOf="@+id/rahmen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
@@ -182,7 +187,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rahmen"
         android:layout_width="333dp"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"
         android:background="@drawable/rounded_border_dirty"
@@ -192,7 +197,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchOption">
 
-        <!-- Produktliste -->
+
         <ScrollView
             android:id="@+id/svOptions"
             android:layout_width="match_parent"
@@ -216,7 +221,11 @@
                     android:id="@+id/recipeText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="ingredients"
+                    android:fontFamily="@font/regular"
+                    android:gravity="start"
+                    android:textSize="18sp"
+                    android:textColor="@color/dark_background"/>
             </LinearLayout>
         </ScrollView>
 

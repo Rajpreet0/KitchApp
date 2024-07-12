@@ -9,6 +9,7 @@
     <string name="disliked">disliked</string>
     <string name="recipes">Recipes</string>
 
+    <!--Begin: Daria-->
     <string-array name="languages">
         <item>English</item>
         <item>German</item>
@@ -22,6 +23,31 @@
         <item>tbsp</item>
     </string-array>
 
+    <!---sorted alphabetically-->
+    <string-array name="nationality_array">
+        <item>international</item>
+        <item>brazilian</item>
+        <item>chinese</item>
+        <item>fast food</item>
+        <item>french</item>
+        <item>german</item>
+        <item>greek</item>
+        <item>indian</item>
+        <item>italian</item>
+        <item>japanese</item>
+        <item>korean</item>
+        <item>lebanese</item>
+        <item>mediterranean</item>
+        <item>mexican</item>
+        <item>moroccan</item>
+        <item>oriental</item>
+        <item>persian</item>
+        <item>spanish</item>
+        <item>thai</item>
+        <item>turkish</item>
+        <item>vietnamese</item>
+    </string-array>
+    <!-- END: Daria-->
 
     <string-array name="portions_array">
         <item>1</item>
@@ -61,30 +87,7 @@
         <item>medium</item>
         <item>advanced</item>
     </string-array>
-    <!---sorted alphabetically-->
-    <string-array name="nationality_array">
-        <item>international</item>
-        <item>brazilian</item>
-        <item>chinese</item>
-        <item>fast food</item>
-        <item>french</item>
-        <item>german</item>
-        <item>greek</item>
-        <item>indian</item>
-        <item>italian</item>
-        <item>japanese</item>
-        <item>korean</item>
-        <item>lebanese</item>
-        <item>mediterranean</item>
-        <item>mexican</item>
-        <item>moroccan</item>
-        <item>oriental</item>
-        <item>persian</item>
-        <item>spanish</item>
-        <item>thai</item>
-        <item>turkish</item>
-        <item>vietnamese</item>
-    </string-array>
+
 
 
 </resources>

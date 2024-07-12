@@ -289,7 +289,7 @@ class ActivityProfile : AppCompatActivity() {
         try {
             // Inflate the custom layout for the ingredient row
             val inflater = LayoutInflater.from(this)
-            val rowView = inflater.inflate(R.layout.profile_ingredient_layout, containerSpecials, false)
+            val rowView = inflater.inflate(R.layout.specials_layout_row, containerSpecials, false)
 
             // Set the ingredient name
             val tvIngredient = rowView.findViewById<TextView>(R.id.tvIngredientName)

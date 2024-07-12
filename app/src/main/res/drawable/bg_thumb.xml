@@ -4,4 +4,5 @@
     <item android:state_checked="false" android:drawable="@drawable/ic_apple" />
 </selector>
 
-    <!--Icons für die Thumbs für die Switch in Recipe Display -->
+    <!--Icons for Thumbs for Switch in Recipe Display -->
+<!-- Daria -->
