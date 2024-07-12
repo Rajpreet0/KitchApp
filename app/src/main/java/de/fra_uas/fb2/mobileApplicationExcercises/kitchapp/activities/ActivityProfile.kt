@@ -26,6 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
 import java.io.IOException
 //BEGIN_Daria
 
@@ -197,6 +198,33 @@ class ActivityProfile : AppCompatActivity() {
             // Update visibility of remove buttons for ingredients
             updateRemoveButtonsVisibility()
 
+            /*
+            // TODO: Save profile changes to database
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    withContext(Dispatchers.Main) {
+                        loadingDialog.show(supportFragmentManager, "loadingDialog")
+                    }
+                    val response = networkHelper.updateUserData(
+                        sessionManager.getUserEmail().toString(),
+                        etName.text.toString(),
+                        spLanguage.selectedItem.toString())
+                    val userData = JSONObject(response.toString())
+                    withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
+                        Log.d("Data from Login: ", response.toString())
+                        startActivity(intent)
+                    }
+                } catch (e: IOException) {
+                    withContext(Dispatchers.Main) {
+                        loadingDialog.dismiss()
+                        Log.d("SERVER ERROR", "Login Failed - ${e}")
+                        Toast.makeText(applicationContext, "Login Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            */
+
             // Save profile changes in SharedPreferences
             sessionManager.setUserName(etName.text.toString())
             sessionManager.setLanguage(spLanguage.selectedItem.toString())
@@ -344,6 +372,7 @@ class ActivityProfile : AppCompatActivity() {
     }
     //END_Ron
     //BEGIN_Raj
+    // Function for deleting a User from DB
     fun deleteAccountButton(view: View) {
         val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
         val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)

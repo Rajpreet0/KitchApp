@@ -10,6 +10,7 @@ import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 // Begin: Raj
 class LoadingDialogFragment : DialogFragment() {
 
+    // Build a fragment progress dialog
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
         val inflater = requireActivity().layoutInflater

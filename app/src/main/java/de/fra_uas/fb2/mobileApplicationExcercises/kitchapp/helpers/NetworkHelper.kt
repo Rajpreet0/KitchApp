@@ -10,8 +10,11 @@ import java.io.IOException
 
 // Begin: Raj
 class NetworkHelper {
+
+    // Using OkHttp to make HTTP requests
     private val client = OkHttpClient()
 
+    // Sending OpenAI Reposne
     fun sendOpenAIRequest(query: String): String {
         val json = JsonObject().apply {
             addProperty("query", query)
@@ -70,6 +73,7 @@ class NetworkHelper {
         }
     }
 
+    // Function to register a User
     fun register(username: String, email: String, password: String): JsonObject {
         val json = JsonObject().apply {
             addProperty("username",username);
@@ -93,6 +97,7 @@ class NetworkHelper {
         }
     }
 
+    // Function to delete a User
     fun deleteUser(email: String): String {
         val json = JsonObject().apply {
             addProperty("email", email);
@@ -116,6 +121,7 @@ class NetworkHelper {
         }
     }
 
+    // Function to forgot password to find a User
     fun forgotPassword(email: String): String {
         val json = JsonObject().apply {
             addProperty("email", email);
@@ -139,6 +145,7 @@ class NetworkHelper {
         }
     }
 
+    // Function to update users Password
     fun updatePassword(email: String, password: String): String {
         val json = JsonObject().apply {
             addProperty("email", email);
@@ -163,6 +170,36 @@ class NetworkHelper {
         }
     }
 
+    /*
+    fun updateUserData(email: String, username: String, language: String): String {
+        val json = JsonObject().apply {
+            addProperty("email", email);
+            addProperty("username", username);
+            addProperty("language", language);
+            addProperty("specialMeals", specialMeals);
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_UPDATE_USER)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val responseData = response.body!!.string()
+            val jsonObject = Gson().fromJson(responseData, JsonObject::class.java)
+
+            return jsonObject.get("message").asString
+        }
+    }
+*/
+
+
+    // Function to suggest a Recipe either using specific parameters or non (suprisME: true), where a random one is generated
     fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String, supriseMe: Boolean, number: Int): JsonObject {
         val json = JsonObject().apply {
             addProperty("portions", portions);
@@ -193,6 +230,7 @@ class NetworkHelper {
         }
     }
 
+    // All Rest Api Routes
     companion object {
         const val BASE_URL="https://kitch-app-server.vercel.app"
         const val SERVER_ADDRESS_OPENAI = "$BASE_URL"
@@ -200,6 +238,7 @@ class NetworkHelper {
         const val SERVER_ADDRESS_REGISTER = "$BASE_URL/users/register"
         const val SERVER_ADDRESS_DELETE_USER = "$BASE_URL/users/delete"
         const val SERVER_ADDRESS_FORGOT_PASSWORD = "$BASE_URL/users/findUser"
+        //const val SERVER_ADDRESS_UPDATE_USER = "$BASE_URL/users/updateUserData"
         const val SERVER_ADDRESS_UPDATE_PASSWORD = "$BASE_URL/users/updatePassword"
         const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "$BASE_URL/recipes"
     }

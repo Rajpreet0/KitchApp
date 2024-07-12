@@ -328,6 +328,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
         }
 
 
+        // Function for retrieving the recip
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 withContext(Dispatchers.Main) {

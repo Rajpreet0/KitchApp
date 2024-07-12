@@ -44,12 +44,14 @@ class ActivityResetPassword : AppCompatActivity() {
         editTextPassword = findViewById(R.id.editTextPassword)
         editTextNewPassword = findViewById(R.id.editTextNewPassword)
 
+        // Get email from previous activity
         email = intent.getStringExtra("email").toString()
 
         loadingDialog = LoadingDialogFragment()
         sessionManager = SessionManager(this)
     }
 
+    // Function to update the Password for a User
     fun updatePassword(view: View) {
         val validationError = ValidationUtil.validateUpdatePassword(editTextPassword.text.toString(), editTextNewPassword.text.toString())
 
