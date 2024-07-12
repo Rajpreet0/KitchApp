@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- exclude_layout_row.xml -->
+
+<!--Daria-->
+<!-- For the saved recipe activity -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,7 +32,9 @@
             android:layout_marginBottom="10dp"
             android:textColor="#FFFFFF"
             android:textSize="24dp"
-            android:fontFamily="@font/medium" />
+            android:fontFamily="@font/medium"
+            android:maxLines="3"
+            android:ellipsize="end" />
 
         <ImageView
             android:id="@+id/icHeart"
