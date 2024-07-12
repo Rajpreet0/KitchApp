@@ -54,15 +54,15 @@ class ActivityExcludeIngredients : AppCompatActivity() {
 
         //the pantry items get icon 2
         for((key, value) in pantryMap) {
-            ingredientList["$key~$value"] = 2
+            ingredientList["$key§$value"] = 2
         }
         //the freezer items get icon 0
         for((key, value) in freezerMap) {
-            ingredientList["$key~$value"] = 0
+            ingredientList["$key§$value"] = 0
         }
         //the fridge items get icon 1
         for((key, value) in fridgeMap) {
-            ingredientList["$key~$value"] = 1
+            ingredientList["$key§$value"] = 1
         }
         if(ingredientList.isEmpty()){
             addRow(2, "Please put some")
@@ -73,7 +73,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         }else {
             for (ingredient in ingredientList) {
                 val storageType = ingredient.value // Daria
-                val name = ingredient.key.split("~")[0]
+                val name = ingredient.key.split("§")[0]
                 addRow(storageType, name) // Daria
             }
             saveMap(this, ingredientList)
@@ -102,15 +102,15 @@ class ActivityExcludeIngredients : AppCompatActivity() {
                 // Checkbox is unchecked
                 //the pantry items get icon 2
                 for((key, value) in pantryMap) {
-                    ingredientList["$key~$value"] = 2
+                    ingredientList["$key§$value"] = 2
                 }
                 //the freezer items get icon 0
                 for((key, value) in freezerMap) {
-                    ingredientList["$key~$value"] = 0
+                    ingredientList["$key§$value"] = 0
                 }
                 //the fridge items get icon 1
                 for((key, value) in fridgeMap) {
-                    ingredientList["$key~$value"] = 1
+                    ingredientList["$key§$value"] = 1
                 }
                 // END: Ron
 
@@ -251,7 +251,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             if (textView.currentTextColor == Color.RED) {
                 var safeKey = ""
                 for ((key, value) in ingredientList) {
-                    if (key.split("~")[0] == name) {
+                    if (key.split("§")[0] == name) {
                         safeKey = key
                     }
                 }

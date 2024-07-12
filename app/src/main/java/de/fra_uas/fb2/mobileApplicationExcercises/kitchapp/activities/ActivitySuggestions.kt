@@ -88,9 +88,6 @@ class ActivitySuggestions : AppCompatActivity() {
                     val name = recipe.getString("name")
                     val description = recipe.getString("description")
                     val time = recipe.getString("time")
-                    //val ingredients = recipe.getJSONArray("ingredients").join(", ")
-                    //val instructionsArray = recipe.getJSONArray("instructions")
-                    // val instructions = instructionsArray?.join("\n")?.replace("\"", "") ?: "No instructions provided"
                     addRow(name, description, time)
                 }
             }
@@ -223,7 +220,7 @@ class ActivitySuggestions : AppCompatActivity() {
             } else {
                 icon_save.setImageResource(R.drawable.ic_heart_unfilled)
                 // TODO: remove from recipes
-                recipeList.remove("$name - $time" + "min")
+                recipeList.remove("$name§$time" + "min")
                 saveMap(this, recipeList)
             }
         }
@@ -266,12 +263,12 @@ class ActivitySuggestions : AppCompatActivity() {
                 val recipe = recipesObject.getJSONObject(j)
                 if (name == recipe.getString("name")) {
                     val time = recipe.getString("time")
-                    val nameTime = "$name - $time" + "min"
+                    val nameTime = "$name§$time" + "min"
                     val ingredients =
                         recipe.getJSONArray("ingredients").join("\n").replace("\"", "")
                     val instructions = recipe.getString("instructions").replace("\"", "")
                     val portionIngredientsInstructions =
-                        "$portionTxt § $ingredients § $instructions"
+                        "$portionTxt§$ingredients§$instructions"
                     recipeList[nameTime] = portionIngredientsInstructions
                     saveMap(this, recipeList)
                 }

@@ -31,7 +31,7 @@ class ActivityRecipes : AppCompatActivity() {
     private fun buildRecipeList(){
         recipeContainer!!.removeAllViews()
         recipeList.forEach{
-                addRow(it.key.split("-")[0], it.key.split("-")[1], it.key)
+                addRow(it.key.split("§")[0], it.key.split("§")[1], it.key)
         }
     }
     //END_Ron
@@ -71,7 +71,7 @@ class ActivityRecipes : AppCompatActivity() {
         val frameRecipe: FrameLayout = rowView.findViewById(R.id.frameRecipe)
         frameRecipe.setOnClickListener {
             val intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
-                putExtra("nameTime", "$name-$time")
+                putExtra("nameTime", "$name§$time")
                 putExtra("isFavorite", true)
             }
             startActivity(intent)
