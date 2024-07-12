@@ -106,14 +106,12 @@ class ActivityCreateAccount : AppCompatActivity() {
 
     // BEGIN: Ron
     // Register a User
-    fun signInButton(view: View){
+    fun signInButton(view: View){                                                                   //go to login page
         val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }
-    fun forgotPasswordButton(view: View){
-        //to be designed
-    }
-    fun backButton(view: View){
+
+    fun backButton(view: View){                                                                     //go back to login page
         val intent = Intent(this, ActivityLogin::class.java)
         startActivity(intent)
     }

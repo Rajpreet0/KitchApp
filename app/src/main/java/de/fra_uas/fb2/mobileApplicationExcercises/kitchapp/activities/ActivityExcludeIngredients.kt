@@ -19,19 +19,16 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import de.fra_uas.fb2.mobileApplicationExcercises.kitchapp.R
 
+// BEGIN: Daria
 class ActivityExcludeIngredients : AppCompatActivity() {
 
-    // BEGIN: Daria
     private lateinit var container: LinearLayout
     private val ingredientList: MutableMap<String, Int> = mutableMapOf() // Ron
-
 
     private val icons = arrayOf(
         R.drawable.ic_freezer,
         R.drawable.ic_fridge,
     )
-    // END: Daria
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,14 +38,11 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // BEGIN: Daria
         // Initializing the container
         container = findViewById(R.id.containerIngredients)
         // END: Daria
-
         // BEGIN: Ron
-        val pantryMap = getPantryMap(this)
+        val pantryMap = getPantryMap(this)                                                   //fetching all the storage maps from the shared preferences
         val freezerMap = getFreezerMap(this)
         val fridgeMap = getFridgeMap(this)
 
@@ -64,6 +58,7 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         for((key, value) in fridgeMap) {
             ingredientList["$key§$value"] = 1
         }
+        //if the list is empty, show a message
         if(ingredientList.isEmpty()){
             addRow(2, "Please put some")
             addRow(2, "ingredients in")
@@ -78,7 +73,6 @@ class ActivityExcludeIngredients : AppCompatActivity() {
             }
             saveMap(this, ingredientList)
         }
-
         // END: RON
 
         // BEGIN: Daria
@@ -137,9 +131,9 @@ class ActivityExcludeIngredients : AppCompatActivity() {
         editor.putString("recipeMap", jsonString)
         editor.apply()
     }
-
-
+    //functions to get the maps from the shared preferences
     private fun getPantryMap(context: Context): MutableMap<String, Int> {
+        //we open the shared preferences and we get the JSONstring of the map
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val jsonString = sharedPreferences.getString("pantryMap", "")
 
@@ -214,27 +208,27 @@ class ActivityExcludeIngredients : AppCompatActivity() {
     }
     // END: Daira
 
-    // BEGIN: Ron, Raj
+    // BEGIN: Ron, Raj (flags)
     fun homeButton(view: View){
-        val intent = Intent(this, ActivityHome::class.java).apply {
+        val intent = Intent(this, ActivityHome::class.java).apply {          //go to home page
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
     fun groceryButton(view: View){
-        val intent = Intent(this, ActivityGrocery::class.java).apply {
+        val intent = Intent(this, ActivityGrocery::class.java).apply {       //go to grocery page
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
-    fun recipesButton(view: View){
+    fun recipesButton(view: View){                                                                  //go to recipes page
         val intent = Intent(this, ActivityRecipes::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
         startActivity(intent)
     }
 
-    fun profileButton(view: View){
+    fun profileButton(view: View){                                                                  //go to profile page
         val intent = Intent(this, ActivityProfile::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         }
@@ -244,25 +238,27 @@ class ActivityExcludeIngredients : AppCompatActivity() {
     // END: Ron, Raj
 
     // BEGIN: Ron
+    //function to check if an ingredient is excluded and remove it from the map
+    //called if the user clicks the next button
     private fun checkExcluded() {
         container.children.forEach { view ->
             val textView = view.findViewById<TextView>(R.id.tvIngredientName)
-            val name =textView.text.toString()
-            if (textView.currentTextColor == Color.RED) {
-                var safeKey = ""
-                for ((key, value) in ingredientList) {
-                    if (key.split("§")[0] == name) {
-                        safeKey = key
+            val name =textView.text.toString()                                                      //get the name of the ingredient
+            if (textView.currentTextColor == Color.RED) {                                           //check if the ingredient is excluded(RED)
+                var safeKey = ""                                                                    //variable to store the key to remove the ingredient from the map
+                for ((key, value) in ingredientList) {                                              //loop through the map
+                    if (key.split("§")[0] == name) {                                      //check if the ingredient is excluded
+                        safeKey = key                                                               //store the key to remove the ingredient from the map
                     }
                 }
-                if (ingredientList.containsKey(safeKey)) {
+                if (ingredientList.containsKey(safeKey)) {                                          //remove the ingredient from the map
                     ingredientList.remove(safeKey)
                     saveMap(this, ingredientList)
                 }
             }
         }
     }
-    fun nextButton(view: View) {
+    fun nextButton(view: View) {                                                                    //go to recipe preferences page
         val intent = Intent(this, ActivityRecipePreferences::class.java)
         checkExcluded()
         startActivity(intent)
