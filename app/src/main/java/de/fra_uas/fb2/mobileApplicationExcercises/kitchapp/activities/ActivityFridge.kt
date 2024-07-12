@@ -92,6 +92,7 @@ class ActivityFridge : AppCompatActivity() {
                     ingredientList["$ingredient§$unit"] = amount
                 }
             }
+            buildProductList()
             saveMap(this, ingredientList)
         }
     }

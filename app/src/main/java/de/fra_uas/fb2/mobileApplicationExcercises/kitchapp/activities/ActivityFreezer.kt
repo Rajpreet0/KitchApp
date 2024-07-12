@@ -92,6 +92,7 @@ class ActivityFreezer : AppCompatActivity() {
                     ingredientList["$ingredient§$unit"] = amount
                 }
             }
+            buildProductList()
             saveMap(this, ingredientList)
         }
     }
