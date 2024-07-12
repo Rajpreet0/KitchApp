@@ -340,18 +340,35 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNationality"
             tools:layout_editor_absoluteX="20dp">
 
-            <TextView
-                android:id="@+id/tvWithout"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/light"
-                android:text="without..."
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <TextView
+                    android:id="@+id/tvWithout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/light"
+                    android:text="without: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/ivInfoWithout"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Info Icon"
+                    android:src="@drawable/ic_info"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="infoButton"/>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnWithout"
@@ -365,9 +382,10 @@
                 android:drawableTint="@color/white"/>
 
             <!-- ScrollView/LinearLayout on the right side to add ingredients to ignore in recipe creation  -->
+
             <ScrollView
                 android:id="@+id/llWithout"
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end|top"
                 android:layout_weight="1"
@@ -394,18 +412,35 @@
             app:layout_constraintBottom_toTopOf="@+id/navigationBar">
 
 
-            <TextView
-                android:id="@+id/tvSpecials"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/light"
-                android:text="specials:"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:layout_gravity="start"
-                android:layout_marginEnd="10dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <TextView
+                    android:id="@+id/tvSpecials"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/light"
+                    android:text="specials: "
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/ivInfoSpecials"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Info Icon"
+                    android:src="@drawable/ic_info"
+                    android:layout_marginStart="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="infoButton"/>
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSpecials"
@@ -421,7 +456,7 @@
             <!-- for adding special meal requirements -->
             <ScrollView
                 android:id="@+id/scrollSpecials"
-                android:layout_width="250dp"
+                android:layout_width="230dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="end|top"
                 android:background="@drawable/bg_roundstroke">

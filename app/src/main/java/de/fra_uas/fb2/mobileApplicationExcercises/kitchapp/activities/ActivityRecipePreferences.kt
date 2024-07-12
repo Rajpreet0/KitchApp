@@ -170,6 +170,23 @@ class ActivityRecipePreferences : AppCompatActivity() {
         }
     }
 
+    fun infoButton(view: View) {
+        val builder = AlertDialog.Builder(this)
+        if (view.id == R.id.ivInfoWithout) {
+            builder.setMessage("In this field you can specify ingredients, which should be ignored in the recipe creation like: allergies, disliked ingredients etc.")
+            builder.setPositiveButton("Close") { dialog, _ ->
+                dialog.dismiss()
+            }
+        } else {
+            builder.setMessage("In this field you can specify your special meal requirement, like: vegan, low-carb etc.")
+            builder.setPositiveButton("Close") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
     fun dialogBuilder (title: String, container: LinearLayout, list: MutableList<String>) {
         try {
             // Inflate the custom layout for the dialog
