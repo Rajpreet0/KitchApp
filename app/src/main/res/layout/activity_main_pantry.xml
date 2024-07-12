@@ -8,6 +8,8 @@
     android:background="@color/pastel_yellow"
     tools:context=".activities.ActivityHome">
 
+    <!-- JIN KIM -->
+
     <TextView
         android:id="@+id/tvPantry"
         android:layout_width="wrap_content"

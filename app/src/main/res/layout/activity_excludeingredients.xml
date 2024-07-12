@@ -9,7 +9,7 @@
     tools:context=".activities.ActivityExcludeIngredients">
 
 
-    <!-- BEGIN: Emre-->
+    <!-- BEGIN: Emre -->
 
 
     <LinearLayout
@@ -74,10 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vDivider" />
 
-    <!--android:background="@drawable/buttonneu"-->
 
-
-    <!--android:drawableEnd="@drawable/baseline_arrow_forward_24"-->
 
     <TextView
         android:id="@+id/tvSelectAll"
@@ -122,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/vDivider2">
 
 
-        <!-- Ende: Emre-->
+        <!-- END: Emre -->
 
         <!-- BEGIN: Daria-->
         <!-- Ingredient List for dynamicaly added views in the activities -->
@@ -153,7 +150,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <!-- BEGIN: Emre -->
 
     <LinearLayout
         android:id="@+id/navigationBar"
@@ -220,3 +217,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- END: Emre -->

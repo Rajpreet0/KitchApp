@@ -8,6 +8,8 @@
     android:background="@color/pastel_mint"
     tools:context=".activities.ActivityHome">
 
+    <!-- JIN KIM -->
+
     <TextView
         android:id="@+id/tvFridge"
         android:layout_width="wrap_content"
