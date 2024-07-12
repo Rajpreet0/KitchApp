@@ -150,6 +150,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cbSurprise" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- END: Emre -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/secondConstraintLayout"
@@ -223,6 +224,8 @@
 
 
         </LinearLayout>
+
+        <!-- BEGIN: Emre -->
 
         <Spinner
             android:id="@+id/spComplexity"
@@ -335,7 +338,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvComplexity" />
 
 
-        <!-- Ende: Emre-->
+        <!-- END: Emre-->
 
         <!-- BEGIN: Daria -->
         <FrameLayout
@@ -482,7 +485,7 @@
 
 
 
-        <!-- BEGIN: Emre-->
+        <!-- BEGIN: Emre -->
 
         <Spinner
             android:id="@+id/spTimerequired"
@@ -517,4 +520,4 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!-- Ende: Emre-->
+    <!-- END: Emre -->

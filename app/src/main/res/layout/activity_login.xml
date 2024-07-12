@@ -8,13 +8,12 @@
     android:layout_height="match_parent"
     android:background="#212928">
 
-    <!-- BEGIN: Emre-->
+    <!-- BEGIN: Emre -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
@@ -140,5 +139,5 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <!-- Ende: Emre-->
+    <!-- END: Emre -->
 

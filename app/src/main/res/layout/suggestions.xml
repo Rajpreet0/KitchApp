@@ -76,6 +76,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.443">
 
+        <!-- END: Emre -->
+
         <!-- BEGIN: Daria-->
         <!-- Recipe Suggestions List for dynamicaly added views in the activity -->
         <ScrollView
@@ -106,6 +108,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- BEGIN: Emre -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGenerateNewRecipe"
         android:layout_width="wrap_content"
@@ -189,6 +192,8 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- END: Emre -->
 
 
 
