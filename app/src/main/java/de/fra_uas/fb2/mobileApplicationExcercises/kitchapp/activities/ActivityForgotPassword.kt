@@ -23,6 +23,7 @@ import java.io.IOException
 class ActivityForgotPassword : AppCompatActivity() {
     // BEGIN: Raj
     private lateinit var editTextEmail: EditText
+
     private lateinit var loadingDialog: LoadingDialogFragment
     private  val networkHelper = NetworkHelper()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,7 @@ class ActivityForgotPassword : AppCompatActivity() {
 
     }
 
+    // Function to validate a User so he can update a User
     fun forgotPassword(view: View) {
         val validationError = ValidationUtil.isValidEmail(editTextEmail.text.toString())
 
@@ -48,6 +50,7 @@ class ActivityForgotPassword : AppCompatActivity() {
             return
         }
 
+        // Pass Email to the next screen so it can be used in an other Route
         val intent = Intent(this, ActivityResetPassword::class.java).apply {
             putExtra("email", editTextEmail.text.toString())
         }

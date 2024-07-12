@@ -24,9 +24,10 @@ import java.io.IOException
 //BEGIN_Raj
 class ActivityLogin : AppCompatActivity() {
 
-    private  val networkHelper = NetworkHelper()
     private lateinit var email: EditText
     private lateinit var password: EditText
+
+    private  val networkHelper = NetworkHelper()
     private lateinit var loadingDialog: LoadingDialogFragment
     private lateinit var sessionManager: SessionManager
 
@@ -46,18 +47,19 @@ class ActivityLogin : AppCompatActivity() {
         loadingDialog = LoadingDialogFragment()
         sessionManager = SessionManager(this)
 
+        // Check if user is already logged in
         if (sessionManager.isLoggedIn()) {
             navigateToMainActivity()
         }
     }
 
     fun signUpButton(view: View){
-        val intent = Intent(this, ActivityCreateAcount::class.java)
+        val intent = Intent(this, ActivityCreateAccount::class.java)
         startActivity(intent)
     }
 
     fun loginButton(view: View){
-
+        // Validation of Inputs using the Validation Class
         val validationError = ValidationUtil.validateLoginInputs(email.text.toString(), password.text.toString())
 
         if (validationError != null) {
@@ -72,6 +74,7 @@ class ActivityLogin : AppCompatActivity() {
                     loadingDialog.show(supportFragmentManager, "loadingDialog")
                 }
                 val response = networkHelper.login(email.text.toString(), password.text.toString())
+                // Save JSON response from User
                 val userData = JSONObject(response.toString())
                 withContext(Dispatchers.Main) {
                     loadingDialog.dismiss()

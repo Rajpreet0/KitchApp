@@ -20,14 +20,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okio.IOException
 
-class ActivityCreateAcount : AppCompatActivity() {
+class ActivityCreateAccount : AppCompatActivity() {
 
     // BEGIN: Raj
-    private  val networkHelper = NetworkHelper()
     private lateinit var username: EditText
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var confirmPassword: EditText
+
+    private  val networkHelper = NetworkHelper()
     private lateinit var loadingDialog: LoadingDialogFragment
 
 
@@ -54,8 +55,10 @@ class ActivityCreateAcount : AppCompatActivity() {
     }
 
     // BEGIN: Raj
+    // Function for registering a user
     fun signUpButton(view: View){
 
+        // Validate a User
         val validationError = ValidationUtil.validateRegisterInput(
             username.text.toString(),
             email.text.toString(),
@@ -67,6 +70,7 @@ class ActivityCreateAcount : AppCompatActivity() {
             return
         }
 
+        // Using flags back button going back cannot be achieved
         val intent = Intent(this, ActivityLogin::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }

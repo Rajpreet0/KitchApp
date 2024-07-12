@@ -9,6 +9,7 @@ class SessionManager(context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
+    // All constants specifing the key for the Users SharedPreference File
     companion object {
         private const val PREFS_NAME = "kitchApp_prefs_userData"
         private const val KEY_IS_LOGGED_IN = "is_logged_in"
@@ -20,6 +21,7 @@ class SessionManager(context: Context) {
         private const val SESSION_DURATION = 24*60*60*1000;
     }
 
+    // Creating a Login Session
     fun createLoginSession(userData: JSONObject) {
         val editor = prefs.edit()
         editor.putBoolean(KEY_IS_LOGGED_IN, true)
@@ -31,6 +33,7 @@ class SessionManager(context: Context) {
         editor.apply()
     }
 
+    // Check Login Session
     fun isLoggedIn(): Boolean {
         val isLoggedIn = prefs.getBoolean(KEY_IS_LOGGED_IN, false)
         val sessionExpiry = prefs.getLong(KEY_SESSION_EXPIRY, 0)
@@ -41,6 +44,16 @@ class SessionManager(context: Context) {
         return false
     }
 
+    // Logout a User so clear the SharedPreferences File
+    fun logout() {
+        val editor = prefs.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+    // END: Raj
+
+    // Getter and Setter Methods
     fun getUserId(): String? {
         return prefs.getString(KEY_USER_ID, null)
     }
@@ -72,12 +85,4 @@ class SessionManager(context: Context) {
     }
     // END: Daria
 
-    // BEGIN: Raj
-    fun logout() {
-        val editor = prefs.edit()
-        editor.clear()
-        editor.apply()
-    }
-
-    // END: Raj
 }
