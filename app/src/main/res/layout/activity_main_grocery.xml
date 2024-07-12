@@ -36,7 +36,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.459">
 
-        <!-- Produktliste -->
+        <!-- BEGIN: Daria-->
+        <!-- Ingredient List for dynamicaly added views in the activities -->
 
         <ScrollView
             android:id="@+id/svOptions"
@@ -55,9 +56,11 @@
                 android:baselineAligned="false"
                 android:orientation="vertical">
 
+             <!-- views added from Layout: ingredient_layout_row.xml -->
 
             </LinearLayout>
         </ScrollView>
+        <!-- END: Daria-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -153,10 +156,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:drawableTop="@drawable/ic_list"
+            android:drawableTop="@drawable/ic_list_select"
             android:onClick="groceryButton"
             android:text="Grocery"
-            android:textColor="#212928"
+            android:textColor="@color/dark_red"
             android:textSize="12sp"
             app:iconPadding="2dp" />
 
@@ -192,12 +195,12 @@
         android:id="@+id/icSave"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/bg_roundstroke"
-        android:drawableStart="@drawable/ic_save"
+        android:background="@drawable/bg_white_roundstroke"
+        android:drawableStart="@drawable/ic_save_dark"
         android:drawablePadding="0dp"
         android:gravity="center"
         android:padding="5dp"
-        android:src="@drawable/ic_save"
+        android:src="@drawable/ic_save_dark"
         app:layout_constraintBottom_toTopOf="@+id/rahmen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,16 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_brown"
+    android:background="@color/pastel_mint"
     tools:context=".activities.ActivityHome">
 
     <TextView
-        android:id="@+id/tvPantry"
+        android:id="@+id/tvFridge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Freezer"
+        android:text="My Fridge"
         android:textColor="@color/black"
-        android:textSize="48dp"
+        android:textSize="42dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.051" />
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rahmen"
@@ -42,11 +41,7 @@
             android:id="@+id/svOptions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="#FFFFFF">
 
             <LinearLayout
                 android:id="@+id/containerIngredients"
@@ -54,11 +49,9 @@
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:orientation="vertical">
-
-
+                <!-- views added from Layout: ingredient_layout_row.xml -->
             </LinearLayout>
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -73,7 +66,6 @@
         android:paddingEnd="20dp"
         android:paddingBottom="10dp"
         android:stateListAnimator="@null"
-
         android:textAllCaps="false"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +94,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rahmen"
         app:layout_constraintVertical_bias="0.148" />
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnEdit"
@@ -185,7 +176,6 @@
             android:textColor="#212928"
             android:textSize="12sp"
             app:iconPadding="2dp" />
-
     </LinearLayout>
 
     <ImageView
@@ -202,8 +192,5 @@
         app:layout_constraintBottom_toTopOf="@+id/rahmen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPantry" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/tvFridge" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- Jin Kim-->
