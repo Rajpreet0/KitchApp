@@ -40,7 +40,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
     private lateinit var complexity: Spinner
     private lateinit var nationality: Spinner
     private lateinit var cbSurprise: CheckBox
-    private var supriseMe = false
+    private var surpriseMe = false
     private lateinit var cbImport: CheckBox
     private lateinit var containerWithout: LinearLayout
     private lateinit var containerSpecials: LinearLayout
@@ -102,18 +102,20 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
         cbSurprise.setOnCheckedChangeListener{_, isChecked ->
             if(isChecked){
-                supriseMe = true
+                surpriseMe = true
                 Toast.makeText(this, "Everything except Ingredients and Portions will be ignored", Toast.LENGTH_LONG).show()
             } else {
-                supriseMe = false
+                surpriseMe = false
             }
         }
         //END_Raj
         //BEGIN_Ron
+        //if we check the box we want to import the special preferences
         cbImport.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 val specialIngredients = getMap(this)
                 specialsList.clear()
+                // Add the special ingredients to the view
                 for (ingredient in specialIngredients) {
                     containerSpecials.removeAllViews()
                     addIngredientToView(ingredient, containerSpecials, specialsList)
@@ -122,6 +124,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                 Toast.makeText(this, "Imported special preferences", Toast.LENGTH_LONG)
                     .show()
             }else{
+                //if we uncheck the box we want to remove the special preferences
                 containerSpecials.removeAllViews()
                 specialsList.clear()
             }
@@ -130,6 +133,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
 
     }
 
+    //we can get the special preferences from the storage
     private fun getMap(context: Context): MutableList<String> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val jsonString = sharedPreferences.getString("specialPreferences", "")
@@ -266,7 +270,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
+    //get the recipe map from storage
     private fun getRecipeMap(context: Context): MutableMap<String, Int> {
         val sharedPreferences = context.getSharedPreferences("StorageMaps", Context.MODE_PRIVATE)
         val jsonString = sharedPreferences.getString("recipeMap", "")
@@ -341,7 +345,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                          ingredientString.toString(),
                          withoutString,
                          specialString,
-                         supriseMe,
+                         surpriseMe,
                         0
                     )
                 }
@@ -357,7 +361,7 @@ class ActivityRecipePreferences : AppCompatActivity() {
                         putExtra("complexity", complexityTxt)
                         putExtra("nationality", nationalityTxt)
                         putExtra("ingredientString", ingredientString.toString())
-                        putExtra("supriseMe", supriseMe)
+                        putExtra("supriseMe", surpriseMe)
                     }
                     startActivity(intent)
                 }
