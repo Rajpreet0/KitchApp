@@ -163,6 +163,35 @@ class NetworkHelper {
         }
     }
 
+    /*
+    fun updateUserData(email: String, username: String, language: String): String {
+        val json = JsonObject().apply {
+            addProperty("email", email);
+            addProperty("username", username);
+            addProperty("language", language);
+            addProperty("specialMeals", specialMeals);
+        }.toString()
+
+        val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val requestBody = json.toRequestBody(mediaType)
+
+        val request = Request.Builder()
+            .url(SERVER_ADDRESS_UPDATE_USER)
+            .post(requestBody)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val responseData = response.body!!.string()
+            val jsonObject = Gson().fromJson(responseData, JsonObject::class.java)
+
+            return jsonObject.get("message").asString
+        }
+    }
+*/
+
+
     fun suggestRecipe(portions: String, category: String, time: String, complexity: String, nationality: String, ingredients: String, withoutIngredients: String, special: String, supriseMe: Boolean, number: Int): JsonObject {
         val json = JsonObject().apply {
             addProperty("portions", portions);
@@ -200,6 +229,7 @@ class NetworkHelper {
         const val SERVER_ADDRESS_REGISTER = "$BASE_URL/users/register"
         const val SERVER_ADDRESS_DELETE_USER = "$BASE_URL/users/delete"
         const val SERVER_ADDRESS_FORGOT_PASSWORD = "$BASE_URL/users/findUser"
+        const val SERVER_ADDRESS_UPDATE_USER = "$BASE_URL/users/updateUserData"
         const val SERVER_ADDRESS_UPDATE_PASSWORD = "$BASE_URL/users/updatePassword"
         const val SERVER_ADDRESS_RECIPE_SUGGESTIONS = "$BASE_URL/recipes"
     }
