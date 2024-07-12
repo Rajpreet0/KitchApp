@@ -144,7 +144,7 @@ class ActivityFreezer : AppCompatActivity() {
         val cbDelete: CheckBox = rowView.findViewById(R.id.cbDelete)
 
         // Set values
-        tvName.setText(nameAmountIngredient.split("§")[0].trim())
+        tvName.setText(nameAmountIngredient.split("§")[0].trim())                         //take
         val unit = nameAmountIngredient.split("§")[1].trim()
         val selection = checkUnit(unit)
 

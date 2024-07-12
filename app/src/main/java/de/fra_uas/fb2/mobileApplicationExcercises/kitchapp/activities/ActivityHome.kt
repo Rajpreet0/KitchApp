@@ -146,7 +146,7 @@ class ActivityHome : AppCompatActivity() {
     // END: Raj
 
     // BEGIN: Ron
-    fun createRecipeButton(view: View){
+    fun createRecipeButton(view: View){                                                             //go to create recipe screen
         val intent = Intent(this, ActivityExcludeIngredients::class.java)
         startActivity(intent)
     }

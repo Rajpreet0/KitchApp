@@ -315,6 +315,8 @@ class ActivityProfile : AppCompatActivity() {
     }
     //END_Daria
     //BEGIN_Ron
+    //if the user wants to logout a dialogue pop is shown to make sure
+    //upon logging out the shared preferences are cleared and would be pushed to the databased in the future
     fun logoutButton(view: View) {
         val dialogView = layoutInflater.inflate(R.layout.popup_profile, null)
         val infoText = dialogView.findViewById<EditText>(R.id.editText_ingredient)
