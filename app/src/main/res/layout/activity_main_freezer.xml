@@ -36,7 +36,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.459">
 
-        <!-- Produktliste -->
+        <!-- BEGIN: Daria-->
+        <!-- Ingredient List for dynamicaly added views in the activities -->
 
         <ScrollView
             android:id="@+id/svOptions"
@@ -55,9 +56,11 @@
                 android:baselineAligned="false"
                 android:orientation="vertical">
 
+                <!-- views added from Layout: ingredient_layout_row.xml -->
 
             </LinearLayout>
         </ScrollView>
+        <!-- END: Daria-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

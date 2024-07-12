@@ -13,6 +13,7 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
+    <!--Daria-->
     <style name="CustomSwitch" parent="Theme.AppCompat.Light">
         <!-- Active thumb & track color -->
         <item name="colorControlActivated">@color/dirty_white</item>

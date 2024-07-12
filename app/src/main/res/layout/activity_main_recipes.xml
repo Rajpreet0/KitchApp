@@ -32,8 +32,8 @@
                 app:layout_constraintVertical_bias="0.063" />
 
 
-
-                <!-- Saved Recipes list -->
+            <!-- BEGIN: Daria-->
+            <!-- Saved Recipe List for dynamicaly added views in the activities -->
             <ScrollView
                 android:id="@+id/svRecipes"
                 android:layout_width="match_parent"
@@ -55,8 +55,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/switchOption">
 
+                    <!-- views added from Layout: savedrecipe_layout_row.xml -->
+
                 </LinearLayout>
             </ScrollView>
+
 
 
             <androidx.appcompat.widget.AppCompatButton
@@ -81,6 +84,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/svRecipes" />
 
+            <!-- END: Daria-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

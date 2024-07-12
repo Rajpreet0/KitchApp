@@ -67,7 +67,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container" />
 
-        <!--This should be CHECK BOXES-->
+
         <CheckBox
             android:id="@+id/cbImport"
             android:layout_width="26dp"
@@ -331,6 +331,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvComplexity" />
 
+        <!-- BEGIN: Daria -->
         <FrameLayout
             android:id="@+id/flWithout"
             android:layout_width="match_parent"
@@ -338,7 +339,7 @@
             android:layout_margin="25dp"
             app:layout_constraintTop_toBottomOf="@+id/tvNationality"
             tools:layout_editor_absoluteX="20dp">
-            <!-- TextView -->
+
             <TextView
                 android:id="@+id/tvWithout"
                 android:layout_width="wrap_content"
@@ -351,7 +352,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <!-- AppCompatButton -->
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnWithout"
                 android:layout_width="36dp"
@@ -363,7 +364,7 @@
                 android:drawableTop="@drawable/btn_plus_nostroke"
                 android:drawableTint="@color/white"/>
 
-            <!-- LinearLayout on the right side -->
+            <!-- ScrollView/LinearLayout on the right side to add ingredients to ignore in recipe creation  -->
             <ScrollView
                 android:id="@+id/llWithout"
                 android:layout_width="250dp"
@@ -379,6 +380,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
+                <!-- here the dynamically generating views are created from layout: ingredient_layout_preferences-->
 
             </ScrollView>
         </FrameLayout>
@@ -391,7 +393,7 @@
             app:layout_constraintTop_toBottomOf="@+id/flWithout"
             app:layout_constraintBottom_toTopOf="@+id/navigationBar">
 
-            <!-- TextView -->
+
             <TextView
                 android:id="@+id/tvSpecials"
                 android:layout_width="wrap_content"
@@ -404,7 +406,7 @@
                 android:layout_gravity="start"
                 android:layout_marginEnd="10dp" />
 
-            <!-- AppCompatButton -->
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSpecials"
                 android:layout_width="36dp"
@@ -416,7 +418,7 @@
                 android:drawableTop="@drawable/btn_plus_nostroke"
                 android:drawableTint="@color/white"/>
 
-            <!-- ScrollView on the right side -->
+            <!-- for adding special meal requirements -->
             <ScrollView
                 android:id="@+id/scrollSpecials"
                 android:layout_width="250dp"
@@ -430,8 +432,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
 
+                <!-- here the dynamically generating views are created from layout: ingredient_layout_preferences-->
+
             </ScrollView>
         </FrameLayout>
+
+        <!-- END: Daria -->
 
 
 
