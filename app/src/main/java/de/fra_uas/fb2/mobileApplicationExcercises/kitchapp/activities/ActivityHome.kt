@@ -133,7 +133,7 @@ class ActivityHome : AppCompatActivity() {
             generateSuggestions()
             progessCircular.visibility = View.VISIBLE
             btnSuggestions1.visibility = View.GONE
-            error = true
+            error = false
         } else {
             val intent: Intent = Intent(this, ActivityRecipeDisplay::class.java).apply {
                 putExtra("response", response)
